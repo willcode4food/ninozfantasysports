@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "baseUrl": "./src",
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node"
+    },
+    "paths": {
+        "components/**/*": ["./components/**/*"],
+        "pages/**/*": ["./pages/**/*"]
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules", "public"]
+}
+//

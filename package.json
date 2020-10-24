@@ -1,0 +1,84 @@
+{
+  "name": "gatsby-fire-pro-default",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "dependencies": {
+    "@devhammed/use-cookie": "^1.1.0",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.20.0",
+    "firebase-admin": "^9.1.1",
+    "gatsby": "^2.24.50",
+    "gatsby-image": "^2.4.16",
+    "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-emotion": "^4.3.10",
+    "gatsby-plugin-manifest": "^2.4.24",
+    "gatsby-plugin-offline": "^3.2.24",
+    "gatsby-plugin-react-helmet": "^3.3.10",
+    "gatsby-plugin-sharp": "^2.6.28",
+    "gatsby-plugin-typography": "^2.5.10",
+    "gatsby-source-filesystem": "^2.3.25",
+    "gatsby-transformer-remark": "^2.8.34",
+    "gatsby-transformer-sharp": "^2.5.13",
+    "gray-percentage": "^2.0.0",
+    "jest-emotion": "^10.0.32",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-avatar-editor": "11.0.9",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^6.8.4",
+    "react-hooks-async": "^3.10.1",
+    "react-socks": "^2.1.0",
+    "react-spinners": "^0.9.0",
+    "react-text-mask": "^5.4.3",
+    "react-tracking": "^7.3.0",
+    "react-typography": "^0.16.19",
+    "typeface-fjalla-one": "^0.0.72",
+    "typography": "^0.16.19"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^11.0.4",
+    "babel-jest": "^26.5.2",
+    "babel-preset-gatsby": "^0.5.14",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint": "^7.10.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-react": "^7.21.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.5.3",
+    "prettier": "2.1.0",
+    "react-test-renderer": "^16.14.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "rm -rf ./.cache && yarn && gatsby develop -H 0.0.0.0",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run dev",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "jest",
+    "jest-watch": "jest --watch",
+    "test-update-snapshot": "jest --updateSnapshot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-test-env.js"
+    ]
+  }
+}
