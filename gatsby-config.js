@@ -1,9 +1,9 @@
 module.exports = {
     siteMetadata: {
-        title: `Gatsby Fire Pro`,
+        title: `Ninoz Fantasy Sports`,
         titleTemplate: '%s · The best place to jump on board the rocketship',
         description: `Use this starter to begin your next new project using Firebase.  Authentication, Firestore and Object Storage out of the box.`,
-        siteUrl: 'https://www.pondstreetsoftware.com', // No trailing slash allowed!
+        siteUrl: 'https://www.ninozfantasysports.com', // No trailing slash allowed!
         image: '/images/placeholder.png', // Path to your image you placed in the 'static' folder
         twitterUsername: '@willcode4food',
     },
