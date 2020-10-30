@@ -7,6 +7,7 @@ import AccountLink from 'components/AccountLink'
 import HamburgerArrow from './HamburgerArrow'
 import ThemeToggle from 'components/ThemeToggle'
 import SessionContext from 'context/SessionContext'
+import { Breakpoint } from 'react-socks'
 import {
     StickyNav,
     HeaderBar,
@@ -31,7 +32,12 @@ const Header = ({ resetDrawer, location, isShowingAccountLink = false, toggleNav
                     <HeaderBox onClick={resetDrawer}>
                         <LogoWrapper>
                             <Link to="/">
-                                <Logo />
+                                <Breakpoint M up>
+                                    <Logo />
+                                </Breakpoint>
+                                <Breakpoint S down>
+                                    <Logo width="200px"/>
+                                </Breakpoint>
                             </Link>
                         </LogoWrapper>
                     </HeaderBox>
