@@ -32,11 +32,11 @@ const Header = ({ resetDrawer, location, isShowingAccountLink = false, toggleNav
                     <HeaderBox onClick={resetDrawer}>
                         <LogoWrapper>
                             <Link to="/">
-                                <Breakpoint M up>
-                                    <Logo />
-                                </Breakpoint>
                                 <Breakpoint S down>
-                                    <Logo width="200px"/>
+                                    <Logo width="200px" />
+                                </Breakpoint>
+                                <Breakpoint M>
+                                    <Logo />
                                 </Breakpoint>
                             </Link>
                         </LogoWrapper>
