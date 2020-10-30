@@ -35,7 +35,7 @@ const Header = ({ resetDrawer, location, isShowingAccountLink = false, toggleNav
                                 <Breakpoint S down>
                                     <Logo width="200px" />
                                 </Breakpoint>
-                                <Breakpoint M>
+                                <Breakpoint M up>
                                     <Logo />
                                 </Breakpoint>
                             </Link>
