@@ -45,7 +45,11 @@ function AccountProfileForm() {
         collection: 'users',
         docId: authUser.uid,
     })
-
+    useEffect(() => {
+        if (document && (!document.username || document.username === '')) {
+            setAccountProfileFormError({ message: 'Please give yourself a unique username' })
+        }
+    }, [document])
     useEffect(() => {
         setAccountProfileFormError(firestoreError)
     }, [firestoreError])
@@ -61,6 +65,7 @@ function AccountProfileForm() {
         // eslint-disable-next-line no-unused-vars
         const { confirmPassword, ...userData } = data
         const imageUrlFromSave = await handleEditedImage()
+        setAccountProfileFormError(null)
         await updateDocument({ ...userData, profileImageName: imageUrlFromSave })
     }
     const onFileChanged = (event) => {

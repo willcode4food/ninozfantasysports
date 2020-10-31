@@ -43,7 +43,8 @@ function LoginForm() {
     }
 
     const onGoogleSubmit = async (event) => {
-        onGoogleLogin(event)
+        event.preventDefault()
+        onGoogleLogin()
     }
 
     return (

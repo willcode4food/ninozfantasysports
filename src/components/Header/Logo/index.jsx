@@ -45,8 +45,8 @@ const Logo = ({ width = `100%`, height = `100%`, color = COLORS.SECONDARY, textC
 )
 
 Logo.propTypes = {
-    height: PropTypes.number,
-    width: PropTypes.number,
+    height: PropTypes.string,
+    width: PropTypes.string,
     color: PropTypes.string,
     textColor: PropTypes.string,
 }
