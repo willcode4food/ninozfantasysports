@@ -7,7 +7,7 @@ import AccountLink from 'components/AccountLink'
 import HamburgerArrow from './HamburgerArrow'
 import ThemeToggle from 'components/ThemeToggle'
 import SessionContext from 'context/SessionContext'
-import { Breakpoint } from 'react-socks'
+import useBreakpointDetector from 'hooks/useBreakpointDetector'
 import {
     StickyNav,
     HeaderBar,
@@ -20,6 +20,7 @@ import {
 
 const Header = ({ resetDrawer, location, isShowingAccountLink = false, toggleNav }) => {
     const { uid, sessionID } = useContext(SessionContext)
+    const { isLarge } = useBreakpointDetector()
     return (
         <StickyNav id="headerBar">
             <div>
@@ -32,12 +33,7 @@ const Header = ({ resetDrawer, location, isShowingAccountLink = false, toggleNav
                     <HeaderBox onClick={resetDrawer}>
                         <LogoWrapper>
                             <Link to="/">
-                                <Breakpoint S down>
-                                    <Logo width="200px" />
-                                </Breakpoint>
-                                <Breakpoint M up>
-                                    <Logo />
-                                </Breakpoint>
+                                <Logo width={isLarge ? '100%' : '200px'} />
                             </Link>
                         </LogoWrapper>
                     </HeaderBox>

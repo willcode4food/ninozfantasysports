@@ -3,7 +3,8 @@ import { Link } from 'gatsby'
 import { COLORS } from 'utils/styleHelpers'
 import SocialLinks from 'components/SocialLinks'
 import Logo from 'components/Header/Logo'
-import { Breakpoint } from 'react-socks'
+import useBreakpointDetector from 'hooks/useBreakpointDetector'
+
 import {
     CopyrightText,
     FooterContentWrapper,
@@ -18,6 +19,8 @@ import {
 } from './styles'
 
 const Footer = () => {
+    const { isSmall, isLarge } = useBreakpointDetector()
+
     return (
         <FooterWrapper>
             <FooterWrapperBox>
@@ -27,21 +30,17 @@ const Footer = () => {
                             <Logo color={COLORS.PRIMARY} textColor={COLORS.PRIMARY} />
                         </FooterLogoWrapper>
                     </FooterContentBoxLogo>
-                    <FooterSocialLinksWrapper>
-                        <Breakpoint M up>
-                            <SocialLinks />
-                        </Breakpoint>
-                    </FooterSocialLinksWrapper>
+                    <FooterSocialLinksWrapper>{isLarge && <SocialLinks />}</FooterSocialLinksWrapper>
                     <FooterContentBoxTermsAndPolicy>
                         <Link to="/tos"> Terms of Use</Link> | <Link to="/privacy-policy">Privacy Policy</Link>
                     </FooterContentBoxTermsAndPolicy>
                     <div>
                         <FooterContentCopyrightWrapper>
-                            <Breakpoint S down>
+                            {isSmall && (
                                 <FooterSocialLinksMobileWrapper>
                                     <SocialLinks />
                                 </FooterSocialLinksMobileWrapper>
-                            </Breakpoint>
+                            )}
                             <div>
                                 <CopyrightText>Copyright 2020 All Rights Researved</CopyrightText>
                             </div>

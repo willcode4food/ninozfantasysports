@@ -1,3 +1,18 @@
+const { BREAKPOINTS_VALUES } = require('./src/utils/styleHelpers')
+const breakpoints = Object.keys(BREAKPOINTS_VALUES).map((value) => ({ [value]: BREAKPOINTS_VALUES[value] }))
+const breakpointPluginObject = breakpoints.reduce((acc, value) => {
+    const key = Object.keys(value).pop()
+    return {
+        ...acc,
+        [key]: `(max-width: ${value[key]}px)`,
+    }
+}, {})
+
+const mediaQueries = {
+    ...breakpointPluginObject,
+    portrait: `(orientation: portrait)`,
+}
+
 module.exports = {
     siteMetadata: {
         title: `Ninoz Fantasy Sports`,
@@ -36,6 +51,12 @@ module.exports = {
                 background_color: `#663399`,
                 theme_color: `#663399`,
                 display: `minimal-ui`,
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-breakpoints',
+            options: {
+                queries: mediaQueries,
             },
         },
     ],
