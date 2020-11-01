@@ -101,7 +101,7 @@ const EFFECT_COLORS = {
     medical: '#1977a7',
 }
 
-const shadeColor2 = (color, percent) => {
+function shadeColor2(color, percent) {
     const f = parseInt(color.slice(1), 16)
     const t = percent < 0 ? 0 : 255
     const p = percent < 0 ? percent * -1 : percent
@@ -121,6 +121,16 @@ const shadeColor2 = (color, percent) => {
         .slice(1)}`
 }
 
+function getMediaQueryForBreakpointPlugin() {
+    const breakpoints = Object.keys(BREAKPOINTS_VALUES).map((value) => ({ [value]: BREAKPOINTS_VALUES[value] }))
+    return breakpoints.reduce((acc, value) => {
+        const key = Object.keys(value).pop()
+        return {
+            ...acc,
+            [key]: `(max-width: ${value[key]}px)`,
+        }
+    }, {})
+}
 module.exports = {
     COLORS,
     DEFAULT_AVATAR_THEMES,
@@ -133,4 +143,5 @@ module.exports = {
     EFFECT_COLORS,
     matchMedia,
     shadeColor2,
+    getMediaQueryForBreakpointPlugin,
 }

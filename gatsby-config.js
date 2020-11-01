@@ -1,15 +1,7 @@
-const { BREAKPOINTS_VALUES } = require('./src/utils/styleHelpers')
-const breakpoints = Object.keys(BREAKPOINTS_VALUES).map((value) => ({ [value]: BREAKPOINTS_VALUES[value] }))
-const breakpointPluginObject = breakpoints.reduce((acc, value) => {
-    const key = Object.keys(value).pop()
-    return {
-        ...acc,
-        [key]: `(max-width: ${value[key]}px)`,
-    }
-}, {})
+const { getMediaQueryForBreakpointPlugin } = require('./src/utils/styleHelpers')
 
 const mediaQueries = {
-    ...breakpointPluginObject,
+    ...getMediaQueryForBreakpointPlugin(),
     portrait: `(orientation: portrait)`,
 }
 

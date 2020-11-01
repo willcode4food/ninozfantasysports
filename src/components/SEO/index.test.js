@@ -41,11 +41,11 @@ describe('SEO', () => {
                       "name": "description",
                     },
                     Object {
-                      "content": "https://www.pondstreetsoftware.comimage.png",
+                      "content": "https://www.ninozfantasysports.comimage.png",
                       "name": "image",
                     },
                     Object {
-                      "content": "https://www.pondstreetsoftware.com/pathname",
+                      "content": "https://www.ninozfantasysports.com/pathname",
                       "property": "og:url",
                     },
                     Object {
@@ -57,7 +57,7 @@ describe('SEO', () => {
                       "property": "og:description",
                     },
                     Object {
-                      "content": "https://www.pondstreetsoftware.comimage.png",
+                      "content": "https://www.ninozfantasysports.comimage.png",
                       "property": "og:image",
                     },
                     Object {
@@ -65,7 +65,7 @@ describe('SEO', () => {
                       "name": "twitter:card",
                     },
                     Object {
-                      "content": "@pondstreetsoftware",
+                      "content": "@willcode4food",
                       "name": "twitter:creator",
                     },
                     Object {
@@ -89,7 +89,7 @@ describe('SEO', () => {
                       "name": "twitter:description",
                     },
                     Object {
-                      "content": "https://www.pondstreetsoftware.comimage.png",
+                      "content": "https://www.ninozfantasysports.comimage.png",
                       "name": "twitter:image",
                     },
                   ],
