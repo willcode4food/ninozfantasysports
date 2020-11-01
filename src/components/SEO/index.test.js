@@ -1,8 +1,7 @@
 import React from 'react'
-import { render } from '@testing-library/react'
 import { Helmet } from 'react-helmet'
 import Adapter from 'enzyme-adapter-react-16'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery } from 'gatsby'
 import { configure, mount } from 'enzyme'
 import SEO from './'
 const gatsbyConfig = require('../../../gatsby-config.js')
@@ -23,6 +22,7 @@ beforeEach(() => {
 describe('SEO', () => {
     describe('when it is added', () => {
         it('renders', () => {
+            // eslint-disable-next-line no-unused-vars
             const wrapper = mount(
                 <SEO description="description" image="image.png" pathname="/pathname" title="title" />
             )
