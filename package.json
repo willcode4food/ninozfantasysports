@@ -5,6 +5,7 @@
     "version": "0.1.0",
     "author": "Kyle Mathews <mathews.kyle@gmail.com>",
     "dependencies": {
+        "@apollo/client": "^3.2.5",
         "@devhammed/use-cookie": "^1.1.0",
         "@emotion/core": "^10.0.35",
         "@emotion/styled": "^10.0.27",
@@ -24,6 +25,7 @@
         "gatsby-source-filesystem": "^2.3.25",
         "gatsby-transformer-remark": "^2.8.34",
         "gatsby-transformer-sharp": "^2.5.13",
+        "graphql": "^15.4.0",
         "gray-percentage": "^2.0.0",
         "jest-emotion": "^10.0.32",
         "lint-staged": "^10.5.1",

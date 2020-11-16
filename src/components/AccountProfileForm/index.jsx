@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import SessionContext from 'context/SessionContext'
 import { useForm } from 'react-hook-form'
 import AvatarEditor from 'react-avatar-editor'
@@ -26,12 +27,11 @@ import RotateLeftIcon from 'components/RotateLeftIcon'
 import RotateRightIcon from 'components/RotateRightIcon'
 import { ErrorMessage, FormHeader, ErrorIcon } from 'components/Forms/FormStyles'
 import { FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE, ACCEPTED_IMAGE_FORMATS } from 'utils/constants'
-import useFirestoreDocument from 'hooks/firebase/useFirestoreDocument'
 import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
 import { getInitials } from 'utils/userHelpers'
 
 function AccountProfileForm() {
-    const { register, handleSubmit, errors, watch } = useForm()
+    const { register, handleSubmit, errors, watch, reset } = useForm()
     const [isEditingAvatar, setIsEditingAvatar] = useState(false)
     const [profileImageBuffer, setProfileImageBuffer] = useState(null)
     const [scale, setScale] = useState(1)
@@ -40,22 +40,81 @@ function AccountProfileForm() {
     const editor = useRef(null)
     const { authUser } = useContext(SessionContext)
     const { storage } = useFirebaseApp({ firebaseConfig: FIREBASE.CONFIG })
-    const { document, isFirestoreLoading, updateDocument, firestoreError } = useFirestoreDocument({
-        firebaseConfig: FIREBASE.CONFIG,
-        collection: 'users',
-        docId: authUser.uid,
-    })
-    useEffect(() => {
-        if (document && (!document.username || document.username === '')) {
-            setAccountProfileFormError({ message: 'Please give yourself a unique username' })
+
+    const GET_USER = gql`
+        {
+            returnSingleUser(id: "${authUser.uid.toString()}") {
+                dateCreated
+                defaultAvatarThemeIndex
+                email
+                firstName
+                lastName
+                loginProvider
+                profileImageName
+                username
+                city
+                state
+                zip
+            }
         }
-    }, [document])
+    `
+    const UPDATE_USER = gql`
+        mutation UpdateUser($data: UserInput!) {
+            updateUser(data: $data) {
+                id
+                username
+                firstName
+                lastName
+                city
+                state
+                zip
+            }
+        }
+    `
+    const { data: queryData = null, error: queryError = null, loading: queryLoading } = useQuery(GET_USER)
+    const [
+        updateUser,
+        { data: mutationData = null, error: mutationError = null, loading: mutationLoading },
+    ] = useMutation(UPDATE_USER)
+
+    function resetForm(data) {
+        reset(
+            {
+                ...data,
+            },
+            {
+                errors: true, // errors will not be reset
+                dirtyFields: true, // dirtyFields will not be reset
+                isDirty: true, // dirty will not be reset
+                isSubmitted: false,
+                touched: false,
+                isValid: false,
+                submitCount: false,
+            }
+        )
+    }
     useEffect(() => {
-        setAccountProfileFormError(firestoreError)
-    }, [firestoreError])
+        if (queryData && queryData?.returnSingleUser) {
+            resetForm(queryData.returnSingleUser)
+        }
+    }, [queryData])
+
+    useEffect(() => {
+        if (mutationData && mutationData?.updateUser) {
+            resetForm(mutationData.updateUser)
+        }
+    }, [mutationData])
+
+    useEffect(() => {
+        setAccountProfileFormError(queryError)
+    }, [queryError])
+
+    useEffect(() => {
+        setAccountProfileFormError(mutationError)
+    }, [mutationError])
 
     function isLoginProviderEmail() {
-        return document && document.loginProvider === LOGIN_PROVIDER.EMAIL
+        return queryData && queryData?.loginProvider === LOGIN_PROVIDER.EMAIL
     }
     const onScale = (event) => {
         setScale(parseFloat(event.target.value))
@@ -64,9 +123,15 @@ function AccountProfileForm() {
     const onSubmit = async (data) => {
         // eslint-disable-next-line no-unused-vars
         const { confirmPassword, ...userData } = data
+        if (!userData.username) {
+            setAccountProfileFormError({ message: 'Please give yourself a unique username' })
+            return
+        }
         const imageUrlFromSave = await handleEditedImage()
         setAccountProfileFormError(null)
-        await updateDocument({ ...userData, profileImageName: imageUrlFromSave })
+        await updateUser({
+            variables: { data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave } },
+        })
     }
     const onFileChanged = (event) => {
         setAccountProfileFormError(null)
@@ -118,7 +183,7 @@ function AccountProfileForm() {
     }
     return (
         <>
-            {isFirestoreLoading || !document || typeof document === undefined ? (
+            {queryLoading || mutationLoading || !queryData ? (
                 <Loader />
             ) : (
                 <FormWrapper>
@@ -178,18 +243,15 @@ function AccountProfileForm() {
                                     {!isEditingAvatar && (
                                         <ProfileAvatar
                                             key={authUser.uid}
-                                            imageFileName={document && document.profileImageName}
+                                            imageFileName={queryData && queryData?.returnSingleUser?.profileImageName}
                                             defaultAvatarThemeIndex={
-                                                document &&
-                                                document.defaultAvatarThemeIndex &&
-                                                document.defaultAvatarThemeIndex
+                                                queryData && queryData?.returnSingleUser?.defaultAvatarThemeIndex
                                             }
                                             displayText={getInitials({
-                                                username: document && document.username,
-                                                firstName: document && document.firstName,
-                                                lastName: document && document.lastName,
+                                                username: queryData && queryData?.returnSingleUser?.username,
+                                                firstName: queryData && queryData?.returnSingleUser?.firstName,
+                                                lastName: queryData && queryData?.returnSingleUser?.lastName,
                                             })}
-                                            // imageFileURL={profileImageUrl}
                                         />
                                     )}
                                 </FormBox>
@@ -207,16 +269,16 @@ function AccountProfileForm() {
                                         placeholder="Username"
                                         type="text"
                                         aria-label="Username"
-                                        defaultValue={document && document.username}
+                                        defaultValue={queryData && queryData?.username}
                                     />
                                 </FormBox>
-                                {errors.username && errors.username.type === 'required' && (
+                                {errors?.username && errors?.username?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>Please enter a valid username</ErrorMessage>
                                     </FormBox>
                                 )}
-                                {errors.username && errors.username.type === 'minLength' && (
+                                {errors?.username && errors?.username?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>Usernames must be at least 2 characters long</ErrorMessage>
@@ -229,16 +291,16 @@ function AccountProfileForm() {
                                         register={register({ required: true, minLength: 2 })}
                                         type="text"
                                         aria-label="First Name"
-                                        defaultValue={document && document.firstName}
+                                        defaultValue={queryData && queryData?.firstName}
                                     />
                                 </FormBox>
-                                {errors.firstName && errors.firstName.type === 'required' && (
+                                {errors?.firstName && errors?.firstName?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>First Name is required</ErrorMessage>
                                     </FormBox>
                                 )}
-                                {errors.firstName && errors.firstName.type === 'minLength' && (
+                                {errors?.firstName && errors?.firstName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>First name must be at least 2 characters</ErrorMessage>
@@ -251,16 +313,16 @@ function AccountProfileForm() {
                                         register={register({ required: true, minLength: 2 })}
                                         type="text"
                                         aria-label="Last Name"
-                                        defaultValue={document && document.lastName}
+                                        defaultValue={queryData && queryData.lastName}
                                     />
                                 </FormBox>
-                                {errors.lastName && errors.lastName.type === 'required' && (
+                                {errors?.lastName && errors?.lastName?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>Last Name is required</ErrorMessage>
                                     </FormBox>
                                 )}
-                                {errors.lastName && errors.lastName.type === 'minLength' && (
+                                {errors?.lastName && errors?.lastName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>Last name must be at least 2 characters</ErrorMessage>
@@ -273,10 +335,10 @@ function AccountProfileForm() {
                                         register={register({ minLength: 2 })}
                                         type="text"
                                         aria-label="City"
-                                        defaultValue={document && document.city}
+                                        defaultValue={queryData && queryData.city}
                                     />
                                 </FormBox>
-                                {errors.lastName && errors.lastName.type === 'minLength' && (
+                                {errors?.lastName && errors?.lastName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>City must be at least 2 characters</ErrorMessage>
@@ -287,17 +349,17 @@ function AccountProfileForm() {
                                         name="state"
                                         aria-label="state"
                                         register={register}
-                                        defaultValue={document && document.state}
+                                        defaultValue={queryData && queryData.state}
                                     />
                                 </FormBox>
-                                {errors.lastName && errors.lastName.type === 'minLength' && (
+                                {errors?.lastName && errors?.lastName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>City must be at least 2 characters</ErrorMessage>
                                     </FormBox>
                                 )}
 
-                                {document && isLoginProviderEmail() && (
+                                {queryData && isLoginProviderEmail() && (
                                     <FormBox>
                                         <InputField
                                             register={register}
@@ -308,7 +370,7 @@ function AccountProfileForm() {
                                         />
                                     </FormBox>
                                 )}
-                                {document && isLoginProviderEmail() && (
+                                {queryData && isLoginProviderEmail() && (
                                     <FormBox>
                                         <InputField
                                             name="confirmPassword"
@@ -320,8 +382,8 @@ function AccountProfileForm() {
                                     </FormBox>
                                 )}
                                 {isLoginProviderEmail() &&
-                                    errors.confirmPassword &&
-                                    errors.confirmPassword.type === 'validate' && (
+                                    errors?.confirmPassword &&
+                                    errors?.confirmPassword?.type === 'validate' && (
                                         <FormBox>
                                             <ErrorIcon />
                                             <ErrorMessage>Password and confirmation do not match</ErrorMessage>
