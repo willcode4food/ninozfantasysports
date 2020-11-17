@@ -83,6 +83,7 @@ export const ContentBannerButtonBox = styled.div`
 
 export const ContentValueProp = styled.div`
     align-items: center;
+    border: solid 1px white;
     display: flex;
     flex-direction: column;
     padding: ${SPACERS.S};
@@ -95,6 +96,22 @@ export const ContentValueProp = styled.div`
         margin: auto;
     }
 `
+export const ContentValuePropHorizontal = styled.div`
+    align-items: center;
+    border: solid 1px white;
+    display: flex;
+    flex-direction: row;
+    padding: ${SPACERS.S};
+    justify-content: center;
+    height: 400px;
+    width: 100%;
+    ${MQ.L} {
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+`
+
 export const ContentValuePropBox = styled.div`
     padding: ${SPACERS.L};
 `

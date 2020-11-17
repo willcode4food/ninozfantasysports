@@ -14,11 +14,13 @@ import {
     ContentValuePropBox,
     ContentValuePropContent,
     ContentValuePropHeader,
+    ContentValuePropHorizontal,
 } from './styles'
 import { COLORS, FONT_SIZES } from 'utils/styleHelpers'
 import { PrimaryButtonLink } from 'components/Buttons'
 
 import { PrimaryButtonAnchor } from 'components/Buttons'
+import GameDayImage from 'components/GameDayImage'
 
 function FrontDoor() {
     return (
@@ -26,21 +28,15 @@ function FrontDoor() {
             <Hero />
             <FrontDoorWrapper>
                 <ContentBoxCta color={COLORS.PRIMARY} isHidden={[false, false]}>
-                    <ContentValueProp>
+                    <ContentValuePropHorizontal>
                         <ContentValuePropHeader>Ready to board the rocketship?</ContentValuePropHeader>
-                        <ContentValuePropContent>
+                        {/* <ContentValuePropContent>
                             We&apos;re about to show the world they are ready for us!
-                        </ContentValuePropContent>
+                        </ContentValuePropContent> */}
                         <ContentValuePropBox>
-                            <PrimaryButtonLink
-                                color={COLORS.PRIMARY_BUTTON}
-                                textcolor={COLORS.PRIMARY}
-                                to="/dispensaries"
-                            >
-                                Blastoff!
-                            </PrimaryButtonLink>
+                            <GameDayImage />
                         </ContentValuePropBox>
-                    </ContentValueProp>
+                    </ContentValuePropHorizontal>
                 </ContentBoxCta>
                 <ContentBoxCta color={COLORS.TERNARY} darkColor={COLORS.TERNARY_DARK} isHidden={[false, false]}>
                     <ContentValueProp>
