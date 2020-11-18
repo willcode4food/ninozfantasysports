@@ -35,7 +35,7 @@ function FrontDoor() {
                                 textcolor={COLORS.PRIMARY}
                                 to="/dispensaries"
                             >
-                                Join a Golf League Today
+                                Join the Fantasy Golf League
                             </PrimaryButtonLink>
                         </ContentValuePropHeader>
                         <ContentValuePropBox>
