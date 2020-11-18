@@ -83,7 +83,6 @@ export const ContentBannerButtonBox = styled.div`
 
 export const ContentValueProp = styled.div`
     align-items: center;
-    border: solid 1px white;
     display: flex;
     flex-direction: column;
     padding: ${SPACERS.S};
