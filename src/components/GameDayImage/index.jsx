@@ -1,11 +1,12 @@
 import React from 'react'
 import { COLORS } from 'utils/styleHelpers'
+import PropTypes from 'prop-types'
 
 const { PRIMARY, TERNARY_DARK, SECONDARY } = COLORS
 
-function GameDayImage() {
+function GameDayImage({ width = '100%', height = '100%' }) {
     return (
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="995.89" height="792.55">
+        <svg data-name="Layer 1" width={width} height={height} viewBox="0 0 995.89 792.55">
             <path
                 d="M421.58 14.75C298.94-32.12 156.66 37.27 68.44 157.85c-26 35.59-47.95 77.63-57.65 125.16-11.74 57.56-4.72 119.51 11.75 175.06 24.84 83.77 72.14 157.2 133.72 197.39s137.28 45.14 199.61 6.89c34.69-21.29 66.11-55.51 104.21-61.19 58.32-8.69 107.66 50.8 160.44 84.3 36.13 22.93 75.87 34.11 115.19 44.95 44.58 12.3 91.76 24.24 134.89 5.09 35.72-15.87 64.71-52.08 83.93-94.43s29.48-90.61 36.18-139c4.2-30.37 7.08-61.5 3.67-92-3.55-31.86-13.88-62-27.35-88.93-30.4-60.85-76.47-106.25-126.27-138.77s-103.59-53.1-157.18-72.88C587.25 73.85 520.94 32.9 421.82 14.55z"
                 fill={SECONDARY}
@@ -614,5 +615,8 @@ function GameDayImage() {
         </svg>
     )
 }
-
+GameDayImage.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+}
 export default GameDayImage

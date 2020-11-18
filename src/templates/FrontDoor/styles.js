@@ -98,22 +98,24 @@ export const ContentValueProp = styled.div`
 `
 export const ContentValuePropHorizontal = styled.div`
     align-items: center;
-    border: solid 1px white;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: ${SPACERS.S};
     justify-content: center;
     height: 400px;
     width: 100%;
     ${MQ.L} {
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         margin: auto;
+        flex-direction: row;
+        width: 60%;
     }
 `
 
 export const ContentValuePropBox = styled.div`
     padding: ${SPACERS.L};
+    margin: ${SPACERS.L};
 `
 export const IconBox = styled.div`
     padding: ${SPACERS.M};

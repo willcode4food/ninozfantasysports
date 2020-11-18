@@ -29,10 +29,15 @@ function FrontDoor() {
             <FrontDoorWrapper>
                 <ContentBoxCta color={COLORS.PRIMARY} isHidden={[false, false]}>
                     <ContentValuePropHorizontal>
-                        <ContentValuePropHeader>Ready to board the rocketship?</ContentValuePropHeader>
-                        {/* <ContentValuePropContent>
-                            We&apos;re about to show the world they are ready for us!
-                        </ContentValuePropContent> */}
+                        <ContentValuePropHeader>
+                            <PrimaryButtonLink
+                                color={COLORS.PRIMARY_BUTTON}
+                                textcolor={COLORS.PRIMARY}
+                                to="/dispensaries"
+                            >
+                                Join a Golf League Today
+                            </PrimaryButtonLink>
+                        </ContentValuePropHeader>
                         <ContentValuePropBox>
                             <GameDayImage />
                         </ContentValuePropBox>
