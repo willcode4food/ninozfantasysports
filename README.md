@@ -8,7 +8,7 @@
     <img alt="Firebase" src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png"></a>
 </p>
 <h1 align="center">
-  Gatsby + Firebase/Firestore Professional Starter
+  <a href="https://ninozfantasysports.com/">Ninoz Fantasy Sports Web Site</a>
 </h1>
 
 Out of the box, with some basic configuration setup, you can easily connect this starter with a Firebase/Firestore back end. Included are a login page, registration page, and a user account page. This starter provides a robust user registration and security strategy for creating personalized web applicatons for many use cases.
@@ -96,9 +96,5 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 -   **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
 -   **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
