@@ -3,11 +3,10 @@ import PropTypes from 'prop-types'
 import { PATH_HISTORY_STORAGE } from 'utils/constants'
 import { Link, navigate } from 'gatsby'
 
-export const PathHistoryLink = ({ to = '/login', text = 'Login' }) => {
+export const PathHistoryLink = ({ to = '/login', text = 'Login', previousUrl = null }) => {
     const setPreviousPage = () => {
-        const { previousUrl } = this.props
         try {
-            if (typeof window !== 'undefined') {
+            if (typeof window !== 'undefined' && previousUrl) {
                 window.localStorage.setItem(PATH_HISTORY_STORAGE, previousUrl)
             }
         } catch (ex) {
@@ -28,7 +27,6 @@ PathHistoryLink.propTypes = {
 }
 
 export function navigateToPathHistory(defaultNavigateUrl = '/') {
-    console.log('navigateToPathHistory -> defaultNavigateUrl', defaultNavigateUrl)
     if (typeof window !== 'undefined') {
         if (typeof window.localStorage !== 'undefined') {
             const pathHistory = window.localStorage.getItem(PATH_HISTORY_STORAGE)

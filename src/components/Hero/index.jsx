@@ -6,7 +6,7 @@ function Hero() {
         <HeroWrapper>
             <WelcomeMessageWrapper>
                 <WelcomeMessageTitle>Welcome</WelcomeMessageTitle>
-                <WelcomeMessageSubTitle>We're going to change the world!</WelcomeMessageSubTitle>
+                <WelcomeMessageSubTitle>To Ninoz Fantasy Sports!</WelcomeMessageSubTitle>
             </WelcomeMessageWrapper>
         </HeroWrapper>
     )
