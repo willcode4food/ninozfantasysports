@@ -40,75 +40,28 @@ describe('EmailSubmitButton', () => {
                   -webkit-flex-direction: row;
                   -ms-flex-direction: row;
                   flex-direction: row;
-                  -webkit-box-pack: space-around;
-                  -webkit-justify-content: space-around;
-                  -ms-flex-pack: space-around;
-                  justify-content: space-around;
-                }
-
-                @media (min-width:992px) {
-                  .emotion-8 {
-                    -webkit-box-pack: center;
-                    -webkit-justify-content: center;
-                    -ms-flex-pack: center;
-                    justify-content: center;
-                  }
-                }
-
-                @media (min-width:768px) {
-                  .emotion-8 {
-                    -webkit-box-pack: center;
-                    -webkit-justify-content: center;
-                    -ms-flex-pack: center;
-                    justify-content: center;
-                  }
                 }
 
                 .emotion-4 {
-                  -webkit-flex-basis: 25%;
-                  -ms-flex-preferred-size: 25%;
-                  flex-basis: 25%;
+                  line-height: 1px;
+                  font-size: 2rem;
+                  padding-left: 20px;
+                  padding-right: 20px;
+                  padding-top: 5px;
+                  padding-bottom: 5px;
                 }
 
                 @media (min-width:992px) {
                   .emotion-4 {
-                    -webkit-flex-basis: 10%;
-                    -ms-flex-preferred-size: 10%;
-                    flex-basis: 10%;
-                  }
-                }
-
-                @media (min-width:768px) {
-                  .emotion-4 {
-                    -webkit-flex-basis: 10%;
-                    -ms-flex-preferred-size: 10%;
-                    flex-basis: 10%;
+                    font-size: 1.68179rem;
                   }
                 }
 
                 .emotion-6 {
-                  -webkit-flex-basis: 75%;
-                  -ms-flex-preferred-size: 75%;
-                  flex-basis: 75%;
-                  text-align: left;
-                }
-
-                @media (min-width:992px) {
-                  .emotion-6 {
-                    text-align: center;
-                    -webkit-flex-basis: 25%;
-                    -ms-flex-preferred-size: 25%;
-                    flex-basis: 25%;
-                  }
-                }
-
-                @media (min-width:768px) {
-                  .emotion-6 {
-                    text-align: center;
-                    -webkit-flex-basis: 30%;
-                    -ms-flex-preferred-size: 30%;
-                    flex-basis: 30%;
-                  }
+                  -webkit-align-self: center;
+                  -ms-flex-item-align: center;
+                  align-self: center;
+                  font-size: 1.12246rem;
                 }
 
                 <label

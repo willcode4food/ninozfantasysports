@@ -40,28 +40,6 @@ describe('StandardSubmitButton', () => {
                   -webkit-flex-direction: row;
                   -ms-flex-direction: row;
                   flex-direction: row;
-                  -webkit-box-pack: space-around;
-                  -webkit-justify-content: space-around;
-                  -ms-flex-pack: space-around;
-                  justify-content: space-around;
-                }
-
-                @media (min-width:992px) {
-                  .emotion-4 {
-                    -webkit-box-pack: center;
-                    -webkit-justify-content: center;
-                    -ms-flex-pack: center;
-                    justify-content: center;
-                  }
-                }
-
-                @media (min-width:768px) {
-                  .emotion-4 {
-                    -webkit-box-pack: center;
-                    -webkit-justify-content: center;
-                    -ms-flex-pack: center;
-                    justify-content: center;
-                  }
                 }
 
                 .emotion-2 {
