@@ -33,12 +33,15 @@ function RegisterForm() {
     function onAuthenticationSuccess() {
         navigate('/account')
     }
+
     const defaultFields = {
+        defaultAvatarThemeIndex: getDefaultAvatarIndex(),
         profileImageName: '',
         city: '',
         state: '',
         zip: '',
     }
+
     const {
         authenticationError,
         isAuthenticationLoading,
@@ -49,8 +52,12 @@ function RegisterForm() {
         firebaseConfig: FIREBASE.CONFIG,
     })
     function getDefaultAvatarIndex() {
-        const index = document.getElementsByName('defaultAvatarThemeIndex')[0]
-        return parseInt(index.value)
+        try {
+            const index = document.getElementsByName('defaultAvatarThemeIndex')[0]
+            return parseInt(index.value)
+        } catch (e) {
+            return 0
+        }
     }
     const handleGoogleSubmit = async (event) => {
         event.preventDefault()
@@ -59,23 +66,19 @@ function RegisterForm() {
             setHasGoogleRegistrationError(true)
             return
         }
-        const defaultAvatarThemeIndex = getDefaultAvatarIndex()
         await onGoogleRegistration({
             username: username.value,
-            defaultAvatarThemeIndex,
             loginProvider: 'google',
             ...defaultFields,
         })
         return
     }
     const onSubmit = async (data) => {
-        const defaultAvatarThemeIndex = getDefaultAvatarIndex()
         // eslint-disable-next-line no-unused-vars
         const { confirmPassword, ...restOfFormData } = data
         onEmailRegistration({
             ...restOfFormData,
             loginProvider: 'email',
-            defaultAvatarThemeIndex,
             ...defaultFields,
         })
     }

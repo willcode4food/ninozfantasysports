@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { InputField, EmailSubmitButton } from 'components/Forms/FormFields'
-import { ErrorMessage, FormHeader, FormButton, StyledLink, ErrorIcon } from 'components/Forms/FormStyles'
+import {
+    ButtonLabelWrapper,
+    ButtonLabelIconBox,
+    ButtonLabelBox,
+    GoogleLoginIcon,
+    ErrorMessage,
+    FormHeader,
+    FormButton,
+    StyledLink,
+    ErrorIcon,
+} from 'components/Forms/FormStyles'
 import {
     FormBox,
     FormFlex,
@@ -11,8 +21,6 @@ import {
     FormFlexInnerBox,
 } from 'components/Forms/FormLayout'
 import { navigate } from 'gatsby'
-import { ButtonLabelWrapper, ButtonLabelIconBox, ButtonLabelBox, GoogleLoginIcon } from 'components/Forms/FormStyles'
-
 import Loader from 'components/Loader'
 import { FIREBASE } from 'utils/constants'
 import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
