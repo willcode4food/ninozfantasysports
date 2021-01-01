@@ -40,6 +40,14 @@ describe('EmailSubmitButton', () => {
                   -webkit-flex-direction: row;
                   -ms-flex-direction: row;
                   flex-direction: row;
+                  -webkit-box-pack: center;
+                  -webkit-justify-content: center;
+                  -ms-flex-pack: center;
+                  justify-content: center;
+                  -webkit-align-items: flex-start;
+                  -webkit-box-align: flex-start;
+                  -ms-flex-align: flex-start;
+                  align-items: flex-start;
                 }
 
                 .emotion-4 {
