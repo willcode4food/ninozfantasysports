@@ -33,7 +33,12 @@ function RegisterForm() {
     function onAuthenticationSuccess() {
         navigate('/account')
     }
-
+    const defaultFields = {
+        profileImageName: '',
+        city: '',
+        state: '',
+        zip: '',
+    }
     const {
         authenticationError,
         isAuthenticationLoading,
@@ -59,10 +64,7 @@ function RegisterForm() {
             username: username.value,
             defaultAvatarThemeIndex,
             loginProvider: 'google',
-            profileImageName: '',
-            city: '',
-            state: '',
-            zip: '',
+            ...defaultFields,
         })
         return
     }
@@ -74,6 +76,7 @@ function RegisterForm() {
             ...restOfFormData,
             loginProvider: 'email',
             defaultAvatarThemeIndex,
+            ...defaultFields,
         })
     }
     return (
