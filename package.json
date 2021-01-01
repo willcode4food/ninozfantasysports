@@ -94,8 +94,7 @@
     },
     "lint-staged": {
         "*.{js,jsx}": [
-            "eslint --quiet --fix",
-            "jest --findRelatedTests --bail"
+            "eslint --quiet --fix"
         ],
         "*.{json,md,html}": [
             "prettier --write"
