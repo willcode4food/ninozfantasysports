@@ -359,6 +359,22 @@ function AccountProfileForm() {
                                         <ErrorMessage>City must be at least 2 characters</ErrorMessage>
                                     </FormBox>
                                 )}
+                                <FormBox>
+                                    <InputField
+                                        register={register({ required: true, minLength: 5 })}
+                                        name="zip"
+                                        placeholder="zip"
+                                        type="text"
+                                        aria-label="Zip"
+                                        defaultValue={queryData && queryData?.zip}
+                                    />
+                                </FormBox>
+                                {errors?.lastName && errors?.zip?.type === 'minLength' && (
+                                    <FormBox>
+                                        <ErrorIcon />
+                                        <ErrorMessage>Zip must be at least 2 characters</ErrorMessage>
+                                    </FormBox>
+                                )}
 
                                 {queryData && isLoginProviderEmail() && (
                                     <FormBox>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { InputField, EmailSubmitButton } from 'components/Forms/FormFields'
+import * as Rug from 'random-username-generator'
 import {
     ButtonLabelWrapper,
     ButtonLabelIconBox,
@@ -22,7 +23,8 @@ import {
 } from 'components/Forms/FormLayout'
 import { navigate } from 'gatsby'
 import Loader from 'components/Loader'
-import { FIREBASE } from 'utils/constants'
+import { FIREBASE, LOGIN_PROVIDER } from 'utils/constants'
+import { defaultUserRegFields } from 'utils/userHelpers'
 import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
 
 function LoginForm() {
@@ -52,7 +54,7 @@ function LoginForm() {
 
     const onGoogleSubmit = async (event) => {
         event.preventDefault()
-        onGoogleLogin()
+        onGoogleLogin({ ...defaultUserRegFields, loginProvider: LOGIN_PROVIDER.GOOGLE, username: Rug.generate() })
     }
 
     return (
