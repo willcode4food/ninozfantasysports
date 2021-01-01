@@ -1,11 +1,10 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { COLORS, SPACERS } from 'utils/styleHelpers'
+import { COLORS, SPACERS, FONT_SIZES } from 'utils/styleHelpers'
 import { css } from '@emotion/core'
 import { AiFillWarning } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { HiOutlineMail } from 'react-icons/hi'
-import { MQ } from 'utils/styleHelpers'
 
 export const ErrorMessage = styled.span`
     color: ${COLORS.ERROR};
@@ -65,34 +64,20 @@ export const StyledLink = styled(Link)`
 export const ButtonLabelWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    ${MQ.L} {
-        justify-content: center;
-    }
-    ${MQ.M} {
-        justify-content: center;
-    }
+    justify-content: center;
+    align-items: flex-start;
 `
 export const ButtonLabelIconBox = styled.div`
-    flex-basis: 25%;
-    ${MQ.L} {
-        flex-basis: 10%;
-    }
-    ${MQ.M} {
-        flex-basis: 10%;
-    }
+    line-height: 1px;
+    font-size: ${FONT_SIZES.H2};
+    padding-left: ${SPACERS.L};
+    padding-right: ${SPACERS.L};
+    padding-top: ${SPACERS.S};
+    padding-bottom: ${SPACERS.S};
 `
 export const ButtonLabelBox = styled.div`
-    flex-basis: 75%;
-    text-align: left;
-    ${MQ.L} {
-        text-align: center;
-        flex-basis: 25%;
-    }
-    ${MQ.M} {
-        text-align: center;
-        flex-basis: 30%;
-    }
+    align-self: center;
+    font-size: ${FONT_SIZES.H4};
 `
 
 export const ButtonLabelBoxFull = styled.div`

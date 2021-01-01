@@ -72,6 +72,7 @@ function AccountProfileForm() {
         }
     `
     const { data: queryData = null, error: queryError = null, loading: queryLoading } = useQuery(GET_USER)
+
     const [
         updateUser,
         { data: mutationData = null, error: mutationError = null, loading: mutationLoading },

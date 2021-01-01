@@ -238,6 +238,10 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
                             firstName,
                             email,
                             lastName,
+                            city: '',
+                            state: '',
+                            zip: '',
+                            username: '',
                             ...userProfileData,
                         }
                         try {
