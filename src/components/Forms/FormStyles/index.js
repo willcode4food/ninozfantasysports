@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { COLORS, SPACERS, FONT_SIZES, MQ } from 'utils/styleHelpers'
+import { COLORS, SPACERS, FONT_SIZES } from 'utils/styleHelpers'
 import { css } from '@emotion/core'
 import { AiFillWarning } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
@@ -67,14 +67,11 @@ export const ButtonLabelWrapper = styled.div`
 `
 export const ButtonLabelIconBox = styled.div`
     line-height: 1px;
-    font-size: ${FONT_SIZES.H1};
+    font-size: ${FONT_SIZES.H2};
     padding-left: ${SPACERS.L};
     padding-right: ${SPACERS.L};
     padding-top: ${SPACERS.S};
     padding-bottom: ${SPACERS.S};
-    ${MQ.L} {
-        font-size: ${FONT_SIZES.H2};
-    }
 `
 export const ButtonLabelBox = styled.div`
     align-self: center;

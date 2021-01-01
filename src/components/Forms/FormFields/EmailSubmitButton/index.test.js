@@ -44,17 +44,11 @@ describe('EmailSubmitButton', () => {
 
                 .emotion-4 {
                   line-height: 1px;
-                  font-size: 2rem;
+                  font-size: 1.68179rem;
                   padding-left: 20px;
                   padding-right: 20px;
                   padding-top: 5px;
                   padding-bottom: 5px;
-                }
-
-                @media (min-width:992px) {
-                  .emotion-4 {
-                    font-size: 1.68179rem;
-                  }
                 }
 
                 .emotion-6 {
