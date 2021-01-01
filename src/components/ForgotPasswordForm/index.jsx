@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { InputField, SubmitButton } from 'components/Forms/FormFields'
-import { FormHeader, StyledLink, ErrorMessage, ErrorIcon } from 'components/Forms/FormStyles'
+import { InputField } from 'components/Forms/FormFields'
+import {
+    ButtonLabelWrapper,
+    ButtonLabelBox,
+    ErrorMessage,
+    FormHeader,
+    FormButton,
+    StyledLink,
+    ErrorIcon,
+} from 'components/Forms/FormStyles'
 import {
     FormBox,
     FormFlex,
@@ -51,7 +59,11 @@ function ForgotPasswordForm() {
                                 <FormBox>
                                     <FormFlexInner>
                                         <FormFlexInnerBox>
-                                            <SubmitButton value="Reset My Password" />
+                                            <FormButton>
+                                                <ButtonLabelWrapper>
+                                                    <ButtonLabelBox>Reset Password</ButtonLabelBox>
+                                                </ButtonLabelWrapper>
+                                            </FormButton>
                                         </FormFlexInnerBox>
                                     </FormFlexInner>
                                 </FormBox>
