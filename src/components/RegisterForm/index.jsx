@@ -59,6 +59,10 @@ function RegisterForm() {
             username: username.value,
             defaultAvatarThemeIndex,
             loginProvider: 'google',
+            profileImageName: '',
+            city: '',
+            state: '',
+            zip: '',
         })
         return
     }
