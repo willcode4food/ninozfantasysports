@@ -11,3 +11,18 @@ export const getInitials = ({ prefersUsername, username, firstName, lastName }) 
 }
 
 export const getAvatarThemeIndex = () => Math.floor(Math.random() * 3) + 0
+export function getDefaultAvatarIndex() {
+    try {
+        const index = document.getElementsByName('defaultAvatarThemeIndex')[0]
+        return parseInt(index.value)
+    } catch (e) {
+        return 0
+    }
+}
+export const defaultUserRegFields = {
+    defaultAvatarThemeIndex: getDefaultAvatarIndex(),
+    profileImageName: '',
+    city: '',
+    state: '',
+    zip: '',
+}

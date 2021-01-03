@@ -23,7 +23,7 @@ import {
     FormFlexInnerBox,
 } from 'components/Forms/FormLayout'
 import { FIREBASE } from 'utils/constants'
-import { getAvatarThemeIndex } from 'utils/userHelpers'
+import { defaultUserRegFields } from 'utils/userHelpers'
 import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
 import Loader from 'components/Loader'
 
@@ -32,14 +32,6 @@ function RegisterForm() {
     const [hasGoogleRegistrationError, setHasGoogleRegistrationError] = useState(false)
     function onAuthenticationSuccess() {
         navigate('/account')
-    }
-
-    const defaultFields = {
-        defaultAvatarThemeIndex: getDefaultAvatarIndex(),
-        profileImageName: '',
-        city: '',
-        state: '',
-        zip: '',
     }
 
     const {
@@ -51,14 +43,7 @@ function RegisterForm() {
         onAuthenticationSuccess,
         firebaseConfig: FIREBASE.CONFIG,
     })
-    function getDefaultAvatarIndex() {
-        try {
-            const index = document.getElementsByName('defaultAvatarThemeIndex')[0]
-            return parseInt(index.value)
-        } catch (e) {
-            return 0
-        }
-    }
+
     const handleGoogleSubmit = async (event) => {
         event.preventDefault()
         const username = document.getElementsByName('username')[0]
@@ -69,7 +54,7 @@ function RegisterForm() {
         await onGoogleRegistration({
             username: username.value,
             loginProvider: 'google',
-            ...defaultFields,
+            ...defaultUserRegFields,
         })
         return
     }
@@ -79,7 +64,7 @@ function RegisterForm() {
         onEmailRegistration({
             ...restOfFormData,
             loginProvider: 'email',
-            ...defaultFields,
+            ...defaultUserRegFields,
         })
     }
     return (
@@ -228,12 +213,6 @@ function RegisterForm() {
                                         register={register({ validate: (value) => value === watch('password') })}
                                         type="password"
                                         aria-label="Confirm Password"
-                                    />
-                                    <input
-                                        type="hidden"
-                                        ref={register}
-                                        name="defaultAvatarThemeIndex"
-                                        defaultValue={getAvatarThemeIndex()}
                                     />
                                 </FormBox>
                                 {errors.confirmPassword && errors.confirmPassword.type === 'validate' && (

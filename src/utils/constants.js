@@ -13,7 +13,6 @@ const FIREBASE = {
         messagingSenderId: process.env.GATSBY_MESSAGINGSENDERID,
     },
 }
-
 const ACCEPTED_IMAGE_FORMATS = ['.jpg', '.png', '.jpeg', '.gif']
 const AVATAR_IMAGE_SIZE = 80
 const AVATAR_IMAGE_SIZE_MEDIUM = 175

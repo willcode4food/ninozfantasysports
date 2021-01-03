@@ -168,8 +168,11 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
         }
     }
 
-    const onGoogleLogin = async () => {
+    const onGoogleLogin = async (data = null) => {
         try {
+            if (data) {
+                setUserProfileStorage({ ...data })
+            }
             setIsAuthenticationLoading(true)
             setLoginFlagStorage()
             await doSignInWithGoogle()
@@ -238,10 +241,6 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
                             firstName,
                             email,
                             lastName,
-                            city: '',
-                            state: '',
-                            zip: '',
-                            username: '',
                             ...userProfileData,
                         }
                         try {

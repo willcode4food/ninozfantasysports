@@ -46,6 +46,10 @@ describe('InputField', () => {
               color: #FFF;
             }
 
+            .emotion-0:disabled {
+              color: #495358;
+            }
+
             <input
               aria-label="Last Name"
               className="emotion-0 emotion-1"
