@@ -32,4 +32,7 @@ export const InputFieldStyle = styled.input`
 		background: ${COLORS.SECONDARY_DARK};
 		color ${COLORS.PRIMARY};
 	}
+    &:disabled {
+        color: ${COLORS.TERNARY_DARK};
+    }
 `

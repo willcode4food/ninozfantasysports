@@ -1,34 +1,33 @@
-import React, { useState, useRef, useContext, useEffect } from 'react'
-import { gql, useQuery, useMutation } from '@apollo/client'
-import SessionContext from 'context/SessionContext'
-import { useForm } from 'react-hook-form'
-import AvatarEditor from 'react-avatar-editor'
-import { InputField, SliderField, StandardSubmitButton, StateSelectField, FileField } from 'components/Forms/FormFields'
-import Loader from 'components/Loader'
-import ProfileAvatar from 'components/ProfileAvatar'
+import { gql, useMutation, useQuery } from '@apollo/client'
+import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
     FormBox,
     FormBoxCenter,
     FormFlex,
     FormFlexInner,
+    FormFlexInnerBox,
     FormWrapper,
     FormWrapperBox,
-    FormFlexInnerBox,
 } from 'components/Forms/FormLayout'
+import { ErrorIcon, ErrorMessage, FormHeader } from 'components/Forms/FormStyles'
+import Loader from 'components/Loader'
+import ProfileAvatar from 'components/ProfileAvatar'
+import RotateLeftIcon from 'components/RotateLeftIcon'
+import RotateRightIcon from 'components/RotateRightIcon'
+import SessionContext from 'context/SessionContext'
+import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import AvatarEditor from 'react-avatar-editor'
+import { useForm } from 'react-hook-form'
+import { ACCEPTED_IMAGE_FORMATS, FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE } from 'utils/constants'
+import { getInitials } from 'utils/userHelpers'
 
 import {
     AvatarEditorBox,
-    ImageEditorControlsWrapper,
     ImageEditorControlsBox,
     ImageEditorControlsCenterBox,
+    ImageEditorControlsWrapper,
 } from './styles'
-
-import RotateLeftIcon from 'components/RotateLeftIcon'
-import RotateRightIcon from 'components/RotateRightIcon'
-import { ErrorMessage, FormHeader, ErrorIcon } from 'components/Forms/FormStyles'
-import { FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE, ACCEPTED_IMAGE_FORMATS } from 'utils/constants'
-import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
-import { getInitials } from 'utils/userHelpers'
 
 function AccountProfileForm() {
     const { register, handleSubmit, errors, watch, reset } = useForm()
@@ -59,10 +58,11 @@ function AccountProfileForm() {
         }
     `
     const UPDATE_USER = gql`
-        mutation UpdateUser($data: UserInput!) {
+        mutation UpdateUser($data: UserUpdateInput!) {
             updateUser(data: $data) {
                 id
                 username
+                email
                 firstName
                 lastName
                 city
@@ -71,6 +71,7 @@ function AccountProfileForm() {
             }
         }
     `
+
     const { data: queryData = null, error: queryError = null, loading: queryLoading } = useQuery(GET_USER)
 
     const [
@@ -102,6 +103,10 @@ function AccountProfileForm() {
 
     useEffect(() => {
         if (mutationData && mutationData?.updateUser) {
+            console.log(
+                '🚀 ~ file: index.jsx ~ line 108 ~ useEffect ~ mutationData.updateUser',
+                mutationData.updateUser
+            )
             resetForm(mutationData.updateUser)
         }
     }, [mutationData])
@@ -115,25 +120,34 @@ function AccountProfileForm() {
     }, [mutationError])
 
     function isLoginProviderEmail() {
-        return queryData && queryData?.loginProvider === LOGIN_PROVIDER.EMAIL
+        return queryData && queryData?.returnSingleUser?.loginProvider === LOGIN_PROVIDER.EMAIL
     }
+
     const onScale = (event) => {
         setScale(parseFloat(event.target.value))
     }
 
     const onSubmit = async (data) => {
         // eslint-disable-next-line no-unused-vars
-        const { confirmPassword, ...userData } = data
+        const { password, confirmPassword, ...userData } = data
+        const email = userData?.email || authUser.email
+
         if (!userData.username) {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
             return
         }
+
         const imageUrlFromSave = await handleEditedImage()
         setAccountProfileFormError(null)
+        const data2 = { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email }
         await updateUser({
-            variables: { data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave } },
+            variables: {
+                data: data2,
+            },
         })
+        console.log('🚀 ~ file: index.jsx ~ line 147 ~ onSubmit ~ data2', data2)
     }
+
     const onFileChanged = (event) => {
         setAccountProfileFormError(null)
         const profileImageName = event.target.files[0].name
@@ -180,7 +194,7 @@ function AccountProfileForm() {
             setIsEditingAvatar(false)
             return profileImageBuffer ? `${uid}.png` : null
         }
-        return
+        return ''
     }
     return (
         <>
@@ -265,7 +279,10 @@ function AccountProfileForm() {
                                 </FormBox>
                                 <FormBox>
                                     <InputField
-                                        register={register({ required: true, minLength: 2 })}
+                                        register={register({
+                                            required: true,
+                                            minLength: 2,
+                                        })}
                                         name="username"
                                         placeholder="Username"
                                         type="text"
@@ -327,6 +344,27 @@ function AccountProfileForm() {
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>Last name must be at least 2 characters</ErrorMessage>
+                                    </FormBox>
+                                )}
+
+                                <FormBox>
+                                    <InputField
+                                        name="email"
+                                        placeholder="Email"
+                                        register={register({
+                                            required: true,
+                                            pattern: /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                        })}
+                                        type="text"
+                                        aria-label="Email"
+                                        disabled={!isLoginProviderEmail()}
+                                    />
+                                </FormBox>
+
+                                {errors.email && errors.email.type === 'required' && (
+                                    <FormBox>
+                                        <ErrorIcon />
+                                        <ErrorMessage>Email is required</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
