@@ -208,6 +208,28 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
     }
     const { db, auth } = useFirebaseApp({ firebaseConfig })
 
+    // Password Reset (Email)
+    const doPasswordUpdate = async (password) => {
+        try {
+            await auth().currentUser.updatePassword(password)
+        } catch (error) {
+            throw Error(error)
+        }
+        return
+    }
+
+    const onPasswordUpdate = async (password) => {
+        try {
+            setIsAuthenticationLoading(true)
+            await doPasswordUpdate(password)
+            setIsAuthenticationLoading(false)
+        } catch (error) {
+            const { message } = error
+            setIsAuthenticationLoading(false)
+            setAuthenticationError({ message })
+        }
+    }
+
     useEffect(() => {
         if (!onAuthenticationSuccess) {
             onAuthenticationSuccess = () => (window ? (window.location.href = '/') : true)
@@ -270,6 +292,7 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
         onGoogleRegistration,
         onEmailLogin,
         onEmailRegistration,
+        onPasswordUpdate,
         onForgotPassword,
         onSignOut,
         authenticationError,

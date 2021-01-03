@@ -16,6 +16,7 @@ import RotateLeftIcon from 'components/RotateLeftIcon'
 import RotateRightIcon from 'components/RotateRightIcon'
 import SessionContext from 'context/SessionContext'
 import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
+import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import AvatarEditor from 'react-avatar-editor'
 import { useForm } from 'react-hook-form'
@@ -39,7 +40,7 @@ function AccountProfileForm() {
     const editor = useRef(null)
     const { authUser } = useContext(SessionContext)
     const { storage } = useFirebaseApp({ firebaseConfig: FIREBASE.CONFIG })
-
+    const { onPasswordUpdate } = useFirebaseAuthentication({ firebaseConfig: FIREBASE.CONFIG })
     const GET_USER = gql`
         {
             returnSingleUser(id: "${authUser.uid.toString()}") {
@@ -135,6 +136,14 @@ function AccountProfileForm() {
         if (!userData.username) {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
             return
+        }
+        if (password) {
+            try {
+                await onPasswordUpdate(password)
+            } catch (e) {
+                setAccountProfileFormError(e.message)
+                return
+            }
         }
 
         const imageUrlFromSave = await handleEditedImage()
@@ -414,26 +423,62 @@ function AccountProfileForm() {
                                 )}
 
                                 {queryData && isLoginProviderEmail() && (
-                                    <FormBox>
-                                        <InputField
-                                            register={register}
-                                            name="password"
-                                            placeholder="Password"
-                                            type="password"
-                                            aria-label="Password"
-                                        />
-                                    </FormBox>
+                                    <>
+                                        <FormBox>
+                                            <InputField
+                                                name="password"
+                                                register={register({
+                                                    required: true,
+                                                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/,
+                                                })}
+                                                placeholder="Password"
+                                                type="password"
+                                                aria-label="Password"
+                                            />
+                                        </FormBox>
+                                        {errors.password && errors.password.type === 'required' && (
+                                            <FormBox>
+                                                <ErrorIcon />
+                                                <ErrorMessage>A Password is required</ErrorMessage>
+                                            </FormBox>
+                                        )}
+                                        {errors.password && errors.password.type === 'pattern' && (
+                                            <FormBox>
+                                                <ErrorIcon />
+                                                <ErrorMessage>
+                                                    Passwords must be:{' '}
+                                                    <ul>
+                                                        <li>8 characters long</li>
+                                                        <li>1 uppercase character</li>
+                                                        <li>1 lowercase character</li>
+                                                        <li>at least one numeric character</li>
+                                                        <li>at least one special character (#, @, $, etc.)</li>
+                                                    </ul>
+                                                </ErrorMessage>
+                                            </FormBox>
+                                        )}
+                                    </>
                                 )}
                                 {queryData && isLoginProviderEmail() && (
-                                    <FormBox>
-                                        <InputField
-                                            name="confirmPassword"
-                                            placeholder="Confirm Password"
-                                            register={register({ validate: (value) => value === watch('password') })}
-                                            type="password"
-                                            aria-label="Confirm Password"
-                                        />
-                                    </FormBox>
+                                    <>
+                                        <FormBox>
+                                            <InputField
+                                                name="confirmPassword"
+                                                placeholder="Confirm Password"
+                                                register={register({
+                                                    validate: (value) => value === watch('password'),
+                                                })}
+                                                type="password"
+                                                aria-label="Confirm Password"
+                                            />
+                                        </FormBox>
+                                        {errors.confirmPassword && errors.confirmPassword.type === 'validate' && (
+                                            <FormBox>
+                                                <ErrorIcon />
+                                                <ErrorMessage>Password and confirmation do not match</ErrorMessage>
+                                            </FormBox>
+                                        )}
+                                    </>
                                 )}
                                 {isLoginProviderEmail() &&
                                     errors?.confirmPassword &&
