@@ -2,8 +2,8 @@
     "name": "gatsby-fire-pro-default",
     "private": true,
     "description": "A simple starter to get up and developing quickly with Gatsby",
-    "version": "0.1.0",
-    "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+    "version": "0.1.2",
+    "author": "Marc Arbesman <marc@ninozfantasysports.com>",
     "dependencies": {
         "@apollo/client": "^3.2.5",
         "@devhammed/use-cookie": "^1.1.0",

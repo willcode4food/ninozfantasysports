@@ -145,7 +145,6 @@ function AccountProfileForm() {
                 data: data2,
             },
         })
-        console.log('🚀 ~ file: index.jsx ~ line 147 ~ onSubmit ~ data2', data2)
     }
 
     const onFileChanged = (event) => {
