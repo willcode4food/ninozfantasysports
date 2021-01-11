@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useMutation } from '@apollo/client'
 import Loader from 'components/Loader'
 import { StandardSubmitButton } from 'components/Forms/FormFields'
 import { ErrorIcon, ErrorMessage, FormHeader } from 'components/Forms/FormStyles'
@@ -13,11 +15,14 @@ import {
     FormWrapper,
     FormWrapperBox,
 } from 'components/Forms/FormLayout'
+import { StyledLink } from 'components/Forms/FormStyles'
 import { InputField } from 'components/Forms/FormFields'
 import { FIREBASE } from 'utils/constants'
 import { passwordFormatRegex, emailFormatRegex } from 'utils/securityHelpers'
+import { UPDATE_USER } from 'queries'
 
-function AccountSecurityForm() {
+function AccountSecurityForm({ location }) {
+    console.log('🚀 ~ file: index.jsx ~ line 25 ~ AccountSecurityForm ~ location', location)
     const { register, handleSubmit, errors, watch, reset } = useForm()
     const { authUser } = useContext(SessionContext)
     const [accountSecurityError, setAccountSecurityError] = useState(null)
@@ -29,9 +34,16 @@ function AccountSecurityForm() {
         setAccountSecurityError(authenticationError)
     }, [authenticationError])
 
+    const [updateUser] = useMutation(UPDATE_USER)
+
     const onSubmit = async (data) => {
         const { email, newPassword } = data
         await onAuthIdentifierUpdate(email, newPassword)
+        await updateUser({
+            variables: {
+                data: { id: authUser.uid.toString(), ...location.state.userData, email },
+            },
+        })
         reset()
         setAccountSecurityError({ message: 'Security Information Updated Successfully' })
     }
@@ -127,11 +139,35 @@ function AccountSecurityForm() {
                                 </FormBox>
                             </FormFlex>
                         </form>
+                        <FormBox>
+                            <StyledLink to="/account">Return to Account Profile</StyledLink>
+                        </FormBox>
                     </FormWrapperBox>
                 </FormWrapper>
             )}
         </>
     )
+}
+
+AccountSecurityForm.propTypes = {
+    location: PropTypes.shape({
+        state: PropTypes.shape({
+            userData: PropTypes.shape({
+                city: PropTypes.string,
+                dateCreated: PropTypes.string,
+                defaultAvatarThemeIndex: PropTypes.string,
+                email: PropTypes.string,
+                firstName: PropTypes.string,
+                lastName: PropTypes.string,
+                loginProvider: PropTypes.string,
+                profileImageName: PropTypes.string,
+                state: PropTypes.string,
+                username: PropTypes.string,
+                zip: PropTypes.string,
+                __typename: PropTypes.string,
+            }),
+        }),
+    }),
 }
 
 export default AccountSecurityForm

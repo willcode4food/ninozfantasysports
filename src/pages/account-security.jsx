@@ -13,7 +13,7 @@ function AccountSecurityPage({ location }) {
             <>
                 {isAuthorized ? (
                     <GlobalLayout location={location} isVerifyAgeModalOverriden={true}>
-                        <AccountSecurityForm />
+                        <AccountSecurityForm location={location} />
                     </GlobalLayout>
                 ) : (
                     <UnauthorizedPage />

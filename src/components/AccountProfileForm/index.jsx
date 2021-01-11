@@ -9,7 +9,7 @@ import {
     FormWrapper,
     FormWrapperBox,
 } from 'components/Forms/FormLayout'
-import { ErrorIcon, ErrorMessage, FormHeader } from 'components/Forms/FormStyles'
+import { ErrorIcon, ErrorMessage, FormHeader, StyledLink } from 'components/Forms/FormStyles'
 import Loader from 'components/Loader'
 import ProfileAvatar from 'components/ProfileAvatar'
 import RotateLeftIcon from 'components/RotateLeftIcon'
@@ -21,9 +21,10 @@ import AvatarEditor from 'react-avatar-editor'
 import { useForm } from 'react-hook-form'
 import { ACCEPTED_IMAGE_FORMATS, FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE } from 'utils/constants'
 import { getInitials } from 'utils/userHelpers'
-import { passwordFormatRegex, emailFormatRegex } from 'utils/securityHelpers'
+import { UPDATE_USER } from 'queries'
 
 import {
+    AuthIdentifierLabel,
     AvatarEditorBox,
     ImageEditorControlsBox,
     ImageEditorControlsCenterBox,
@@ -31,7 +32,7 @@ import {
 } from './styles'
 
 function AccountProfileForm() {
-    const { register, handleSubmit, errors, watch, reset } = useForm()
+    const { register, handleSubmit, errors, reset } = useForm()
     const [isEditingAvatar, setIsEditingAvatar] = useState(false)
     const [profileImageBuffer, setProfileImageBuffer] = useState(null)
     const [scale, setScale] = useState(1)
@@ -51,20 +52,6 @@ function AccountProfileForm() {
                 loginProvider
                 profileImageName
                 username
-                city
-                state
-                zip
-            }
-        }
-    `
-    const UPDATE_USER = gql`
-        mutation UpdateUser($data: UserUpdateInput!) {
-            updateUser(data: $data) {
-                id
-                username
-                email
-                firstName
-                lastName
                 city
                 state
                 zip
@@ -126,7 +113,7 @@ function AccountProfileForm() {
     const onSubmit = async (data) => {
         // eslint-disable-next-line no-unused-vars
         const { password, confirmPassword, ...userData } = data
-        const email = userData?.email || authUser.email
+        const email = queryData?.email || authUser.email
 
         if (!userData.username) {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
@@ -140,7 +127,6 @@ function AccountProfileForm() {
                 data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email },
             },
         })
-        // await onAuthIdentifierUpdate(email)
     }
 
     const onFileChanged = (event) => {
@@ -190,6 +176,7 @@ function AccountProfileForm() {
         }
         return ''
     }
+
     return (
         <>
             {queryLoading || mutationLoading || !queryData ? (
@@ -271,6 +258,7 @@ function AccountProfileForm() {
                                         </FormBoxCenter>
                                     )}
                                 </FormBox>
+                                <AuthIdentifierLabel>{queryData?.returnSingleUser?.email}</AuthIdentifierLabel>
                                 <FormBox>
                                     <InputField
                                         register={register({
@@ -341,20 +329,6 @@ function AccountProfileForm() {
                                     </FormBox>
                                 )}
 
-                                <FormBox>
-                                    <InputField
-                                        name="email"
-                                        placeholder="Email"
-                                        register={register({
-                                            required: true,
-                                            pattern: emailFormatRegex,
-                                        })}
-                                        type="text"
-                                        aria-label="Email"
-                                        disabled={!isLoginProviderEmail()}
-                                    />
-                                </FormBox>
-
                                 {errors.email && errors.email.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
@@ -407,64 +381,6 @@ function AccountProfileForm() {
                                         <ErrorMessage>Zip must be at least 2 characters</ErrorMessage>
                                     </FormBox>
                                 )}
-
-                                {queryData && isLoginProviderEmail() && (
-                                    <>
-                                        <FormBox>
-                                            <InputField
-                                                name="password"
-                                                register={register({
-                                                    pattern: passwordFormatRegex,
-                                                })}
-                                                placeholder="Password"
-                                                type="password"
-                                                aria-label="Password"
-                                            />
-                                        </FormBox>
-                                        {errors.password && errors.password.type === 'required' && (
-                                            <FormBox>
-                                                <ErrorIcon />
-                                                <ErrorMessage>A Password is required</ErrorMessage>
-                                            </FormBox>
-                                        )}
-                                        {errors.password && errors.password.type === 'pattern' && (
-                                            <FormBox>
-                                                <ErrorIcon />
-                                                <ErrorMessage>
-                                                    Passwords must be:{' '}
-                                                    <ul>
-                                                        <li>8 characters long</li>
-                                                        <li>1 uppercase character</li>
-                                                        <li>1 lowercase character</li>
-                                                        <li>at least one numeric character</li>
-                                                        <li>at least one special character (#, @, $, etc.)</li>
-                                                    </ul>
-                                                </ErrorMessage>
-                                            </FormBox>
-                                        )}
-                                    </>
-                                )}
-                                {queryData && isLoginProviderEmail() && (
-                                    <>
-                                        <FormBox>
-                                            <InputField
-                                                name="confirmPassword"
-                                                placeholder="Confirm Password"
-                                                register={register({
-                                                    validate: (value) => value === watch('password'),
-                                                })}
-                                                type="password"
-                                                aria-label="Confirm Password"
-                                            />
-                                        </FormBox>
-                                        {errors.confirmPassword && errors.confirmPassword.type === 'validate' && (
-                                            <FormBox>
-                                                <ErrorIcon />
-                                                <ErrorMessage>Password and confirmation do not match</ErrorMessage>
-                                            </FormBox>
-                                        )}
-                                    </>
-                                )}
                                 <FormBox>
                                     <FormFlexInner>
                                         <FormFlexInnerBox>
@@ -472,6 +388,16 @@ function AccountProfileForm() {
                                         </FormFlexInnerBox>
                                     </FormFlexInner>
                                 </FormBox>
+                                {isLoginProviderEmail() && (
+                                    <FormBox>
+                                        <StyledLink
+                                            to="/account-security"
+                                            state={{ userData: queryData.returnSingleUser }}
+                                        >
+                                            Update Email and Password
+                                        </StyledLink>
+                                    </FormBox>
+                                )}
                             </FormFlex>
                         </form>
                     </FormWrapperBox>

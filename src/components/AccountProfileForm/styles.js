@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { SPACERS } from 'utils/styleHelpers'
+import { SPACERS, COLORS } from 'utils/styleHelpers'
 
 export const ImageEditorControlsWrapper = styled.div`
     display: flex;
@@ -17,4 +17,11 @@ export const AvatarEditorBox = styled.div`
     width: 100%;
     margin: ${SPACERS.S};
     text-align: center;
+`
+
+export const AuthIdentifierLabel = styled.div`
+    color: ${COLORS.TOGGLE};
+    align-self: center;
+    padding-top: ${SPACERS.S};
+    padding-bottom: ${SPACERS.M};
 `

@@ -8,7 +8,8 @@
     },
     "paths": {
         "components/**/*": ["./components/**/*"],
-        "pages/**/*": ["./pages/**/*"]
+        "pages/**/*": ["./pages/**/*"],
+        "queries/**/*": ["./queries/**/*"]
     },
     "include": ["./src/**/*"],
     "exclude": ["node_modules", "public"]

@@ -26,6 +26,7 @@ module.exports = {
                     hooks: 'src/hooks',
                     firebaseActions: 'src/firebase',
                     templates: 'src/templates',
+                    queries: 'src/queries',
                 },
                 extensions: ['js', 'jsx'],
             },
