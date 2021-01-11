@@ -16,12 +16,12 @@ import RotateLeftIcon from 'components/RotateLeftIcon'
 import RotateRightIcon from 'components/RotateRightIcon'
 import SessionContext from 'context/SessionContext'
 import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
-import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import AvatarEditor from 'react-avatar-editor'
 import { useForm } from 'react-hook-form'
 import { ACCEPTED_IMAGE_FORMATS, FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE } from 'utils/constants'
 import { getInitials } from 'utils/userHelpers'
+import { passwordFormatRegex, emailFormatRegex } from 'utils/securityHelpers'
 
 import {
     AvatarEditorBox,
@@ -40,7 +40,6 @@ function AccountProfileForm() {
     const editor = useRef(null)
     const { authUser } = useContext(SessionContext)
     const { storage } = useFirebaseApp({ firebaseConfig: FIREBASE.CONFIG })
-    const { onPasswordUpdate } = useFirebaseAuthentication({ firebaseConfig: FIREBASE.CONFIG })
     const GET_USER = gql`
         {
             returnSingleUser(id: "${authUser.uid.toString()}") {
@@ -104,10 +103,6 @@ function AccountProfileForm() {
 
     useEffect(() => {
         if (mutationData && mutationData?.updateUser) {
-            console.log(
-                '🚀 ~ file: index.jsx ~ line 108 ~ useEffect ~ mutationData.updateUser',
-                mutationData.updateUser
-            )
             resetForm(mutationData.updateUser)
         }
     }, [mutationData])
@@ -137,23 +132,15 @@ function AccountProfileForm() {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
             return
         }
-        if (password) {
-            try {
-                await onPasswordUpdate(password)
-            } catch (e) {
-                setAccountProfileFormError(e.message)
-                return
-            }
-        }
 
         const imageUrlFromSave = await handleEditedImage()
         setAccountProfileFormError(null)
-        const data2 = { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email }
         await updateUser({
             variables: {
-                data: data2,
+                data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email },
             },
         })
+        // await onAuthIdentifierUpdate(email)
     }
 
     const onFileChanged = (event) => {
@@ -173,7 +160,6 @@ function AccountProfileForm() {
     const onRotateLeft = () => {
         setRotate(rotate - 90)
     }
-
     const onRotateRight = () => {
         setRotate(rotate + 90)
     }
@@ -361,7 +347,7 @@ function AccountProfileForm() {
                                         placeholder="Email"
                                         register={register({
                                             required: true,
-                                            pattern: /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                            pattern: emailFormatRegex,
                                         })}
                                         type="text"
                                         aria-label="Email"
@@ -428,8 +414,7 @@ function AccountProfileForm() {
                                             <InputField
                                                 name="password"
                                                 register={register({
-                                                    required: true,
-                                                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/,
+                                                    pattern: passwordFormatRegex,
                                                 })}
                                                 placeholder="Password"
                                                 type="password"
@@ -480,14 +465,6 @@ function AccountProfileForm() {
                                         )}
                                     </>
                                 )}
-                                {isLoginProviderEmail() &&
-                                    errors?.confirmPassword &&
-                                    errors?.confirmPassword?.type === 'validate' && (
-                                        <FormBox>
-                                            <ErrorIcon />
-                                            <ErrorMessage>Password and confirmation do not match</ErrorMessage>
-                                        </FormBox>
-                                    )}
                                 <FormBox>
                                     <FormFlexInner>
                                         <FormFlexInnerBox>

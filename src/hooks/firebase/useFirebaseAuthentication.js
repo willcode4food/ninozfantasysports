@@ -213,15 +213,47 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
         try {
             await auth().currentUser.updatePassword(password)
         } catch (error) {
-            throw Error(error)
+            setAuthenticationError({ message: error.message })
         }
         return
+    }
+
+    const doAuthIdentifierUpdate = async (email, newPassword) => {
+        try {
+            try {
+                // const userCredentials = await auth().signInWithEmailAndPassword(oldEmail, password)
+                const user = auth().currentUser
+
+                await user.updateEmail(email)
+                if (newPassword) {
+                    await user.updatePassword(newPassword)
+                }
+            } catch (error) {
+                const { message } = error
+                setAuthenticationError({ message })
+            }
+        } catch (error) {
+            const { message } = error
+            setAuthenticationError({ message })
+        }
     }
 
     const onPasswordUpdate = async (password) => {
         try {
             setIsAuthenticationLoading(true)
             await doPasswordUpdate(password)
+            setIsAuthenticationLoading(false)
+        } catch (error) {
+            const { message } = error
+            setIsAuthenticationLoading(false)
+            setAuthenticationError({ message })
+        }
+    }
+
+    const onAuthIdentifierUpdate = async (email, newPassword = null) => {
+        try {
+            setIsAuthenticationLoading(true)
+            await doAuthIdentifierUpdate(email, newPassword)
             setIsAuthenticationLoading(false)
         } catch (error) {
             const { message } = error
@@ -288,6 +320,7 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
 
     return {
         isAuthenticationLoading,
+        onAuthIdentifierUpdate,
         onGoogleLogin,
         onGoogleRegistration,
         onEmailLogin,
