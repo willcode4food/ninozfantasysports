@@ -50,6 +50,7 @@ function AccountProfileForm() {
                 firstName
                 lastName
                 loginProvider
+                id
                 profileImageName
                 username
                 city
@@ -392,7 +393,19 @@ function AccountProfileForm() {
                                     <FormBox>
                                         <StyledLink
                                             to="/account-security"
-                                            state={{ userData: queryData.returnSingleUser }}
+                                            state={{
+                                                userData: {
+                                                    id: queryData?.returnSingleUser?.id,
+                                                    email: queryData?.returnSingleUser?.email,
+                                                    firstName: queryData?.returnSingleUser?.firstName,
+                                                    lastName: queryData?.returnSingleUser?.lastName,
+                                                    profileImageName: queryData?.returnSingleUser?.profileImageName,
+                                                    username: queryData?.returnSingleUser?.username,
+                                                    city: queryData?.returnSingleUser?.city,
+                                                    state: queryData?.returnSingleUser?.state,
+                                                    zip: queryData?.returnSingleUser?.zip,
+                                                },
+                                            }}
                                         >
                                             Update Email and Password
                                         </StyledLink>

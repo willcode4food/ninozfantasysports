@@ -37,17 +37,16 @@ function AccountSecurityForm({ location }) {
     const [updateUser] = useMutation(UPDATE_USER)
 
     const onSubmit = async (data) => {
-        const { email, newPassword } = data
-        await onAuthIdentifierUpdate(email, newPassword)
+        const { email, existingPassword, newPassword } = data
+        await onAuthIdentifierUpdate(email, existingPassword, newPassword)
         await updateUser({
             variables: {
                 data: { id: authUser.uid.toString(), ...location.state.userData, email },
             },
         })
         reset()
-        setAccountSecurityError({ message: 'Security Information Updated Successfully' })
+        // setAccountSecurityError({ message: 'Security Information Updated Successfully' })
     }
-
     return (
         <>
             {isAuthenticationLoading ? (
@@ -70,6 +69,12 @@ function AccountSecurityForm({ location }) {
                                         register={register({
                                             required: true,
                                             pattern: emailFormatRegex,
+                                            validate: (value) => {
+                                                if (value !== '') {
+                                                    return watch('existingPassword').length > 0
+                                                }
+                                                return true
+                                            },
                                         })}
                                         name="email"
                                         placeholder="New Email"
@@ -79,11 +84,39 @@ function AccountSecurityForm({ location }) {
                                         onFocus={() => setAccountSecurityError(null)}
                                     />
                                 </FormBox>
+                                {errors?.email && errors?.email?.type === 'pattern' && (
+                                    <FormBox>
+                                        <ErrorIcon />
+                                        <ErrorMessage>Please provide a valid email address</ErrorMessage>
+                                    </FormBox>
+                                )}
+                                {errors?.email?.type === 'validate' && (
+                                    <FormBox>
+                                        <ErrorIcon />
+                                        <ErrorMessage>Please provide your existing password</ErrorMessage>
+                                    </FormBox>
+                                )}
+                                <FormBox>
+                                    <InputField
+                                        name="existingPassword"
+                                        register={register({ required: true })}
+                                        placeholder="Existing Password"
+                                        type="password"
+                                        aria-label="Existing Password"
+                                        onFocus={() => setAccountSecurityError(null)}
+                                    />
+                                </FormBox>
                                 <FormBox>
                                     <InputField
                                         name="newPassword"
                                         register={register({
                                             pattern: passwordFormatRegex,
+                                            validate: (value) => {
+                                                if (value !== '') {
+                                                    return watch('existingPassword').length > 0
+                                                }
+                                                return true
+                                            },
                                         })}
                                         placeholder="New Password"
                                         type="password"
@@ -91,13 +124,13 @@ function AccountSecurityForm({ location }) {
                                         onFocus={() => setAccountSecurityError(null)}
                                     />
                                 </FormBox>
-                                {errors?.password && (
+                                {errors?.newPassword?.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please supply a new password </ErrorMessage>
+                                        <ErrorMessage>Please provide your existing password</ErrorMessage>
                                     </FormBox>
                                 )}
-                                {errors.password && errors.password.type === 'pattern' && (
+                                {errors?.newPassword && errors?.newPassword?.type === 'pattern' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage>
@@ -155,7 +188,7 @@ AccountSecurityForm.propTypes = {
             userData: PropTypes.shape({
                 city: PropTypes.string,
                 dateCreated: PropTypes.string,
-                defaultAvatarThemeIndex: PropTypes.string,
+                defaultAvatarThemeIndex: PropTypes.number,
                 email: PropTypes.string,
                 firstName: PropTypes.string,
                 lastName: PropTypes.string,

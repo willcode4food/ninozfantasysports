@@ -208,29 +208,17 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
     }
     const { db, auth } = useFirebaseApp({ firebaseConfig })
 
-    // Password Reset (Email)
-    const doPasswordUpdate = async (password) => {
+    const doAuthIdentifierUpdate = async (email, existingPassword, newPassword) => {
+        const user = auth().currentUser
         try {
-            await auth().currentUser.updatePassword(password)
-        } catch (error) {
-            setAuthenticationError({ message: error.message })
-        }
-        return
-    }
-
-    const doAuthIdentifierUpdate = async (email, newPassword) => {
-        try {
-            try {
-                // const userCredentials = await auth().signInWithEmailAndPassword(oldEmail, password)
-                const user = auth().currentUser
-
+            await auth().signInWithEmailAndPassword(user.email, existingPassword)
+            if (email !== user.email) {
                 await user.updateEmail(email)
-                if (newPassword) {
-                    await user.updatePassword(newPassword)
-                }
-            } catch (error) {
-                const { message } = error
-                setAuthenticationError({ message })
+            }
+
+            if (newPassword) {
+                await user.updatePassword(newPassword)
+                await auth().signInWithEmailAndPassword(user.email, newPassword)
             }
         } catch (error) {
             const { message } = error
@@ -238,22 +226,10 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
         }
     }
 
-    const onPasswordUpdate = async (password) => {
+    const onAuthIdentifierUpdate = async (email, existingPassword, newPassword = null) => {
         try {
             setIsAuthenticationLoading(true)
-            await doPasswordUpdate(password)
-            setIsAuthenticationLoading(false)
-        } catch (error) {
-            const { message } = error
-            setIsAuthenticationLoading(false)
-            setAuthenticationError({ message })
-        }
-    }
-
-    const onAuthIdentifierUpdate = async (email, newPassword = null) => {
-        try {
-            setIsAuthenticationLoading(true)
-            await doAuthIdentifierUpdate(email, newPassword)
+            await doAuthIdentifierUpdate(email, existingPassword, newPassword)
             setIsAuthenticationLoading(false)
         } catch (error) {
             const { message } = error
@@ -325,7 +301,6 @@ function useFirebaseAuthentication({ onAuthenticationSuccess = null, firebaseCon
         onGoogleRegistration,
         onEmailLogin,
         onEmailRegistration,
-        onPasswordUpdate,
         onForgotPassword,
         onSignOut,
         authenticationError,
