@@ -11,7 +11,7 @@ function AccountSecurityPage({ location }) {
     if (!isAuthorizationLoading) {
         return (
             <>
-                {isAuthorized ? (
+                {isAuthorized && location?.state?.userData ? (
                     <GlobalLayout location={location} isVerifyAgeModalOverriden={true}>
                         <AccountSecurityForm location={location} />
                     </GlobalLayout>

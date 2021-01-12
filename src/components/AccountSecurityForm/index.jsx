@@ -22,7 +22,6 @@ import { passwordFormatRegex, emailFormatRegex } from 'utils/securityHelpers'
 import { UPDATE_USER } from 'queries'
 
 function AccountSecurityForm({ location }) {
-    console.log('🚀 ~ file: index.jsx ~ line 25 ~ AccountSecurityForm ~ location', location)
     const { register, handleSubmit, errors, watch, reset } = useForm()
     const { authUser } = useContext(SessionContext)
     const [accountSecurityError, setAccountSecurityError] = useState(null)
