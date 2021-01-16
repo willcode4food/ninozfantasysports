@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
     FormBox,
@@ -21,7 +21,7 @@ import AvatarEditor from 'react-avatar-editor'
 import { useForm } from 'react-hook-form'
 import { ACCEPTED_IMAGE_FORMATS, FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE } from 'utils/constants'
 import { getInitials } from 'utils/userHelpers'
-import { UPDATE_USER } from 'queries'
+import { GET_USER, UPDATE_USER } from 'queries'
 
 import {
     AuthIdentifierLabel,
@@ -41,26 +41,12 @@ function AccountProfileForm() {
     const editor = useRef(null)
     const { authUser } = useContext(SessionContext)
     const { storage } = useFirebaseApp({ firebaseConfig: FIREBASE.CONFIG })
-    const GET_USER = gql`
-        {
-            returnSingleUser(id: "${authUser.uid.toString()}") {
-                dateCreated
-                defaultAvatarThemeIndex
-                email
-                firstName
-                lastName
-                loginProvider
-                id
-                profileImageName
-                username
-                city
-                state
-                zip
-            }
-        }
-    `
 
-    const { data: queryData = null, error: queryError = null, loading: queryLoading } = useQuery(GET_USER)
+    const { data: queryData = null, error: queryError = null, loading: queryLoading } = useQuery(GET_USER, {
+        variables: {
+            id: authUser.uid.toString(),
+        },
+    })
 
     const [
         updateUser,

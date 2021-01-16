@@ -14,3 +14,22 @@ export const UPDATE_USER = gql`
         }
     }
 `
+
+export const GET_USER = gql`
+    query GetUSer($id: String!) {
+        returnSingleUser(id: $id) {
+            dateCreated
+            defaultAvatarThemeIndex
+            email
+            firstName
+            lastName
+            loginProvider
+            id
+            profileImageName
+            username
+            city
+            state
+            zip
+        }
+    }
+`
