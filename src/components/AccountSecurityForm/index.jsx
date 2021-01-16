@@ -16,7 +16,7 @@ import {
     FormWrapperBox,
 } from 'components/Forms/FormLayout'
 import { StyledLink } from 'components/Forms/FormStyles'
-import { InputField } from 'components/Forms/FormFields'
+import { InputField, FormLabel } from 'components/Forms/FormFields'
 import { FIREBASE } from 'utils/constants'
 import { passwordFormatRegex, emailFormatRegex } from 'utils/securityHelpers'
 import { UPDATE_USER } from 'queries'
@@ -64,6 +64,7 @@ function AccountSecurityForm({ location }) {
                                     </FormBox>
                                 )}
                                 <FormBox>
+                                    <FormLabel htmlFor="email">Email Address</FormLabel>
                                     <InputField
                                         register={register({
                                             required: true,
@@ -96,7 +97,9 @@ function AccountSecurityForm({ location }) {
                                     </FormBox>
                                 )}
                                 <FormBox>
+                                    <FormLabel htmlFor="existingPassword">Existing Password</FormLabel>
                                     <InputField
+                                        id="existingPassword"
                                         name="existingPassword"
                                         register={register({ required: true })}
                                         placeholder="Existing Password"
@@ -106,6 +109,7 @@ function AccountSecurityForm({ location }) {
                                     />
                                 </FormBox>
                                 <FormBox>
+                                    <FormLabel htmlFor="newPassword">New Password</FormLabel>
                                     <InputField
                                         name="newPassword"
                                         register={register({
@@ -145,6 +149,7 @@ function AccountSecurityForm({ location }) {
                                     </FormBox>
                                 )}
                                 <FormBox>
+                                    <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
                                     <InputField
                                         name="confirmPassword"
                                         placeholder="Confirm Password"
