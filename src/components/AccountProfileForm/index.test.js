@@ -100,9 +100,14 @@ describe('AccountProfileForm', () => {
 
         await act(async () => {
             await new Promise((resolve) => setTimeout(resolve, 0))
-            screen.debug()
+            // screen.debug()
             expect(screen.getByRole('heading', { name: 'Account' })).toBeInTheDocument()
             expect(screen.getByRole('textbox', { name: /username/i })).toBeInTheDocument()
+            expect(screen.getByRole('textbox', { name: 'First Name' })).toBeInTheDocument()
+            expect(screen.getByRole('textbox', { name: 'Last Name' })).toBeInTheDocument()
+            expect(screen.getByRole('textbox', { name: /city/i })).toBeInTheDocument()
+            expect(screen.getByRole('textbox', { name: /zip/i })).toBeInTheDocument()
+            expect(screen.getByTestId('state')).toBeInTheDocument()
         })
     })
 })

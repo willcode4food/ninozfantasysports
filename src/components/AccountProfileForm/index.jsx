@@ -340,6 +340,7 @@ function AccountProfileForm() {
                                 )}
                                 <FormBox>
                                     <StateSelectField
+                                        data-testid="state"
                                         name="state"
                                         aria-label="state"
                                         register={register}
