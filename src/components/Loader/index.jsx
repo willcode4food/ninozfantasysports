@@ -4,7 +4,7 @@ import { LoaderOverlay, LoaderWrapper, LoaderBox } from './styles'
 import { COLORS } from 'utils/styleHelpers'
 
 const Loader = () => (
-    <LoaderOverlay>
+    <LoaderOverlay data-testid="loader">
         <LoaderWrapper>
             <LoaderBox>
                 <BeatLoader color={COLORS.SECONDARY} margin="10px" size={24} />

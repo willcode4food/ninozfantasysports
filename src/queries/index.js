@@ -16,7 +16,7 @@ export const UPDATE_USER = gql`
 `
 
 export const GET_USER = gql`
-    query GetUSer($id: String!) {
+    query GetUser($id: String!) {
         returnSingleUser(id: $id) {
             dateCreated
             defaultAvatarThemeIndex
