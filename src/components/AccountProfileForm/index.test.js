@@ -11,18 +11,6 @@ const id = 'AUsewNSXhRJuoKZoqiqdgIDWHp2'
 const uid = id
 const email = 'hsimpson@springfieldpower.com'
 
-// const mockUser = {
-//     id: id,
-//     email,
-//     firstName: 'Homer',
-//     lastName: 'Simpson',
-//     profileImageName: `${id}.png`,
-//     username: 'hsimpson',
-//     city: 'Springfield',
-//     state: 'MO',
-//     zip: '63017',
-//     __typename: 'UserUpdateInput',
-// }
 const graphQlMocks = [
     {
         request: {
@@ -142,12 +130,11 @@ describe('AccountProfileForm', () => {
         })
     })
 
-    it('should validate form fields', async () => {
-        const mockSave = jest.fn()
+    it('should not submit without a username', async () => {
         render(
             <SessionContext.Provider value={{ authUser: { uid, email } }}>
                 <MockedProvider mocks={graphQlMocks} addTypename={false}>
-                    <AccountProfileForm saveData={mockSave} />
+                    <AccountProfileForm />
                 </MockedProvider>
             </SessionContext.Provider>
         )
@@ -159,7 +146,6 @@ describe('AccountProfileForm', () => {
             fireEvent.click(screen.getByRole('button'))
 
             expect(await screen.findAllByRole('alert')).toHaveLength(1)
-            expect(mockSave).not.toBeCalled()
         })
     })
 })

@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from '@apollo/client'
-import PropTypes from 'prop-types'
 import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
     FormBox,
@@ -32,7 +31,7 @@ import {
     ImageEditorControlsWrapper,
 } from './styles'
 
-function AccountProfileForm({ saveData = () => {} }) {
+function AccountProfileForm() {
     const { register, handleSubmit, errors, reset } = useForm()
     const [isEditingAvatar, setIsEditingAvatar] = useState(false)
     const [profileImageBuffer, setProfileImageBuffer] = useState(null)
@@ -99,12 +98,9 @@ function AccountProfileForm({ saveData = () => {} }) {
     }
 
     const onSubmit = async (data) => {
-        console.log('🚀 ~ file: index.jsx ~ line 102 ~ onSubmit ~ data', data)
         // eslint-disable-next-line no-unused-vars
         const { password, confirmPassword, ...userData } = data
         const email = queryData?.email || authUser.email
-
-        saveData(data)
 
         if (!userData.username) {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
@@ -173,7 +169,6 @@ function AccountProfileForm({ saveData = () => {} }) {
         }
         return ''
     }
-    // console.log('🚀 ~ file: index.jsx ~ line 430 ~ AccountProfileForm ~ errors', errors)
     return (
         <>
             {queryLoading || mutationLoading || !queryData ? (
@@ -390,7 +385,7 @@ function AccountProfileForm({ saveData = () => {} }) {
                                         <FormFlexInnerBox>
                                             <StandardSubmitButton
                                                 role="button"
-                                                aria-label="Save User Profile Information"
+                                                aria-label="Save Profile"
                                                 text="Save Profile"
                                             />
                                         </FormFlexInnerBox>
@@ -428,7 +423,4 @@ function AccountProfileForm({ saveData = () => {} }) {
     )
 }
 
-AccountProfileForm.propTypes = {
-    saveData: PropTypes.func,
-}
 export default AccountProfileForm
