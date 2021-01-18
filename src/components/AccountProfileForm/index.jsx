@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useMutation, useQuery } from '@apollo/client'
+import PropTypes from 'prop-types'
 import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
     FormBox,
@@ -99,9 +100,12 @@ function AccountProfileForm({ saveData = () => {} }) {
     }
 
     const onSubmit = async (data) => {
+        console.log('🚀 ~ file: index.jsx ~ line 102 ~ onSubmit ~ data', data)
         // eslint-disable-next-line no-unused-vars
         const { password, confirmPassword, ...userData } = data
         const email = queryData?.email || authUser.email
+
+        saveData(data)
 
         if (!userData.username) {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
@@ -435,5 +439,4 @@ function AccountProfileForm({ saveData = () => {} }) {
 AccountProfileForm.propTypes = {
     saveData: PropTypes.func,
 }
-
 export default AccountProfileForm
