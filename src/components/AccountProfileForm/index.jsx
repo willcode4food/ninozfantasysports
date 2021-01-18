@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client'
+import PropTypes from 'prop-types'
 import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
     FormBox,
@@ -31,7 +32,7 @@ import {
     ImageEditorControlsWrapper,
 } from './styles'
 
-function AccountProfileForm() {
+function AccountProfileForm({ saveData = () => {} }) {
     const { register, handleSubmit, errors, reset } = useForm()
     const [isEditingAvatar, setIsEditingAvatar] = useState(false)
     const [profileImageBuffer, setProfileImageBuffer] = useState(null)
@@ -98,9 +99,12 @@ function AccountProfileForm() {
     }
 
     const onSubmit = async (data) => {
+        console.log('🚀 ~ file: index.jsx ~ line 102 ~ onSubmit ~ data', data)
         // eslint-disable-next-line no-unused-vars
         const { password, confirmPassword, ...userData } = data
         const email = queryData?.email || authUser.email
+
+        saveData(data)
 
         if (!userData.username) {
             setAccountProfileFormError({ message: 'Please give yourself a unique username' })
@@ -109,11 +113,17 @@ function AccountProfileForm() {
 
         const imageUrlFromSave = await handleEditedImage()
         setAccountProfileFormError(null)
-        await updateUser({
-            variables: {
-                data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email },
-            },
-        })
+        try {
+            await updateUser({
+                variables: {
+                    data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email },
+                },
+            })
+        } catch (e) {
+            const { message } = e
+            setAccountProfileFormError(message)
+            console.log(message)
+        }
     }
 
     const onFileChanged = (event) => {
@@ -163,7 +173,7 @@ function AccountProfileForm() {
         }
         return ''
     }
-
+    // console.log('🚀 ~ file: index.jsx ~ line 430 ~ AccountProfileForm ~ errors', errors)
     return (
         <>
             {queryLoading || mutationLoading || !queryData ? (
@@ -177,7 +187,7 @@ function AccountProfileForm() {
                                 {accountProfileFormError && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>{accountProfileFormError.message}</ErrorMessage>
+                                        <ErrorMessage role="alert">{accountProfileFormError.message}</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {isEditingAvatar && (
@@ -262,13 +272,15 @@ function AccountProfileForm() {
                                 {errors?.username && errors?.username?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please enter a valid username</ErrorMessage>
+                                        <ErrorMessage role="alert">Please enter a valid username</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.username && errors?.username?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Usernames must be at least 2 characters long</ErrorMessage>
+                                        <ErrorMessage role="alert">
+                                            Usernames must be at least 2 characters long
+                                        </ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -284,13 +296,15 @@ function AccountProfileForm() {
                                 {errors?.firstName && errors?.firstName?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>First Name is required</ErrorMessage>
+                                        <ErrorMessage role="alert">First Name is required</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.firstName && errors?.firstName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>First name must be at least 2 characters</ErrorMessage>
+                                        <ErrorMessage role="alert">
+                                            First name must be at least 2 characters
+                                        </ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -306,20 +320,22 @@ function AccountProfileForm() {
                                 {errors?.lastName && errors?.lastName?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Last Name is required</ErrorMessage>
+                                        <ErrorMessage role="alert">Last Name is required</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.lastName && errors?.lastName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Last name must be at least 2 characters</ErrorMessage>
+                                        <ErrorMessage role="alert">
+                                            Last name must be at least 2 characters
+                                        </ErrorMessage>
                                     </FormBox>
                                 )}
 
                                 {errors.email && errors.email.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Email is required</ErrorMessage>
+                                        <ErrorMessage role="alert">Email is required</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -335,7 +351,7 @@ function AccountProfileForm() {
                                 {errors?.lastName && errors?.lastName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>City must be at least 2 characters</ErrorMessage>
+                                        <ErrorMessage role="alert">City must be at least 2 characters</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -350,7 +366,7 @@ function AccountProfileForm() {
                                 {errors?.lastName && errors?.lastName?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>City must be at least 2 characters</ErrorMessage>
+                                        <ErrorMessage role="alert">City must be at least 2 characters</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -366,13 +382,17 @@ function AccountProfileForm() {
                                 {errors?.lastName && errors?.zip?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Zip must be at least 2 characters</ErrorMessage>
+                                        <ErrorMessage role="alert">Zip must be at least 2 characters</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
                                     <FormFlexInner>
                                         <FormFlexInnerBox>
-                                            <StandardSubmitButton text="Save Profile" />
+                                            <StandardSubmitButton
+                                                role="button"
+                                                aria-label="Save User Profile Information"
+                                                text="Save Profile"
+                                            />
                                         </FormFlexInnerBox>
                                     </FormFlexInner>
                                 </FormBox>
@@ -380,6 +400,7 @@ function AccountProfileForm() {
                                     <FormBox>
                                         <StyledLink
                                             to="/account-security"
+                                            name="securityLink"
                                             state={{
                                                 userData: {
                                                     id: queryData?.returnSingleUser?.id,
@@ -407,4 +428,7 @@ function AccountProfileForm() {
     )
 }
 
+AccountProfileForm.propTypes = {
+    saveData: PropTypes.func,
+}
 export default AccountProfileForm
