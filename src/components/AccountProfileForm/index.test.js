@@ -141,11 +141,16 @@ describe('AccountProfileForm', () => {
 
         await act(async () => {
             await new Promise((resolve) => setTimeout(resolve, 0))
-            const usernameInput = screen.getByRole('textbox', { name: /username/i })
-            fireEvent.clear(usernameInput)
+            fireEvent.clear(screen.getByRole('textbox', { name: /username/i }))
+            fireEvent.clear(screen.getByRole('textbox', { name: /First Name/i }))
+            fireEvent.clear(screen.getByRole('textbox', { name: /Last Name/i }))
+            fireEvent.clear(screen.getByRole('textbox', { name: /City/i }))
+            fireEvent.type(screen.getByRole('textbox', { name: /City/i }), 'A')
+            fireEvent.clear(screen.getByRole('textbox', { name: /Zip/i }))
+            fireEvent.selectOptions(screen.getByTestId('state'), screen.getByText('Select a State'))
             fireEvent.click(screen.getByRole('button'))
 
-            expect(await screen.findAllByRole('alert')).toHaveLength(1)
+            expect(await screen.findAllByRole('alert')).toHaveLength(6)
         })
     })
 })

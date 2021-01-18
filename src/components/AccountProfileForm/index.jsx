@@ -327,12 +327,12 @@ function AccountProfileForm() {
                                     </FormBox>
                                 )}
 
-                                {errors.email && errors.email.type === 'required' && (
+                                {/* {errors.email && errors.email.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage role="alert">Email is required</ErrorMessage>
                                     </FormBox>
-                                )}
+                                )} */}
                                 <FormBox>
                                     <InputField
                                         name="city"
@@ -343,7 +343,7 @@ function AccountProfileForm() {
                                         defaultValue={queryData && queryData.city}
                                     />
                                 </FormBox>
-                                {errors?.lastName && errors?.lastName?.type === 'minLength' && (
+                                {errors?.city && errors?.city?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage role="alert">City must be at least 2 characters</ErrorMessage>
@@ -354,14 +354,14 @@ function AccountProfileForm() {
                                         data-testid="state"
                                         name="state"
                                         aria-label="state"
-                                        register={register}
+                                        register={register({ required: true })}
                                         defaultValue={queryData && queryData.state}
                                     />
                                 </FormBox>
-                                {errors?.lastName && errors?.lastName?.type === 'minLength' && (
+                                {errors?.state && errors?.state?.type === 'required' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage role="alert">City must be at least 2 characters</ErrorMessage>
+                                        <ErrorMessage role="alert">State is required</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -374,10 +374,16 @@ function AccountProfileForm() {
                                         defaultValue={queryData && queryData?.zip}
                                     />
                                 </FormBox>
-                                {errors?.lastName && errors?.zip?.type === 'minLength' && (
+                                {errors?.zip && errors?.zip?.type === 'minLength' && (
                                     <FormBox>
                                         <ErrorIcon />
                                         <ErrorMessage role="alert">Zip must be at least 2 characters</ErrorMessage>
+                                    </FormBox>
+                                )}
+                                {errors?.zip && errors?.zip?.type === 'required' && (
+                                    <FormBox>
+                                        <ErrorIcon />
+                                        <ErrorMessage role="alert">Zip is required</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
