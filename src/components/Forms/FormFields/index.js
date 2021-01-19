@@ -11,10 +11,11 @@ import SubmitButton from './SubmitButton'
 import TextAreaField from './TextAreaField'
 import EmailSubmitButton from './EmailSubmitButton'
 import StandardSubmitButton from './StandardSubmitButton'
-
+import FormLabel from './FormLabel'
 export {
     CheckBoxField,
     FileField,
+    FormLabel,
     EmailSubmitButton,
     StandardSubmitButton,
     InputField,

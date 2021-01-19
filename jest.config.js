@@ -11,6 +11,7 @@ module.exports = {
         '^context(.*)$': '<rootDir>/src/context$1',
         '^providers(.*)$': '<rootDir>/src/providers$1',
         '^hooks(.*)$': '<rootDir>/src/hooks$1',
+        '^queries(.*)$': '<rootDir>/src/queries$1',
         '^firebaseActions(.*)$': '<rootDir>/src/firebaseActions$1',
         '^templates(.*)$': '<rootDir>/src/templates$1',
     },

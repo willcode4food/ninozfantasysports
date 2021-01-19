@@ -16,7 +16,7 @@ import {
     FormWrapperBox,
 } from 'components/Forms/FormLayout'
 import { StyledLink } from 'components/Forms/FormStyles'
-import { InputField } from 'components/Forms/FormFields'
+import { InputField, FormLabel } from 'components/Forms/FormFields'
 import { FIREBASE } from 'utils/constants'
 import { passwordFormatRegex, emailFormatRegex } from 'utils/securityHelpers'
 import { UPDATE_USER } from 'queries'
@@ -46,6 +46,7 @@ function AccountSecurityForm({ location }) {
         reset()
         // setAccountSecurityError({ message: 'Security Information Updated Successfully' })
     }
+    // console.log('🚀 ~ file: index.jsx ~ line 50 ~ onSubmit ~ errors', errors)
     return (
         <>
             {isAuthenticationLoading ? (
@@ -64,6 +65,7 @@ function AccountSecurityForm({ location }) {
                                     </FormBox>
                                 )}
                                 <FormBox>
+                                    <FormLabel htmlFor="email">Email Address</FormLabel>
                                     <InputField
                                         register={register({
                                             required: true,
@@ -86,17 +88,19 @@ function AccountSecurityForm({ location }) {
                                 {errors?.email && errors?.email?.type === 'pattern' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please provide a valid email address</ErrorMessage>
+                                        <ErrorMessage role="alert">Please provide a valid email address</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.email?.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please provide your existing password</ErrorMessage>
+                                        <ErrorMessage role="alert">Please provide your existing password</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
+                                    <FormLabel htmlFor="existingPassword">Existing Password</FormLabel>
                                     <InputField
+                                        id="existingPassword"
                                         name="existingPassword"
                                         register={register({ required: true })}
                                         placeholder="Existing Password"
@@ -106,6 +110,7 @@ function AccountSecurityForm({ location }) {
                                     />
                                 </FormBox>
                                 <FormBox>
+                                    <FormLabel htmlFor="newPassword">New Password</FormLabel>
                                     <InputField
                                         name="newPassword"
                                         register={register({
@@ -126,13 +131,13 @@ function AccountSecurityForm({ location }) {
                                 {errors?.newPassword?.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please provide your existing password</ErrorMessage>
+                                        <ErrorMessage role="alert">Please provide your existing password</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.newPassword && errors?.newPassword?.type === 'pattern' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>
+                                        <ErrorMessage role="alert">
                                             Passwords must be:{' '}
                                             <ul>
                                                 <li>8 characters long</li>
@@ -145,6 +150,7 @@ function AccountSecurityForm({ location }) {
                                     </FormBox>
                                 )}
                                 <FormBox>
+                                    <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
                                     <InputField
                                         name="confirmPassword"
                                         placeholder="Confirm Password"
@@ -159,13 +165,13 @@ function AccountSecurityForm({ location }) {
                                 {errors.confirmPassword && errors.confirmPassword.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Password and confirmation do not match</ErrorMessage>
+                                        <ErrorMessage role="alert">Password and confirmation do not match</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
                                     <FormFlexInner>
                                         <FormFlexInnerBox>
-                                            <StandardSubmitButton text="Save Email and Password" />
+                                            <StandardSubmitButton role="button" text="Save Email and Password" />
                                         </FormFlexInnerBox>
                                     </FormFlexInner>
                                 </FormBox>
