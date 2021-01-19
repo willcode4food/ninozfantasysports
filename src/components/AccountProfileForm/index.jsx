@@ -402,6 +402,7 @@ function AccountProfileForm() {
                                         <StyledLink
                                             to="/account-security"
                                             name="securityLink"
+                                            role="link"
                                             state={{
                                                 userData: {
                                                     id: queryData?.returnSingleUser?.id,
