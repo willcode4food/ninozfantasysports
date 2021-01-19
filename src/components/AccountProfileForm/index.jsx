@@ -32,7 +32,7 @@ import {
     ImageEditorControlsWrapper,
 } from './styles'
 
-function AccountProfileForm() {
+function AccountProfileForm({ saveData = () => {} }) {
     const { register, handleSubmit, errors, reset } = useForm()
     const [isEditingAvatar, setIsEditingAvatar] = useState(false)
     const [profileImageBuffer, setProfileImageBuffer] = useState(null)
@@ -430,6 +430,10 @@ function AccountProfileForm() {
             )}
         </>
     )
+}
+
+AccountProfileForm.propTypes = {
+    saveData: PropTypes.func,
 }
 
 export default AccountProfileForm
