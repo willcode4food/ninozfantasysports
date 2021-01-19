@@ -1,137 +1,11 @@
 import React from 'react'
-import { act, cleanup, render, screen } from '@testing-library/react'
+import { act, cleanup, render, screen, waitFor } from '@testing-library/react'
 import fireEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import { MockedProvider } from '@apollo/client/testing'
 import SessionContext from 'context/SessionContext'
+import { uid, email, graphQlMocksEmailUser, graphQlMocksSsoUser } from 'utils/testMocks'
 import AccountProfileForm from './'
-import { UPDATE_USER, GET_USER } from 'queries'
-
-const id = 'AUsewNSXhRJuoKZoqiqdgIDWHp2'
-const uid = id
-const email = 'hsimpson@springfieldpower.com'
-
-const graphQlMocksEmailUser = [
-    {
-        request: {
-            query: UPDATE_USER,
-            variables: {
-                data: {
-                    id,
-                    username: 'hsimpson',
-                    email,
-                    firstName: 'Homer',
-                    lastName: 'Simpson',
-                    city: 'Springfield',
-                    state: 'MO',
-                    zip: '63017',
-                    profileImageName: '',
-                },
-            },
-        },
-        result: {
-            data: {
-                updateUser: {
-                    id,
-                    email,
-                    username: 'hsimpson',
-                    firstName: 'Homer',
-                    lastName: 'Simpson',
-                    city: 'Springfield',
-                    state: 'MO',
-                    zip: '63017',
-                },
-            },
-        },
-    },
-    {
-        request: {
-            query: GET_USER,
-            variables: {
-                id,
-            },
-        },
-        result: {
-            data: {
-                returnSingleUser: {
-                    dateCreated: '2021-01-12T17:29:47.774Z',
-                    defaultAvatarThemeIndex: 0,
-                    email,
-                    firstName: 'Homer',
-                    lastName: 'Simpson',
-                    loginProvider: 'email',
-                    id,
-                    profileImageName: `${id}.png`,
-                    username: 'hsimpson',
-                    city: 'Springfield',
-                    state: 'MO',
-                    zip: '63017',
-                },
-            },
-        },
-    },
-]
-
-const graphQlMocksSsoUser = [
-    {
-        request: {
-            query: UPDATE_USER,
-            variables: {
-                data: {
-                    id,
-                    username: 'hsimpson',
-                    email,
-                    firstName: 'Homer',
-                    lastName: 'Simpson',
-                    city: 'Springfield',
-                    state: 'MO',
-                    zip: '63017',
-                    profileImageName: '',
-                },
-            },
-        },
-        result: {
-            data: {
-                updateUser: {
-                    id,
-                    email,
-                    username: 'hsimpson',
-                    firstName: 'Homer',
-                    lastName: 'Simpson',
-                    city: 'Springfield',
-                    state: 'MO',
-                    zip: '63017',
-                },
-            },
-        },
-    },
-    {
-        request: {
-            query: GET_USER,
-            variables: {
-                id,
-            },
-        },
-        result: {
-            data: {
-                returnSingleUser: {
-                    dateCreated: '2021-01-12T17:29:47.774Z',
-                    defaultAvatarThemeIndex: 0,
-                    email,
-                    firstName: 'Homer',
-                    lastName: 'Simpson',
-                    loginProvider: 'google',
-                    id,
-                    profileImageName: `${id}.png`,
-                    username: 'hsimpson',
-                    city: 'Springfield',
-                    state: 'MO',
-                    zip: '63017',
-                },
-            },
-        },
-    },
-]
 
 jest.mock('hooks/firebase/useFirebaseApp', () => {
     return jest.fn(() => {
@@ -228,6 +102,32 @@ describe('AccountProfileForm', () => {
             await new Promise((resolve) => setTimeout(resolve, 0))
             // screen.debug()
             expect(await screen.queryByText('Update Email and Password')).not.toBeInTheDocument()
+        })
+    })
+
+    it('should submit the form data correctly', async () => {
+        const mockSave = jest.fn()
+        render(
+            <SessionContext.Provider value={{ authUser: { uid, email } }}>
+                <MockedProvider mocks={graphQlMocksSsoUser} addTypename={false}>
+                    <AccountProfileForm saveData={mockSave} />
+                </MockedProvider>
+            </SessionContext.Provider>
+        )
+        await act(async () => {
+            await new Promise((resolve) => setTimeout(resolve, 0))
+            fireEvent.click(screen.getByRole('button'))
+
+            await waitFor(() => {
+                expect(mockSave).toHaveBeenCalledWith({
+                    username: 'hsimpson',
+                    firstName: 'Homer',
+                    lastName: 'Simpson',
+                    city: 'Springfield',
+                    state: 'MO',
+                    zip: '63017',
+                })
+            })
         })
     })
 })

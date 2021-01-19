@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useMutation, useQuery } from '@apollo/client'
 import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
@@ -31,7 +32,7 @@ import {
     ImageEditorControlsWrapper,
 } from './styles'
 
-function AccountProfileForm() {
+function AccountProfileForm({ saveData = () => {} }) {
     const { register, handleSubmit, errors, reset } = useForm()
     const [isEditingAvatar, setIsEditingAvatar] = useState(false)
     const [profileImageBuffer, setProfileImageBuffer] = useState(null)
@@ -115,6 +116,7 @@ function AccountProfileForm() {
                     data: { id: authUser.uid.toString(), ...userData, profileImageName: imageUrlFromSave, email },
                 },
             })
+            saveData(data)
         } catch (e) {
             const { message } = e
             setAccountProfileFormError(message)
@@ -428,6 +430,10 @@ function AccountProfileForm() {
             )}
         </>
     )
+}
+
+AccountProfileForm.propTypes = {
+    saveData: PropTypes.func,
 }
 
 export default AccountProfileForm

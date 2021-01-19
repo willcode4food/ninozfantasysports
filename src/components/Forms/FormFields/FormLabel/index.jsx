@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-function FormLabel({ children, isHidden = true }) {
+function FormLabel({ children, isHidden = true, ...restProps }) {
     return (
         <label
+            {...restProps}
             css={css`
                 display: ${isHidden ? 'none' : 'inline'};
             `}

@@ -46,6 +46,7 @@ function AccountSecurityForm({ location }) {
         reset()
         // setAccountSecurityError({ message: 'Security Information Updated Successfully' })
     }
+    // console.log('🚀 ~ file: index.jsx ~ line 50 ~ onSubmit ~ errors', errors)
     return (
         <>
             {isAuthenticationLoading ? (
@@ -87,13 +88,13 @@ function AccountSecurityForm({ location }) {
                                 {errors?.email && errors?.email?.type === 'pattern' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please provide a valid email address</ErrorMessage>
+                                        <ErrorMessage role="alert">Please provide a valid email address</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.email?.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please provide your existing password</ErrorMessage>
+                                        <ErrorMessage role="alert">Please provide your existing password</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
@@ -130,13 +131,13 @@ function AccountSecurityForm({ location }) {
                                 {errors?.newPassword?.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Please provide your existing password</ErrorMessage>
+                                        <ErrorMessage role="alert">Please provide your existing password</ErrorMessage>
                                     </FormBox>
                                 )}
                                 {errors?.newPassword && errors?.newPassword?.type === 'pattern' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>
+                                        <ErrorMessage role="alert">
                                             Passwords must be:{' '}
                                             <ul>
                                                 <li>8 characters long</li>
@@ -164,13 +165,13 @@ function AccountSecurityForm({ location }) {
                                 {errors.confirmPassword && errors.confirmPassword.type === 'validate' && (
                                     <FormBox>
                                         <ErrorIcon />
-                                        <ErrorMessage>Password and confirmation do not match</ErrorMessage>
+                                        <ErrorMessage role="alert">Password and confirmation do not match</ErrorMessage>
                                     </FormBox>
                                 )}
                                 <FormBox>
                                     <FormFlexInner>
                                         <FormFlexInnerBox>
-                                            <StandardSubmitButton text="Save Email and Password" />
+                                            <StandardSubmitButton role="button" text="Save Email and Password" />
                                         </FormFlexInnerBox>
                                     </FormFlexInner>
                                 </FormBox>
