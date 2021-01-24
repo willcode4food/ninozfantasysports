@@ -11,6 +11,7 @@ export const UPDATE_USER = gql`
             city
             state
             zip
+            profileImageName
         }
     }
 `
