@@ -7,6 +7,7 @@ import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
 function WithFirebaseAuthentication({ children }) {
     const hasMounted = useRef(false)
     const [authUser, setAuthUser] = useState({ uid: null })
+    const [bearerToken, setBearerToken] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [roles, setRoles] = useState([])
     const { db, auth } = useFirebaseApp({ firebaseConfig: FIREBASE.CONFIG })
@@ -29,6 +30,7 @@ function WithFirebaseAuthentication({ children }) {
                     if (authUser) {
                         const roles = await getUserRoles(authUser.uid)
                         setAuthUser(authUser)
+                        setBearerToken(authUser.getIdToken(true))
                         setRoles(roles)
                     }
                     setIsLoading(false)
@@ -38,7 +40,7 @@ function WithFirebaseAuthentication({ children }) {
         getAuth()
     }, [])
 
-    return <AuthContext.Provider value={{ authUser, isLoading, roles }}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{ authUser, isLoading, roles, bearerToken }}>{children}</AuthContext.Provider>
 }
 
 WithFirebaseAuthentication.propTypes = {
