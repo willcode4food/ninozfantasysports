@@ -1,8 +1,32 @@
+const admin = require('firebase-admin')
+const firebase = require('firebase')
+const fs = require('fs')
+const { buildSchema } = require('graphql')
 const { getMediaQueryForBreakpointPlugin } = require('./src/utils/styleHelpers')
+const { FIREBASE } = require('./src/utils/constants')
+const serviceAccount = require('./secrets/firebase-key.json')
+const serviceUID = '9C4NFaxzRwhUxZh4maBngiSGndo2'
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
 
 const mediaQueries = {
     ...getMediaQueryForBreakpointPlugin(),
     portrait: `(orientation: portrait)`,
+}
+
+firebase.initializeApp(FIREBASE.CONFIG)
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+})
+
+async function getAuth() {
+    const customToken = await admin.auth().createCustomToken(serviceUID)
+    await firebase.auth().signInWithCustomToken(customToken)
+    let currentUser = await firebase.auth().currentUser
+    const token = await currentUser.getIdToken(true)
+    return token
 }
 
 module.exports = {
@@ -51,6 +75,26 @@ module.exports = {
             resolve: 'gatsby-plugin-breakpoints',
             options: {
                 queries: mediaQueries,
+            },
+        },
+        {
+            resolve: 'gatsby-source-graphql',
+            options: {
+                typeName: 'NINOZFANTASYSPORTS',
+                fieldName: 'ninozFantasySports',
+                url: 'https://us-central1-ninozfantasysports-6de5b.cloudfunctions.net/api',
+                // HTTP headers
+                headers: async () => {
+                    const token = await getAuth()
+                    return {
+                        // Learn about environment variables: https://gatsby.dev/env-vars
+                        Authorization: `Bearer ${token}`,
+                    }
+                },
+                createSchema: async () => {
+                    const gql = fs.readFileSync(`${__dirname}/schema.gql`).toString()
+                    return buildSchema(gql)
+                },
             },
         },
     ],
