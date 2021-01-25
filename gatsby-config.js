@@ -82,7 +82,7 @@ module.exports = {
             options: {
                 typeName: 'NINOZFANTASYSPORTS',
                 fieldName: 'ninozFantasySports',
-                url: 'https://us-central1-ninozfantasysports-6de5b.cloudfunctions.net/api',
+                url: process.env.GATSBY_API_URL,
                 // HTTP headers
                 headers: async () => {
                     const token = await getAuth()
