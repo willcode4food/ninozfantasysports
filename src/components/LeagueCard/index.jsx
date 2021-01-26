@@ -1,6 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { LeagueCardTitle, LeagueCardWrapper, LeagueCardBox, LeagueSeasonBox, LeagueSeasonWrapper } from './styles'
+import { format, parseISO } from 'date-fns'
+import {
+    LeagueCardTitle,
+    LeagueCardWrapper,
+    LeagueCardBox,
+    LeagueSeasonBox,
+    LeagueSeasonInnerBox,
+    LeagueSeasonInnerWrapper,
+    LeagueSeasonWrapper,
+    LeagueSeasonTitle,
+} from './styles'
 
 function LeagueCard({ league }) {
     return (
@@ -13,9 +23,18 @@ function LeagueCard({ league }) {
                 {league.seasons?.length > 0 &&
                     league.seasons.map((season) => (
                         <LeagueSeasonWrapper key={season.id}>
-                            <LeagueSeasonBox>{season.name}</LeagueSeasonBox>
-                            <LeagueSeasonBox>{season.startDate}</LeagueSeasonBox>
-                            <LeagueSeasonBox>{season.endDate}</LeagueSeasonBox>
+                            <LeagueSeasonTitle>{season.name}</LeagueSeasonTitle>
+                            <LeagueSeasonBox>
+                                <LeagueSeasonInnerWrapper key={season.id}>
+                                    <LeagueSeasonInnerBox>
+                                        {format(parseISO(season.startDate), `MMMM do, yyyy`)}
+                                    </LeagueSeasonInnerBox>
+                                    <LeagueSeasonInnerBox> - </LeagueSeasonInnerBox>
+                                    <LeagueSeasonInnerBox>
+                                        {format(parseISO(season.endDate), `MMMM do, yyyy`)}
+                                    </LeagueSeasonInnerBox>
+                                </LeagueSeasonInnerWrapper>
+                            </LeagueSeasonBox>
                         </LeagueSeasonWrapper>
                     ))}
             </LeagueCardBox>

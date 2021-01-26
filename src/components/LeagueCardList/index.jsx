@@ -1,6 +1,7 @@
 import React from 'react'
 import LeagueCard from 'components/LeagueCard'
 import { StaticQuery, graphql } from 'gatsby'
+import { LeagueListWrapper } from './styles'
 
 function LeagueCardList() {
     return (
@@ -26,9 +27,13 @@ function LeagueCardList() {
                 }
             `}
             render={(data) => {
-                return data.ninozFantasySports.returnAllLeagues.map((league) => (
-                    <LeagueCard league={league} key={league.id} />
-                ))
+                return (
+                    <LeagueListWrapper>
+                        {data.ninozFantasySports.returnAllLeagues.map((league) => (
+                            <LeagueCard league={league} key={league.id} />
+                        ))}
+                    </LeagueListWrapper>
+                )
             }}
         />
     )

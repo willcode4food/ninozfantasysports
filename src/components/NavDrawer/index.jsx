@@ -16,6 +16,7 @@ function NavDrawer({ isNavOpen, pathname, resetState }) {
             {sessionId && (
                 <NavWrapper onClick={resetState}>
                     <Link to="/">Home</Link>
+                    <Link to="/leagues">Leagues</Link>
                     {uid && <Link to="/account">My Account</Link>}
                     {!uid && <PathHistoryLink previousUrl={pathname} />}
                     {!uid && <PathHistoryLink previousUrl={pathname} to="/register" text="Create an Account" />}
