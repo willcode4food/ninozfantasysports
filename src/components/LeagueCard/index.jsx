@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { format, parseISO } from 'date-fns'
+import { formatIsoDate } from 'utils/dateHelpers'
 import {
     LeagueCardTitle,
     LeagueCardWrapper,
     LeagueCardBox,
+    LeagueDetail,
     LeagueSeasonBox,
     LeagueSeasonInnerBox,
     LeagueSeasonInnerWrapper,
@@ -17,8 +18,12 @@ function LeagueCard({ league }) {
         <LeagueCardWrapper>
             <LeagueCardTitle>{league.name}</LeagueCardTitle>
             <LeagueCardBox>{league.description}</LeagueCardBox>
-            <LeagueCardBox>{league.ownerName}</LeagueCardBox>
-            <LeagueCardBox>{league.type}</LeagueCardBox>
+            <LeagueCardBox>
+                <LeagueDetail>{`League Owner:\u00A0\u00A0${league.ownerName}`}</LeagueDetail>
+            </LeagueCardBox>
+            <LeagueCardBox>
+                <LeagueDetail>{`Sport:\u00A0\u00A0${league.type}`}</LeagueDetail>
+            </LeagueCardBox>
             <LeagueCardBox>
                 {league.seasons?.length > 0 &&
                     league.seasons.map((season) => (
@@ -26,13 +31,9 @@ function LeagueCard({ league }) {
                             <LeagueSeasonTitle>{season.name}</LeagueSeasonTitle>
                             <LeagueSeasonBox>
                                 <LeagueSeasonInnerWrapper key={season.id}>
-                                    <LeagueSeasonInnerBox>
-                                        {format(parseISO(season.startDate), `MMMM do, yyyy`)}
-                                    </LeagueSeasonInnerBox>
+                                    <LeagueSeasonInnerBox>{formatIsoDate(season.startDate)}</LeagueSeasonInnerBox>
                                     <LeagueSeasonInnerBox> - </LeagueSeasonInnerBox>
-                                    <LeagueSeasonInnerBox>
-                                        {format(parseISO(season.endDate), `MMMM do, yyyy`)}
-                                    </LeagueSeasonInnerBox>
+                                    <LeagueSeasonInnerBox>{formatIsoDate(season.endDate)}</LeagueSeasonInnerBox>
                                 </LeagueSeasonInnerWrapper>
                             </LeagueSeasonBox>
                         </LeagueSeasonWrapper>

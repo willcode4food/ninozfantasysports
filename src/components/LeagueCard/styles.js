@@ -17,6 +17,7 @@ export const LeagueCardTitle = styled.h2`
 `
 export const LeagueCardBox = styled.div`
     font-size: ${FONT_SIZES.H7};
+    margin-bottom: ${SPACERS.L};
 `
 
 export const LeagueSeasonWrapper = styled.div`
@@ -32,10 +33,14 @@ export const LeagueSeasonInnerWrapper = styled.div`
     flex-direction: row;
 `
 export const LeagueSeasonBox = styled.div``
+export const LeagueDetail = styled.span`
+    text-transform: uppercase;
+`
 export const LeagueSeasonInnerBox = styled.div`
     margin: ${SPACERS.S};
 `
 export const LeagueSeasonTitle = styled.h3`
     font-size: ${FONT_SIZES.H4};
     margin-top: 0px;
+    margin-bottom: ${SPACERS.L};
 `
