@@ -17,7 +17,7 @@ export const LeagueCardTitle = styled.h2`
 `
 export const LeagueCardBox = styled.div`
     font-size: ${FONT_SIZES.H7};
-    margin-bottom: ${SPACERS.L};
+    margin-bottom: ${SPACERS.M};
 `
 
 export const LeagueSeasonWrapper = styled.div`

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import LeagueCard from 'components/LeagueCard'
 import { StaticQuery, graphql } from 'gatsby'
 import { LeagueListWrapper } from './styles'
+import { leagueSeasonSorter } from 'utils/arrayHelpers'
 
 function LeagueCardList() {
     return (
@@ -27,9 +28,17 @@ function LeagueCardList() {
                 }
             `}
             render={(data) => {
+                const [sortedLeagues, setSortedLeagues] = useState([])
+                useEffect(() => {
+                    const leaguesSortedBySeason = data.ninozFantasySports.returnAllLeagues.sort(
+                        leagueSeasonSorter('seasons', 'startDate')
+                    )
+                    setSortedLeagues(leaguesSortedBySeason)
+                }, [data])
+
                 return (
                     <LeagueListWrapper>
-                        {data.ninozFantasySports.returnAllLeagues.map((league) => (
+                        {sortedLeagues.map((league) => (
                             <LeagueCard league={league} key={league.id} />
                         ))}
                     </LeagueListWrapper>
