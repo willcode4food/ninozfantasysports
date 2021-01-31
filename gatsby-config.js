@@ -22,11 +22,7 @@ admin.initializeApp({
 })
 
 async function getAuth() {
-    const customToken = await admin.auth().createCustomToken(serviceUID)
-    await firebase.auth().signInWithCustomToken(customToken)
-    let currentUser = await firebase.auth().currentUser
-    const token = await currentUser.getIdToken(true)
-    return token
+    return await admin.auth().createCustomToken(serviceUID)
 }
 
 module.exports = {
@@ -86,6 +82,7 @@ module.exports = {
                 // HTTP headers
                 headers: async () => {
                     const token = await getAuth()
+                    console.log('🚀 ~ file: gatsby-config.js ~ line 90 ~ headers: ~ token', token)
                     return {
                         // Learn about environment variables: https://gatsby.dev/env-vars
                         Authorization: `Bearer ${token}`,
@@ -95,6 +92,7 @@ module.exports = {
                     const gql = fs.readFileSync(`${__dirname}/schema.gql`).toString()
                     return buildSchema(gql)
                 },
+                refetchInterval: 20,
             },
         },
     ],
