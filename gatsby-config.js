@@ -82,7 +82,6 @@ module.exports = {
                 // HTTP headers
                 headers: async () => {
                     const token = await getAuth()
-                    console.log('🚀 ~ file: gatsby-config.js ~ line 90 ~ headers: ~ token', token)
                     return {
                         // Learn about environment variables: https://gatsby.dev/env-vars
                         Authorization: `Bearer ${token}`,
