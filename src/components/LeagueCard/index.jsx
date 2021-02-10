@@ -7,11 +7,14 @@ import {
     LeagueCardBox,
     LeagueDetail,
     LeagueSeasonBox,
+    LeagueSeasonDatesBoxWrapper,
     LeagueSeasonInnerBox,
     LeagueSeasonInnerWrapper,
     LeagueSeasonWrapper,
     LeagueSeasonTitle,
 } from './styles'
+
+import { PathHistoryButton } from 'components/Buttons'
 
 function LeagueCard({ league }) {
     return (
@@ -31,9 +34,16 @@ function LeagueCard({ league }) {
                             <LeagueSeasonTitle>{season.name}</LeagueSeasonTitle>
                             <LeagueSeasonBox>
                                 <LeagueSeasonInnerWrapper key={season.id}>
-                                    <LeagueSeasonInnerBox>{formatIsoDate(season.startDate)}</LeagueSeasonInnerBox>
-                                    <LeagueSeasonInnerBox> - </LeagueSeasonInnerBox>
-                                    <LeagueSeasonInnerBox>{formatIsoDate(season.endDate)}</LeagueSeasonInnerBox>
+                                    <LeagueSeasonDatesBoxWrapper>
+                                        <LeagueSeasonInnerBox>{formatIsoDate(season.startDate)}</LeagueSeasonInnerBox>
+                                        <LeagueSeasonInnerBox> - </LeagueSeasonInnerBox>
+                                        <LeagueSeasonInnerBox>{formatIsoDate(season.endDate)}</LeagueSeasonInnerBox>
+                                    </LeagueSeasonDatesBoxWrapper>
+                                    <PathHistoryButton
+                                        to="/season-register"
+                                        text="Join"
+                                        previousUrl="/season-register"
+                                    />
                                 </LeagueSeasonInnerWrapper>
                             </LeagueSeasonBox>
                         </LeagueSeasonWrapper>

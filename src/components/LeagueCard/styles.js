@@ -31,13 +31,21 @@ export const LeagueSeasonWrapper = styled.div`
 export const LeagueSeasonInnerWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 `
 export const LeagueSeasonBox = styled.div``
+export const LeagueSeasonDatesBoxWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+`
 export const LeagueDetail = styled.span`
     text-transform: uppercase;
 `
 export const LeagueSeasonInnerBox = styled.div`
     margin: ${SPACERS.S};
+    align-self: center;
 `
 export const LeagueSeasonTitle = styled.h3`
     font-size: ${FONT_SIZES.H4};
