@@ -30,6 +30,29 @@ input LeagueInput {
     type: String!
 }
 
+"""
+The League Registraion
+"""
+type LeagueRegistration {
+    dateRegistered: DateTime!
+    id: ID!
+    isActive: Boolean!
+    leagueId: String!
+    seasonId: String!
+    userId: String!
+}
+
+input LeagueRegistrationInput {
+    leagueId: String!
+    seasonId: String!
+    userId: String!
+}
+
+input LeagueRegistrationUpdateInput {
+    id: ID!
+    isActive: Boolean!
+}
+
 input LeagueUpdateInput {
     description: String!
     id: ID!
@@ -40,12 +63,14 @@ input LeagueUpdateInput {
 
 type Mutation {
     createLeague(data: LeagueInput!): League!
+    createLeagueRegistration(data: LeagueRegistrationInput!): LeagueRegistration!
     createSeason(data: SeasonInput!): Season!
     createUser(data: UserInput!): User!
     removeSingleLeague(id: String!): Boolean!
     removeSingleSeason(id: String!): Boolean!
     removeSingleUser(id: String!): Boolean!
     updateLeague(data: LeagueUpdateInput!): League!
+    updateLeagueRegistration(data: LeagueRegistrationUpdateInput!): LeagueRegistration!
     updateSeason(data: SeasonUpdateInput!): Season!
     updateUser(data: UserUpdateInput!): User!
 }
@@ -54,6 +79,9 @@ type Query {
     returnAllLeagues: [League!]!
     returnAllSeasons: [Season!]!
     returnAllUsers: [User!]!
+    returnLeagueRegistrationByLeague(leagueId: String!): [LeagueRegistration!]!
+    returnLeagueRegistrationBySeason(seasonId: String!): [LeagueRegistration!]!
+    returnLeagueRegistrationByUser(userId: String!): [LeagueRegistration!]!
     returnSeasonByLeagueId(leagueId: String!): [Season!]!
     returnSingleLeague(id: String!): League!
     returnSingleSeason(id: String!): Season!
