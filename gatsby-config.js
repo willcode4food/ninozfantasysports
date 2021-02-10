@@ -1,8 +1,28 @@
+const admin = require('firebase-admin')
+const firebase = require('firebase')
+const fs = require('fs')
+const { buildSchema } = require('graphql')
 const { getMediaQueryForBreakpointPlugin } = require('./src/utils/styleHelpers')
+const { FIREBASE } = require('./src/utils/constants')
+const serviceAccount = require('./secrets/firebase-key.json')
+const serviceUID = '9C4NFaxzRwhUxZh4maBngiSGndo2'
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
 
 const mediaQueries = {
     ...getMediaQueryForBreakpointPlugin(),
     portrait: `(orientation: portrait)`,
+}
+
+firebase.initializeApp(FIREBASE.CONFIG)
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+})
+
+async function getAuth() {
+    return await admin.auth().createCustomToken(serviceUID)
 }
 
 module.exports = {
@@ -51,6 +71,27 @@ module.exports = {
             resolve: 'gatsby-plugin-breakpoints',
             options: {
                 queries: mediaQueries,
+            },
+        },
+        {
+            resolve: 'gatsby-source-graphql',
+            options: {
+                typeName: 'NINOZFANTASYSPORTS',
+                fieldName: 'ninozFantasySports',
+                url: process.env.GATSBY_API_URL,
+                // HTTP headers
+                headers: async () => {
+                    const token = await getAuth()
+                    return {
+                        // Learn about environment variables: https://gatsby.dev/env-vars
+                        Authorization: `Bearer ${token}`,
+                    }
+                },
+                createSchema: async () => {
+                    const gql = fs.readFileSync(`${__dirname}/schema.gql`).toString()
+                    return buildSchema(gql)
+                },
+                refetchInterval: 20,
             },
         },
     ],

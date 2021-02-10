@@ -19,7 +19,6 @@ import {
 import { COLORS, FONT_SIZES } from 'utils/styleHelpers'
 import { PrimaryButtonLink } from 'components/Buttons'
 
-import { PrimaryButtonAnchor } from 'components/Buttons'
 import GameDayImage from 'components/GameDayImage'
 
 function FrontDoor() {
@@ -30,11 +29,7 @@ function FrontDoor() {
                 <ContentBoxCta color={COLORS.PRIMARY} isHidden={[false, false]}>
                     <ContentValuePropHorizontal>
                         <ContentValuePropHeader>
-                            <PrimaryButtonLink
-                                color={COLORS.PRIMARY_BUTTON}
-                                textcolor={COLORS.PRIMARY}
-                                to="/dispensaries"
-                            >
+                            <PrimaryButtonLink color={COLORS.PRIMARY_BUTTON} textcolor={COLORS.PRIMARY} to="/leagues">
                                 Join the Fantasy Golf League
                             </PrimaryButtonLink>
                         </ContentValuePropHeader>
@@ -48,11 +43,7 @@ function FrontDoor() {
                         <ContentValuePropHeader>Do you like being awesome?</ContentValuePropHeader>
                         <ContentValuePropContent>Let&apos;s be awesome together</ContentValuePropContent>
                         <ContentValuePropBox>
-                            <PrimaryButtonLink
-                                color={COLORS.PRIMARY_BUTTON}
-                                textcolor={COLORS.PRIMARY}
-                                to="/dispensaries"
-                            >
+                            <PrimaryButtonLink color={COLORS.PRIMARY_BUTTON} textcolor={COLORS.PRIMARY} to="/register">
                                 Step into Awesomeness
                             </PrimaryButtonLink>
                         </ContentValuePropBox>
@@ -76,18 +67,6 @@ function FrontDoor() {
                                     >
                                         Sign Up
                                     </PrimaryButtonLink>
-                                </ContentBannerButtonBox>
-                                <ContentBannerButtonBox>
-                                    <PrimaryButtonAnchor
-                                        color={COLORS.SECONDARY_DARK}
-                                        textcolor={COLORS.PRIMARY}
-                                        href={'mailto:sales@weedrater.com'}
-                                        state={{ activeTabIndex: 2 }}
-                                        fontSize={FONT_SIZES.H4}
-                                        paddingx={'40px'}
-                                    >
-                                        Advertise
-                                    </PrimaryButtonAnchor>
                                 </ContentBannerButtonBox>
                             </ContentBannerButtonWrapper>
                         </ContentBannerBox>
