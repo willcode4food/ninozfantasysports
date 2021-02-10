@@ -15,7 +15,7 @@ import { COLORS } from 'utils/styleHelpers'
 
 function VerifyAgeModal({ hasAgeVerified }) {
     const [hasVerified, setHasVerified] = useState(false)
-    const [showOverlay, setShowOverlay] = useState(false)
+    const [showOverlay, setShowOverlay] = useState(!hasAgeVerified)
     const [error, setError] = useState(null)
 
     useEffect(() => {

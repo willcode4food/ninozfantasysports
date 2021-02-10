@@ -35,7 +35,9 @@ export const LeagueSeasonInnerWrapper = styled.div`
     align-items: center;
     width: 100%;
 `
-export const LeagueSeasonBox = styled.div``
+export const LeagueSeasonBox = styled.div`
+    display: block;
+`
 export const LeagueSeasonDatesBoxWrapper = styled.div`
     display: flex;
     flex-direction: row;

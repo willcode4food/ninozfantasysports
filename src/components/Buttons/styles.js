@@ -19,7 +19,7 @@ export const primaryButtonStyles = ({
     padding-left: ${SPACERS.L};
     width: 100%;
     &:hover {
-        ${color};
+        background: ${color};
     }
     .dark & {
         color: ${textColorDark || textColor};
