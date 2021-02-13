@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-commented-out-tests */
 import React from 'react'
 import { act, cleanup, render, screen } from '@testing-library/react'
 import fireEvent from '@testing-library/user-event'

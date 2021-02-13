@@ -81,7 +81,8 @@
         "clean": "gatsby clean",
         "test": "jest",
         "jest-watch": "jest --watch",
-        "test-update-snapshot": "jest --updateSnapshot"
+        "test-update-snapshot": "jest --updateSnapshot",
+        "lint": " eslint ./src/**/*.(js|jsx)"
     },
     "repository": {
         "type": "git",
