@@ -82,7 +82,7 @@
         "test": "jest",
         "jest-watch": "jest --watch",
         "test-update-snapshot": "jest --updateSnapshot",
-        "lint": " eslint ./src/**/*.(js|jsx)"
+        "lint": "eslint --fix --ext .js,.jsx ./src/**/*"
     },
     "repository": {
         "type": "git",
