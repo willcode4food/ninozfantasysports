@@ -26,6 +26,7 @@ export async function eventDispatch(eventData) {
         const config = {
             headers: { Authorization: `Bearer ${token}` },
         }
+        // eslint-disable-next-line no-unused-vars
         const { 'gtm.uniqueEventId': uniqueEventId, ...rest } = eventData
         axios.post(apiEventsURL, { ...rest }, config)
         return true

@@ -8,7 +8,7 @@ describe('HamburgerArrow', () => {
         it('renders', () => {
             const tree = renderer.create(<HamburgerArrow />).toJSON()
             expect(tree).toMatchInlineSnapshot(`
-                .emotion-4 {
+                .emotion-0 {
                   background-color: transparent;
                   border: 0;
                   color: inherit;
@@ -19,11 +19,8 @@ describe('HamburgerArrow', () => {
                   overflow: visible;
                   padding: 1px;
                   text-transform: none;
-                  -webkit-transition-duration: 0.15s;
                   transition-duration: 0.15s;
-                  -webkit-transition-property: opacity,filter;
                   transition-property: opacity,filter;
-                  -webkit-transition-timing-function: linear;
                   transition-timing-function: linear;
                 }
 
@@ -33,17 +30,13 @@ describe('HamburgerArrow', () => {
                   width: 30px;
                 }
 
-                .emotion-0 {
+                .emotion-4 {
                   background-color: #C4C8D8;
                   border-radius: 2px;
                   height: 2px;
                   position: absolute;
-                  -webkit-transition-duration: 0.15s;
                   transition-duration: 0.15s;
-                  -webkit-transition-property: -webkit-transform;
-                  -webkit-transition-property: transform;
                   transition-property: transform;
-                  -webkit-transition-timing-function: ease;
                   transition-timing-function: ease;
                   width: 20px;
                   display: block;
@@ -51,23 +44,19 @@ describe('HamburgerArrow', () => {
                   top: 50%;
                 }
 
-                .dark .emotion-0 {
+                .dark .emotion-4 {
                   background-color: #FFF;
                   -webkit-transition: background-color 0.5s;
                   transition: background-color 0.5s;
                 }
 
-                .emotion-0::before {
+                .emotion-4::before {
                   background-color: #C4C8D8;
                   border-radius: 2px;
                   height: 2px;
                   position: absolute;
-                  -webkit-transition-duration: 0.15s;
                   transition-duration: 0.15s;
-                  -webkit-transition-property: -webkit-transform;
-                  -webkit-transition-property: transform;
                   transition-property: transform;
-                  -webkit-transition-timing-function: ease;
                   transition-timing-function: ease;
                   width: 20px;
                   content: '';
@@ -75,23 +64,19 @@ describe('HamburgerArrow', () => {
                   top: -5px;
                 }
 
-                .dark .emotion-0::before {
+                .dark .emotion-4::before {
                   background-color: #FFF;
                   -webkit-transition: background-color 0.5s;
                   transition: background-color 0.5s;
                 }
 
-                .emotion-0::after {
+                .emotion-4::after {
                   background-color: #C4C8D8;
                   border-radius: 2px;
                   height: 2px;
                   position: absolute;
-                  -webkit-transition-duration: 0.15s;
                   transition-duration: 0.15s;
-                  -webkit-transition-property: -webkit-transform;
-                  -webkit-transition-property: transform;
                   transition-property: transform;
-                  -webkit-transition-timing-function: ease;
                   transition-timing-function: ease;
                   width: 20px;
                   content: '';
@@ -99,20 +84,20 @@ describe('HamburgerArrow', () => {
                   bottom: -5px;
                 }
 
-                .dark .emotion-0::after {
+                .dark .emotion-4::after {
                   background-color: #FFF;
                   -webkit-transition: background-color 0.5s;
                   transition: background-color 0.5s;
                 }
 
                 <div
-                  className="emotion-4 emotion-5"
+                  className="emotion-0 emotion-1"
                 >
                   <div
                     className="emotion-2 emotion-3"
                   >
                     <span
-                      className="emotion-0 emotion-1"
+                      className="emotion-4 emotion-5"
                     />
                   </div>
                 </div>

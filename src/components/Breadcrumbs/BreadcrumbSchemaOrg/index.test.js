@@ -1,11 +1,6 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { render, waitFor } from '@testing-library/react'
-import { mount, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import BreadcrumbSchemaOrg from './'
-
-configure({ adapter: new Adapter() })
 
 const location = {
     pathname: '/login',
@@ -77,36 +72,6 @@ describe('BreadcrumbSchemaOrg', () => {
                     }
                 `)
             )
-        })
-    })
-    describe('when added', () => {
-        it('renders', () => {
-            // eslint-disable-next-line no-unused-vars
-            const wrapper = mount(<BreadcrumbSchemaOrg location={location} />)
-            const helmet = Helmet.peek()
-
-            expect(helmet).toMatchInlineSnapshot(`
-                Object {
-                  "baseTag": Array [],
-                  "bodyAttributes": Object {},
-                  "defer": true,
-                  "encode": true,
-                  "htmlAttributes": Object {},
-                  "linkTags": Array [],
-                  "metaTags": Array [],
-                  "noscriptTags": Array [],
-                  "onChangeClientState": [Function],
-                  "scriptTags": Array [
-                    Object {
-                      "innerHTML": "[{\\"@context\\":\\"http://schema.org\\",\\"@type\\":\\"BreadcrumbList\\",\\"itemListElement\\":[{\\"@type\\":\\"ListItem\\",\\"position\\":1,\\"item\\":{\\"@id\\":\\"undefined/\\",\\"name\\":\\"home\\"}},{\\"@type\\":\\"ListItem\\",\\"position\\":2,\\"item\\":{\\"@id\\":\\"undefined//login\\",\\"name\\":\\"login\\"}}]}]",
-                      "type": "application/ld+json",
-                    },
-                  ],
-                  "styleTags": Array [],
-                  "title": undefined,
-                  "titleAttributes": Object {},
-                }
-            `)
         })
     })
 })

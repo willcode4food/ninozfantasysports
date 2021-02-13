@@ -40,12 +40,12 @@ describe('Loader', () => {
                   }
                 }
 
-                .emotion-8 {
+                .emotion-0 {
                   height: calc(80vh - 70px);
                   z-index: 3;
                 }
 
-                .emotion-6 {
+                .emotion-2 {
                   display: -webkit-box;
                   display: -webkit-flex;
                   display: -ms-flexbox;
@@ -59,8 +59,8 @@ describe('Loader', () => {
                   -ms-flex-direction: column;
                   flex-direction: column;
                   -webkit-box-pack: center;
-                  -webkit-justify-content: center;
                   -ms-flex-pack: center;
+                  -webkit-justify-content: center;
                   justify-content: center;
                 }
 
@@ -68,7 +68,7 @@ describe('Loader', () => {
                   align: flex-start;
                 }
 
-                .emotion-0 {
+                .emotion-7 {
                   display: inline-block;
                   background-color: #c60028;
                   width: 24px;
@@ -81,7 +81,7 @@ describe('Loader', () => {
                   animation-fill-mode: both;
                 }
 
-                .emotion-1 {
+                .emotion-8 {
                   display: inline-block;
                   background-color: #c60028;
                   width: 24px;
@@ -95,28 +95,28 @@ describe('Loader', () => {
                 }
 
                 <div
-                  className="emotion-8 emotion-9"
+                  className="emotion-0 emotion-1"
                   data-testid="loader"
                 >
                   <div
-                    className="emotion-6 emotion-7"
+                    className="emotion-2 emotion-3"
                   >
                     <div
                       className="emotion-4 emotion-5"
                     >
-                      <div
-                        className="emotion-3"
+                      <span
+                        className="emotion-6"
                       >
-                        <div
-                          className="emotion-0"
+                        <span
+                          className="emotion-7"
                         />
-                        <div
-                          className="emotion-1"
+                        <span
+                          className="emotion-8"
                         />
-                        <div
-                          className="emotion-0"
+                        <span
+                          className="emotion-7"
                         />
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>

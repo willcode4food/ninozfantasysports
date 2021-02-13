@@ -12,6 +12,7 @@ describe('ThemeToggle', () => {
                   padding: 0;
                   -webkit-appearance: none;
                   -moz-appearance: none;
+                  -ms-appearance: none;
                   appearance: none;
                   -webkit-align-items: center;
                   -webkit-box-align: center;
@@ -27,14 +28,15 @@ describe('ThemeToggle', () => {
                   display: inline-flex;
                   height: 30px;
                   -webkit-box-pack: center;
-                  -webkit-justify-content: center;
                   -ms-flex-pack: center;
+                  -webkit-justify-content: center;
                   justify-content: center;
                   margin-right: -11px;
                   opacity: 0.75;
                   overflow: hidden;
                   position: relative;
                   -webkit-transform: scale(0.75);
+                  -moz-transform: scale(0.75);
                   -ms-transform: scale(0.75);
                   transform: scale(0.75);
                   -webkit-transition: opacity 0.3s ease;

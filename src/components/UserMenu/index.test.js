@@ -8,12 +8,12 @@ describe('UserMenu', () => {
         it('renders', () => {
             const tree = renderer.create(<UserMenu />).toJSON()
             expect(tree).toMatchInlineSnapshot(`
-                .emotion-2 {
+                .emotion-0 {
                   display: none;
                 }
 
-                @media (min-width:992px) {
-                  .emotion-2 {
+                @media (min-width: 992px) {
+                  .emotion-0 {
                     display: -webkit-box;
                     display: -webkit-flex;
                     display: -ms-flexbox;
@@ -25,21 +25,21 @@ describe('UserMenu', () => {
                   }
                 }
 
-                .emotion-0 {
+                .emotion-2 {
                   -webkit-align-self: center;
                   -ms-flex-item-align: center;
                   align-self: center;
                 }
 
-                .emotion-0 a {
+                .emotion-2 a {
                   margin: 20px 0;
                 }
 
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-0 emotion-1"
                 >
                   <div
-                    className="emotion-0 emotion-1"
+                    className="emotion-2 emotion-3"
                   >
                     <a
                       href="/login"

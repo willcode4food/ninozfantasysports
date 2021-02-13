@@ -1,7 +1,6 @@
 /* eslint-disable no-irregular-whitespace */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
 
 import LeagueCard from './'
 
@@ -23,13 +22,11 @@ const league = {
     ownerName: 'willcode4food',
 }
 
-expect.addSnapshotSerializer(serializer)
-
 describe('LeagueCard', () => {
     it('renders', () => {
         const tree = renderer.create(<LeagueCard league={league} />).toJSON()
         expect(tree).toMatchInlineSnapshot(`
-            .emotion-32 {
+            .emotion-0 {
               display: -webkit-box;
               display: -webkit-flex;
               display: -ms-flexbox;
@@ -38,8 +35,8 @@ describe('LeagueCard', () => {
               -ms-flex-direction: column;
               flex-direction: column;
               -webkit-box-pack: center;
-              -webkit-justify-content: center;
               -ms-flex-pack: center;
+              -webkit-justify-content: center;
               justify-content: center;
               border: 1px solid #c60028;
               padding: 20px;
@@ -47,23 +44,23 @@ describe('LeagueCard', () => {
               margin: 20px;
             }
 
-            .emotion-0 {
+            .emotion-2 {
               margin-top: 0px;
               font-size: 1.68179rem;
               -webkit-text-decoration: underline;
               text-decoration: underline;
             }
 
-            .emotion-2 {
+            .emotion-4 {
               font-size: 0.75rem;
               margin-bottom: 10px;
             }
 
-            .emotion-4 {
+            .emotion-8 {
               text-transform: uppercase;
             }
 
-            .emotion-28 {
+            .emotion-16 {
               display: -webkit-box;
               display: -webkit-flex;
               display: -ms-flexbox;
@@ -77,14 +74,32 @@ describe('LeagueCard', () => {
               border-radius: 5px;
             }
 
-            .emotion-12 {
+            .emotion-18 {
               font-size: 1.12246rem;
               margin-top: 0px;
               margin-bottom: 20px;
             }
 
-            .emotion-26 {
+            .emotion-20 {
               display: block;
+            }
+
+            .emotion-22 {
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+              flex-direction: row;
+              -webkit-box-pack: justify;
+              -webkit-justify-content: space-between;
+              justify-content: space-between;
+              -webkit-align-items: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              width: 100%;
             }
 
             .emotion-24 {
@@ -95,35 +110,16 @@ describe('LeagueCard', () => {
               -webkit-flex-direction: row;
               -ms-flex-direction: row;
               flex-direction: row;
-              -webkit-box-pack: justify;
-              -webkit-justify-content: space-between;
-              -ms-flex-pack: justify;
-              justify-content: space-between;
-              -webkit-align-items: center;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              width: 100%;
             }
 
-            .emotion-20 {
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-flex-direction: row;
-              -ms-flex-direction: row;
-              flex-direction: row;
-            }
-
-            .emotion-14 {
+            .emotion-26 {
               margin: 5px;
               -webkit-align-self: center;
               -ms-flex-item-align: center;
               align-self: center;
             }
 
-            .emotion-22 {
+            .emotion-32 {
               border: 1px solid #FF1647;
               border-radius: 4px;
               background: #FF1647;
@@ -142,85 +138,85 @@ describe('LeagueCard', () => {
               margin-right: 10px;
             }
 
-            .emotion-22:hover {
+            .emotion-32:hover {
               background: #FF1647;
             }
 
-            .dark .emotion-22 {
+            .dark .emotion-32 {
               color: #FFF;
               background: #FF1647;
               border: 1px solid #FF1647;
             }
 
             <div
-              className="emotion-32 emotion-33"
+              className="emotion-0 emotion-1"
             >
               <h2
-                className="emotion-0 emotion-1"
+                className="emotion-2 emotion-3"
               >
                 NBA Fall Season 2021
               </h2>
               <div
-                className="emotion-2 emotion-3"
+                className="emotion-4 emotion-5"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </div>
               <div
-                className="emotion-2 emotion-3"
+                className="emotion-4 emotion-5"
               >
                 <span
-                  className="emotion-4 emotion-5"
+                  className="emotion-8 emotion-9"
                 >
                   League Owner:  willcode4food
                 </span>
               </div>
               <div
-                className="emotion-2 emotion-3"
+                className="emotion-4 emotion-5"
               >
                 <span
-                  className="emotion-4 emotion-5"
+                  className="emotion-8 emotion-9"
                 >
                   Sport:  basketball
                 </span>
               </div>
               <div
-                className="emotion-2 emotion-3"
+                className="emotion-4 emotion-5"
               >
                 <div
-                  className="emotion-28 emotion-29"
+                  className="emotion-16 emotion-17"
                 >
                   <h3
-                    className="emotion-12 emotion-13"
+                    className="emotion-18 emotion-19"
                   >
                     Season 1
                   </h3>
                   <div
-                    className="emotion-26 emotion-27"
+                    className="emotion-20 emotion-21"
                   >
                     <div
-                      className="emotion-24 emotion-25"
+                      className="emotion-22 emotion-23"
                     >
                       <div
-                        className="emotion-20 emotion-21"
+                        className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-14 emotion-15"
+                          className="emotion-26 emotion-27"
                         >
                           March 22nd, 2021
                         </div>
                         <div
-                          className="emotion-14 emotion-15"
+                          className="emotion-26 emotion-27"
                         >
                            - 
                         </div>
                         <div
-                          className="emotion-14 emotion-15"
+                          className="emotion-26 emotion-27"
                         >
                           April 22nd, 2021
                         </div>
                       </div>
                       <a
-                        className="emotion-22 emotion-23"
+                        className="emotion-32 emotion-33"
                         href="/season-register"
                         onClick={[Function]}
                       >

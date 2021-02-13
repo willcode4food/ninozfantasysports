@@ -1,10 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
 
 import PrimaryButtonAnchor from './'
-
-expect.addSnapshotSerializer(serializer)
 
 describe('PrimaryButtonAnchor', () => {
     it('renders', () => {

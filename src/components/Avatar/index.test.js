@@ -1,10 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
 
 import Avatar from './index.jsx'
-
-expect.addSnapshotSerializer(serializer)
 
 describe('Avatar', () => {
     describe('when it is on a page', () => {
@@ -19,14 +16,14 @@ describe('Avatar', () => {
                   border-radius: 50%;
                 }
 
-                @media (min-width:992px) {
+                @media (min-width: 992px) {
                   .emotion-0 {
                     width: 200px;
                     height: 200px;
                   }
                 }
 
-                @media (min-width:768px) {
+                @media (min-width: 768px) {
                   .emotion-0 {
                     width: 175px;
                     height: 175px;

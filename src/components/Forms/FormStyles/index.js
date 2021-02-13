@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import { COLORS, SPACERS, FONT_SIZES } from 'utils/styleHelpers'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import { AiFillWarning } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { HiOutlineMail } from 'react-icons/hi'
