@@ -5,9 +5,6 @@ import { MockedProvider } from '@apollo/client/testing'
 import AccountSecurityForm from './'
 import fireEvent from '@testing-library/user-event'
 import { graphQlMocksEmailUser } from 'utils/testMocks'
-import serializer from 'jest-emotion'
-
-expect.addSnapshotSerializer(serializer)
 
 jest.mock('hooks/firebase/useFirebaseAuthentication', () => {
     return jest.fn(() => {

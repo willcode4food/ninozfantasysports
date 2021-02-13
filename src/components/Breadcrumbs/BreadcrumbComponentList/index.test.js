@@ -1,10 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
 
 import BreadcrumbComponentList from './'
-
-expect.addSnapshotSerializer(serializer)
 
 const location = {
     pathname: '/login',
@@ -15,7 +12,7 @@ describe('BreadcrumbComponentList', () => {
         it('renders', () => {
             const tree = renderer.create(<BreadcrumbComponentList location={location} />).toJSON()
             expect(tree).toMatchInlineSnapshot(`
-                .emotion-2 {
+                .emotion-0 {
                   float: left;
                   font-size: 0.75rem;
                   text-transform: uppercase;
@@ -24,28 +21,28 @@ describe('BreadcrumbComponentList', () => {
                   text-decoration: none;
                 }
 
-                @media (min-width:992px) {
-                  .emotion-2 {
+                @media (min-width: 992px) {
+                  .emotion-0 {
                     font-size: 0.875rem;
                   }
                 }
 
-                @media (min-width:768px) {
-                  .emotion-2 {
+                @media (min-width: 768px) {
+                  .emotion-0 {
                     font-size: 0.875rem;
                   }
                 }
 
-                .emotion-0 {
+                .emotion-2 {
                   padding-left: 10px;
                   padding-right: 10px;
                 }
 
                 <li
-                  className="emotion-2 emotion-3"
+                  className="emotion-0 emotion-1"
                 >
                   <span
-                    className="emotion-0 emotion-1"
+                    className="emotion-2 emotion-3"
                   >
                     login
                   </span>

@@ -1,13 +1,11 @@
 /* eslint-disable no-irregular-whitespace */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
+
 import { StaticQuery } from 'gatsby'
 // import { leagueSeasonSorter } from 'utils/arrayHelpers'
 
 import LeagueCardList from './'
-
-expect.addSnapshotSerializer(serializer)
 
 const leagues = {
     ninozFantasySports: {
@@ -97,7 +95,7 @@ describe('PrimaryButton', () => {
     it('renders', () => {
         const tree = renderer.create(<LeagueCardList leagues={leagues} />).toJSON()
         expect(tree).toMatchInlineSnapshot(`
-            .emotion-68 {
+            .emotion-2 {
               display: -webkit-box;
               display: -webkit-flex;
               display: -ms-flexbox;
@@ -106,8 +104,8 @@ describe('PrimaryButton', () => {
               -ms-flex-direction: column;
               flex-direction: column;
               -webkit-box-pack: center;
-              -webkit-justify-content: center;
               -ms-flex-pack: center;
+              -webkit-justify-content: center;
               justify-content: center;
               border: 1px solid #c60028;
               padding: 20px;
@@ -115,23 +113,23 @@ describe('PrimaryButton', () => {
               margin: 20px;
             }
 
-            .emotion-0 {
+            .emotion-4 {
               margin-top: 0px;
               font-size: 1.68179rem;
               -webkit-text-decoration: underline;
               text-decoration: underline;
             }
 
-            .emotion-2 {
+            .emotion-6 {
               font-size: 0.75rem;
               margin-bottom: 10px;
             }
 
-            .emotion-4 {
+            .emotion-10 {
               text-transform: uppercase;
             }
 
-            .emotion-28 {
+            .emotion-18 {
               display: -webkit-box;
               display: -webkit-flex;
               display: -ms-flexbox;
@@ -145,13 +143,13 @@ describe('PrimaryButton', () => {
               border-radius: 5px;
             }
 
-            .emotion-12 {
+            .emotion-20 {
               font-size: 1.12246rem;
               margin-top: 0px;
               margin-bottom: 20px;
             }
 
-            .emotion-26 {
+            .emotion-22 {
               display: block;
             }
 
@@ -165,7 +163,6 @@ describe('PrimaryButton', () => {
               flex-direction: row;
               -webkit-box-pack: justify;
               -webkit-justify-content: space-between;
-              -ms-flex-pack: justify;
               justify-content: space-between;
               -webkit-align-items: center;
               -webkit-box-align: center;
@@ -174,7 +171,7 @@ describe('PrimaryButton', () => {
               width: 100%;
             }
 
-            .emotion-20 {
+            .emotion-26 {
               display: -webkit-box;
               display: -webkit-flex;
               display: -ms-flexbox;
@@ -184,14 +181,14 @@ describe('PrimaryButton', () => {
               flex-direction: row;
             }
 
-            .emotion-14 {
+            .emotion-28 {
               margin: 5px;
               -webkit-align-self: center;
               -ms-flex-item-align: center;
               align-self: center;
             }
 
-            .emotion-22 {
+            .emotion-34 {
               border: 1px solid #FF1647;
               border-radius: 4px;
               background: #FF1647;
@@ -210,88 +207,88 @@ describe('PrimaryButton', () => {
               margin-right: 10px;
             }
 
-            .emotion-22:hover {
+            .emotion-34:hover {
               background: #FF1647;
             }
 
-            .dark .emotion-22 {
+            .dark .emotion-34 {
               color: #FFF;
               background: #FF1647;
               border: 1px solid #FF1647;
             }
 
             <div
-              className="emotion-174 emotion-175"
+              className="emotion-0 emotion-1"
             >
               <div
-                className="emotion-68 emotion-69"
+                className="emotion-2 emotion-3"
               >
                 <h2
-                  className="emotion-0 emotion-1"
+                  className="emotion-4 emotion-5"
                 >
                   Nino's Fantasy Golf 2021
                 </h2>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <span
-                    className="emotion-4 emotion-5"
+                    className="emotion-10 emotion-11"
                   >
                     League Owner:  willcode4food
                   </span>
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <span
-                    className="emotion-4 emotion-5"
+                    className="emotion-10 emotion-11"
                   >
                     Sport:  golf
                   </span>
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 1
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             January 22nd, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             February 22nd, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >
@@ -301,40 +298,40 @@ describe('PrimaryButton', () => {
                     </div>
                   </div>
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 2
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             February 22nd, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             March 22nd, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >
@@ -344,40 +341,40 @@ describe('PrimaryButton', () => {
                     </div>
                   </div>
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 3
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             November 22nd, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             December 22nd, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >
@@ -389,74 +386,74 @@ describe('PrimaryButton', () => {
                 </div>
               </div>
               <div
-                className="emotion-68 emotion-69"
+                className="emotion-2 emotion-3"
               >
                 <h2
-                  className="emotion-0 emotion-1"
+                  className="emotion-4 emotion-5"
                 >
                   MLB 2020
                 </h2>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <span
-                    className="emotion-4 emotion-5"
+                    className="emotion-10 emotion-11"
                   >
                     League Owner:  willcode4food
                   </span>
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <span
-                    className="emotion-4 emotion-5"
+                    className="emotion-10 emotion-11"
                   >
                     Sport:  baseball
                   </span>
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 1
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             February 9th, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             April 8th, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >
@@ -466,40 +463,40 @@ describe('PrimaryButton', () => {
                     </div>
                   </div>
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 2
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             February 22nd, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             March 22nd, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >
@@ -509,40 +506,40 @@ describe('PrimaryButton', () => {
                     </div>
                   </div>
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 3
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             March 22nd, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             April 22nd, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >
@@ -554,74 +551,74 @@ describe('PrimaryButton', () => {
                 </div>
               </div>
               <div
-                className="emotion-68 emotion-69"
+                className="emotion-2 emotion-3"
               >
                 <h2
-                  className="emotion-0 emotion-1"
+                  className="emotion-4 emotion-5"
                 >
                   NBA Fall Season 2021
                 </h2>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <span
-                    className="emotion-4 emotion-5"
+                    className="emotion-10 emotion-11"
                   >
                     League Owner:  willcode4food
                   </span>
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <span
-                    className="emotion-4 emotion-5"
+                    className="emotion-10 emotion-11"
                   >
                     Sport:  basketball
                   </span>
                 </div>
                 <div
-                  className="emotion-2 emotion-3"
+                  className="emotion-6 emotion-7"
                 >
                   <div
-                    className="emotion-28 emotion-29"
+                    className="emotion-18 emotion-19"
                   >
                     <h3
-                      className="emotion-12 emotion-13"
+                      className="emotion-20 emotion-21"
                     >
                       Season 1
                     </h3>
                     <div
-                      className="emotion-26 emotion-27"
+                      className="emotion-22 emotion-23"
                     >
                       <div
                         className="emotion-24 emotion-25"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-26 emotion-27"
                         >
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             March 22nd, 2021
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                              - 
                           </div>
                           <div
-                            className="emotion-14 emotion-15"
+                            className="emotion-28 emotion-29"
                           >
                             April 22nd, 2021
                           </div>
                         </div>
                         <a
-                          className="emotion-22 emotion-23"
+                          className="emotion-34 emotion-35"
                           href="/season-register"
                           onClick={[Function]}
                         >

@@ -22,7 +22,6 @@ describe('SliderField', () => {
                   width: 100%;
                   height: 5px;
                   cursor: pointer;
-                  -webkit-animate: 0.2s;
                   animate: 0.2s;
                   background: #ededed;
                   border-radius: 2px;
@@ -48,7 +47,6 @@ describe('SliderField', () => {
                   width: 100%;
                   height: 4px;
                   cursor: pointer;
-                  -webkit-animate: 0.2s;
                   animate: 0.2s;
                   border-radius: 1.3px;
                   border: 1px solid;
@@ -68,7 +66,6 @@ describe('SliderField', () => {
                   width: 100%;
                   height: 4px;
                   cursor: pointer;
-                  -webkit-animate: 0.2s;
                   animate: 0.2s;
                   border-radius: 1.3px;
                   border: 1px solid;

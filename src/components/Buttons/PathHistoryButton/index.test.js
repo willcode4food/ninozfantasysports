@@ -1,9 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
-import PathHistoryButton from './'
 
-expect.addSnapshotSerializer(serializer)
+import PathHistoryButton from './'
 
 describe('PathHistoryButton', () => {
     const tree = renderer.create(<PathHistoryButton />).toJSON()

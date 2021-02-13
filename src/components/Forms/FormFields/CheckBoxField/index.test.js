@@ -20,9 +20,10 @@ describe('CheckBoxField', () => {
         it('renders', () => {
             const tree = renderer.create(<CheckBoxField backgroundColor="tomato" backgroundColorOff="blue" />).toJSON()
             expect(tree).toMatchInlineSnapshot(`
-                .emotion-2 {
+                .emotion-0 {
                   -webkit-appearence: button;
                   -moz-appearence: button;
+                  -ms-appearence: button;
                   appearence: button;
                   border: 1px solid;
                   border-radius: 1px;
@@ -34,30 +35,30 @@ describe('CheckBoxField', () => {
                   height: 25px;
                 }
 
-                .emotion-2:after {
+                .emotion-0:after {
                   content: '✓';
                   font-size: 25px;
                   color: #c60028;
                 }
 
-                .emotion-2:before {
+                .emotion-0:before {
                   content: '';
                 }
 
-                .emotion-0 {
+                .emotion-2 {
                   position: absolute;
                   left: -9999px;
                 }
 
-                .emotion-0:checked + label {
+                .emotion-2:checked+label {
                   color: red;
                 }
 
                 <label
-                  className="emotion-2 emotion-3"
+                  className="emotion-0 emotion-1"
                 >
                   <input
-                    className="emotion-0 emotion-1"
+                    className="emotion-2 emotion-3"
                     onClick={[Function]}
                     role="checkbox"
                     type="checkbox"

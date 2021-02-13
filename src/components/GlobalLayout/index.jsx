@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { css, Global } from '@emotion/core'
+import { css, Global } from '@emotion/react'
 import { COLORS } from 'utils/styleHelpers'
 import Header from 'components/Header'
 import NavDrawer from 'components/NavDrawer'

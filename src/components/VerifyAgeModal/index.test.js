@@ -9,7 +9,7 @@ describe('VerifyAgeModal', () => {
         it('renders', () => {
             const tree = renderer.create(<VerifyAgeModal hasAgeVerified={false} />).toJSON()
             expect(tree).toMatchInlineSnapshot(`
-                .emotion-28 {
+                .emotion-0 {
                   height: 100vh;
                   width: 100vw;
                   position: fixed;
@@ -17,10 +17,10 @@ describe('VerifyAgeModal', () => {
                   z-index: 4;
                 }
 
-                .emotion-26 {
+                .emotion-2 {
                   background: #FFF;
                   border-radius: 4px;
-                  box-shadow: 0 0 0 60vmax rgba(0,0,0,0.25),0 0 32px rgba(0,0,0,0.25);
+                  box-shadow: 0 0 0 60vmax rgba(0, 0, 0, 0.25),0 0 32px rgba(0, 0, 0, 0.25);
                   left: 50%;
                   max-width: 100vw;
                   max-height: 100vh;
@@ -28,25 +28,26 @@ describe('VerifyAgeModal', () => {
                   padding: 16px;
                   position: fixed;
                   top: 50%;
-                  -webkit-transform: translate(-50%,-50%);
-                  -ms-transform: translate(-50%,-50%);
-                  transform: translate(-50%,-50%);
+                  -webkit-transform: translate(-50%, -50%);
+                  -moz-transform: translate(-50%, -50%);
+                  -ms-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
                   height: calc(80vh - 70px);
                   width: 70vw;
                 }
 
-                .dark .emotion-26 {
+                .dark .emotion-2 {
                   background: #495358;
                 }
 
-                @media (min-width:992px) {
-                  .emotion-26 {
+                @media (min-width: 992px) {
+                  .emotion-2 {
                     height: calc(70vh - 70px);
                     width: 40vw;
                   }
                 }
 
-                .emotion-24 {
+                .emotion-4 {
                   display: -webkit-box;
                   display: -webkit-flex;
                   display: -ms-flexbox;
@@ -59,25 +60,25 @@ describe('VerifyAgeModal', () => {
                   -ms-flex-direction: column;
                   flex-direction: column;
                   -webkit-box-pack: start;
-                  -webkit-justify-content: flex-start;
                   -ms-flex-pack: start;
+                  -webkit-justify-content: flex-start;
                   justify-content: flex-start;
                   height: 80%;
                 }
 
-                .emotion-0 {
+                .emotion-6 {
                   text-align: left;
                   text-transform: uppercase;
                 }
 
-                .emotion-22 {
+                .emotion-8 {
                   -webkit-box-flex: 4;
                   -webkit-flex-grow: 4;
                   -ms-flex-positive: 4;
                   flex-grow: 4;
                 }
 
-                .emotion-20 {
+                .emotion-10 {
                   -webkit-align-items: center;
                   -webkit-box-align: center;
                   -ms-flex-align: center;
@@ -90,30 +91,30 @@ describe('VerifyAgeModal', () => {
                   -ms-flex-direction: column;
                   flex-direction: column;
                   -webkit-box-pack: space-around;
-                  -webkit-justify-content: space-around;
                   -ms-flex-pack: space-around;
+                  -webkit-justify-content: space-around;
                   justify-content: space-around;
                   height: 100%;
                 }
 
-                @media (min-width:992px) {
-                  .emotion-20 {
+                @media (min-width: 992px) {
+                  .emotion-10 {
                     padding-left: 20px;
                     padding-right: 20px;
                   }
                 }
 
-                .emotion-10 {
+                .emotion-12 {
                   -webkit-align-self: center;
                   -ms-flex-item-align: center;
                   align-self: center;
                 }
 
-                .emotion-2 {
+                .emotion-14 {
                   font-size: 1.41421rem;
                 }
 
-                .emotion-12 {
+                .emotion-24 {
                   border: 1px solid #FF1647;
                   border-radius: 4px;
                   background: #FF1647;
@@ -127,41 +128,41 @@ describe('VerifyAgeModal', () => {
                   width: 100%;
                 }
 
-                .emotion-12:hover {
+                .emotion-24:hover {
                   background: #FF1647;
                 }
 
-                .dark .emotion-12 {
+                .dark .emotion-24 {
                   color: #FFF;
                   background: #FF1647;
                   border: 1px solid #FF1647;
                 }
 
                 <div
-                  className="emotion-28 emotion-29"
+                  className="emotion-0 emotion-1"
                 >
                   <div
-                    className="emotion-26 emotion-27"
+                    className="emotion-2 emotion-3"
                     onClick={[Function]}
                   >
                     <div
-                      className="emotion-24 emotion-25"
+                      className="emotion-4 emotion-5"
                     >
                       <div>
                         <h2
-                          className="emotion-0 emotion-1"
+                          className="emotion-6 emotion-7"
                         >
                           Welcome!
                         </h2>
                       </div>
                       <div
-                        className="emotion-22 emotion-23"
+                        className="emotion-8 emotion-9"
                       >
                         <div
-                          className="emotion-20 emotion-21"
+                          className="emotion-10 emotion-11"
                         >
                           <div
-                            className="emotion-10 emotion-11"
+                            className="emotion-12 emotion-13"
                           >
                             <input
                               onChange={[Function]}
@@ -169,7 +170,7 @@ describe('VerifyAgeModal', () => {
                             />
                               
                             <span
-                              className="emotion-2 emotion-3"
+                              className="emotion-14 emotion-15"
                             >
                               I am at least 21 years old and I agree to the  
                             </span>
@@ -178,13 +179,13 @@ describe('VerifyAgeModal', () => {
                               target="_blank"
                             >
                               <span
-                                className="emotion-2 emotion-3"
+                                className="emotion-14 emotion-15"
                               >
                                 Privacy Policy
                               </span>
                             </a>
                             <span
-                              className="emotion-2 emotion-3"
+                              className="emotion-14 emotion-15"
                             >
                                and 
                             </span>
@@ -193,17 +194,17 @@ describe('VerifyAgeModal', () => {
                               target="_blank"
                             >
                               <span
-                                className="emotion-2 emotion-3"
+                                className="emotion-14 emotion-15"
                               >
                                 Terms of Use.
                               </span>
                             </a>
                           </div>
                           <div
-                            className="emotion-10 emotion-11"
+                            className="emotion-12 emotion-13"
                           >
                             <button
-                              className="emotion-12 emotion-13"
+                              className="emotion-24 emotion-25"
                               color="#FF1647"
                               onClick={[Function]}
                             >
@@ -211,10 +212,10 @@ describe('VerifyAgeModal', () => {
                             </button>
                           </div>
                           <div
-                            className="emotion-10 emotion-11"
+                            className="emotion-12 emotion-13"
                           >
                             <span
-                              className="emotion-2 emotion-3"
+                              className="emotion-14 emotion-15"
                             >
                               We also use cookies to help us deliver a personalized experience and display relevant promotions. By using this website, you agree to our use of cookies. Please take a moment to review our
                                
