@@ -104,19 +104,19 @@ describe('Loader', () => {
                     <div
                       className="emotion-4 emotion-5"
                     >
-                      <div
+                      <span
                         className="emotion-6"
                       >
-                        <div
+                        <span
                           className="emotion-7"
                         />
-                        <div
+                        <span
                           className="emotion-8"
                         />
-                        <div
+                        <span
                           className="emotion-7"
                         />
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>
