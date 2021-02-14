@@ -289,7 +289,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join
@@ -332,7 +332,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join
@@ -375,7 +375,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join
@@ -454,7 +454,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join
@@ -497,7 +497,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join
@@ -540,7 +540,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join
@@ -619,7 +619,7 @@ describe('PrimaryButton', () => {
                         </div>
                         <a
                           className="emotion-34 emotion-35"
-                          href="/season-register"
+                          href="/season-registration"
                           onClick={[Function]}
                         >
                           Join

@@ -40,9 +40,9 @@ function LeagueCard({ league }) {
                                         <LeagueSeasonInnerBox>{formatIsoDate(season.endDate)}</LeagueSeasonInnerBox>
                                     </LeagueSeasonDatesBoxWrapper>
                                     <PathHistoryButton
-                                        to="/season-register"
+                                        to="/season-registration"
                                         text="Join"
-                                        previousUrl="/season-register"
+                                        previousUrl="/season-registration"
                                     />
                                 </LeagueSeasonInnerWrapper>
                             </LeagueSeasonBox>

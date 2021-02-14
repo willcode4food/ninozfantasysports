@@ -217,7 +217,7 @@ describe('LeagueCard', () => {
                       </div>
                       <a
                         className="emotion-32 emotion-33"
-                        href="/season-register"
+                        href="/season-registration"
                         onClick={[Function]}
                       >
                         Join

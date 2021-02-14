@@ -21,18 +21,20 @@ import {
     FormWrapperBox,
     FormFlexInnerBox,
 } from 'components/Forms/FormLayout'
-import { navigate } from 'gatsby'
+// import { navigate } from 'gatsby'
 import Loader from 'components/Loader'
 import { FIREBASE, LOGIN_PROVIDER } from 'utils/constants'
 import { defaultUserRegFields } from 'utils/userHelpers'
 import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
+import { navigateToPathHistory } from 'components/PathHistory'
 
 function LoginForm() {
     const { errors, register, handleSubmit } = useForm()
     const [authError, setAuthError] = useState(null)
 
     function onAuthenticationSuccess() {
-        navigate('/account')
+        console.log('Success')
+        navigateToPathHistory('/account')
     }
 
     const { onEmailLogin, onGoogleLogin, authenticationError, isAuthenticationLoading } = useFirebaseAuthentication({
