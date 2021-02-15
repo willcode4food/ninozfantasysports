@@ -1,11 +1,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
 
 import AccountLink from './'
 import useAuthorization from 'hooks/useAuthorization.js'
 
-expect.addSnapshotSerializer(serializer)
 jest.mock('hooks/useAuthorization')
 
 describe('AccountLink', () => {

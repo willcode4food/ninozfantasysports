@@ -26,6 +26,8 @@ describe('InputField', () => {
               overflow-x: visible;
               overflow-y: visible;
               -webkit-text-size-adjust: 100%;
+              -moz-text-size-adjust: 100%;
+              -ms-text-size-adjust: 100%;
               text-size-adjust: 100%;
               font-family: inherit;
               display: inline-block;
@@ -43,7 +45,6 @@ describe('InputField', () => {
 
             .dark .emotion-0 {
               background: #263238;
-              color: #FFF;
             }
 
             .emotion-0:disabled {

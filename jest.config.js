@@ -22,7 +22,7 @@ module.exports = {
     },
     testURL: `http://localhost`,
     setupFiles: [`<rootDir>/loadershim.js`],
-    snapshotSerializers: ['jest-emotion'],
+    snapshotSerializers: ['@emotion/jest/serializer'],
     coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
     coverageThreshold: {
         global: {

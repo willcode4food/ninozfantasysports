@@ -12,7 +12,7 @@ describe('StandardSubmitButton', () => {
                   display: none;
                 }
 
-                .emotion-6 {
+                .emotion-2 {
                   color: #1e2427;
                   background-color: #FFF;
                   border: 1px solid #495358;
@@ -26,7 +26,7 @@ describe('StandardSubmitButton', () => {
                   transition: background-color 0.5s,border 0.5s,color 0.5s;
                 }
 
-                .dark .emotion-6 {
+                .dark .emotion-2 {
                   background-color: #263238;
                   border: 1px solid #FFF;
                   color: #FFF;
@@ -41,8 +41,8 @@ describe('StandardSubmitButton', () => {
                   -ms-flex-direction: row;
                   flex-direction: row;
                   -webkit-box-pack: center;
-                  -webkit-justify-content: center;
                   -ms-flex-pack: center;
+                  -webkit-justify-content: center;
                   justify-content: center;
                   -webkit-align-items: flex-start;
                   -webkit-box-align: flex-start;
@@ -50,7 +50,7 @@ describe('StandardSubmitButton', () => {
                   align-items: flex-start;
                 }
 
-                .emotion-2 {
+                .emotion-6 {
                   text-align: center;
                 }
 
@@ -62,13 +62,13 @@ describe('StandardSubmitButton', () => {
                     type="submit"
                   />
                   <button
-                    className="emotion-6 emotion-7"
+                    className="emotion-2 emotion-3"
                   >
                     <div
                       className="emotion-4 emotion-5"
                     >
                       <div
-                        className="emotion-2 emotion-3"
+                        className="emotion-6 emotion-7"
                       />
                     </div>
                   </button>

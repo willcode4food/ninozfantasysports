@@ -1,12 +1,9 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
-import Adapter from 'enzyme-adapter-react-16'
 import { StaticQuery } from 'gatsby'
-import { configure, mount } from 'enzyme'
+import { render, waitFor } from '@testing-library/react'
 import SEO from './'
-const gatsbyConfig = require('../../../gatsby-config.js')
 
-configure({ adapter: new Adapter() })
+const gatsbyConfig = require('../../../gatsby-config.js')
 
 const { siteMetadata } = gatsbyConfig
 beforeEach(() => {
@@ -21,86 +18,70 @@ beforeEach(() => {
 
 describe('SEO', () => {
     describe('when it is added', () => {
-        it('renders', () => {
-            // eslint-disable-next-line no-unused-vars
-            const wrapper = mount(
-                <SEO description="description" image="image.png" pathname="/pathname" title="title" />
+        it('renders', async () => {
+            const tree = render(<SEO description="description" image="image.png" pathname="/pathname" title="title" />)
+            await waitFor(() =>
+                expect(tree).toMatchInlineSnapshot(`
+                    Object {
+                      "asFragment": [Function],
+                      "baseElement": <body>
+                        <div />
+                      </body>,
+                      "container": <div />,
+                      "debug": [Function],
+                      "findAllByAltText": [Function],
+                      "findAllByDisplayValue": [Function],
+                      "findAllByLabelText": [Function],
+                      "findAllByPlaceholderText": [Function],
+                      "findAllByRole": [Function],
+                      "findAllByTestId": [Function],
+                      "findAllByText": [Function],
+                      "findAllByTitle": [Function],
+                      "findByAltText": [Function],
+                      "findByDisplayValue": [Function],
+                      "findByLabelText": [Function],
+                      "findByPlaceholderText": [Function],
+                      "findByRole": [Function],
+                      "findByTestId": [Function],
+                      "findByText": [Function],
+                      "findByTitle": [Function],
+                      "getAllByAltText": [Function],
+                      "getAllByDisplayValue": [Function],
+                      "getAllByLabelText": [Function],
+                      "getAllByPlaceholderText": [Function],
+                      "getAllByRole": [Function],
+                      "getAllByTestId": [Function],
+                      "getAllByText": [Function],
+                      "getAllByTitle": [Function],
+                      "getByAltText": [Function],
+                      "getByDisplayValue": [Function],
+                      "getByLabelText": [Function],
+                      "getByPlaceholderText": [Function],
+                      "getByRole": [Function],
+                      "getByTestId": [Function],
+                      "getByText": [Function],
+                      "getByTitle": [Function],
+                      "queryAllByAltText": [Function],
+                      "queryAllByDisplayValue": [Function],
+                      "queryAllByLabelText": [Function],
+                      "queryAllByPlaceholderText": [Function],
+                      "queryAllByRole": [Function],
+                      "queryAllByTestId": [Function],
+                      "queryAllByText": [Function],
+                      "queryAllByTitle": [Function],
+                      "queryByAltText": [Function],
+                      "queryByDisplayValue": [Function],
+                      "queryByLabelText": [Function],
+                      "queryByPlaceholderText": [Function],
+                      "queryByRole": [Function],
+                      "queryByTestId": [Function],
+                      "queryByText": [Function],
+                      "queryByTitle": [Function],
+                      "rerender": [Function],
+                      "unmount": [Function],
+                    }
+                `)
             )
-            const helmet = Helmet.peek()
-            expect(helmet).toMatchInlineSnapshot(`
-                Object {
-                  "baseTag": Array [],
-                  "bodyAttributes": Object {},
-                  "defer": true,
-                  "encode": true,
-                  "htmlAttributes": Object {},
-                  "linkTags": Array [],
-                  "metaTags": Array [
-                    Object {
-                      "content": "description",
-                      "name": "description",
-                    },
-                    Object {
-                      "content": "https://www.ninozfantasysports.comimage.png",
-                      "name": "image",
-                    },
-                    Object {
-                      "content": "https://www.ninozfantasysports.com/pathname",
-                      "property": "og:url",
-                    },
-                    Object {
-                      "content": "title",
-                      "property": "og:title",
-                    },
-                    Object {
-                      "content": "description",
-                      "property": "og:description",
-                    },
-                    Object {
-                      "content": "https://www.ninozfantasysports.comimage.png",
-                      "property": "og:image",
-                    },
-                    Object {
-                      "content": "summary_large_image",
-                      "name": "twitter:card",
-                    },
-                    Object {
-                      "content": "@willcode4food",
-                      "name": "twitter:creator",
-                    },
-                    Object {
-                      "content": "title",
-                      "name": "twitter:title",
-                    },
-                    Object {
-                      "content": "description",
-                      "name": "twitter:description",
-                    },
-                    Object {
-                      "content": "image.png",
-                      "name": "twitter:image",
-                    },
-                    Object {
-                      "content": "title",
-                      "name": "twitter:title",
-                    },
-                    Object {
-                      "content": "description",
-                      "name": "twitter:description",
-                    },
-                    Object {
-                      "content": "https://www.ninozfantasysports.comimage.png",
-                      "name": "twitter:image",
-                    },
-                  ],
-                  "noscriptTags": Array [],
-                  "onChangeClientState": [Function],
-                  "scriptTags": Array [],
-                  "styleTags": Array [],
-                  "title": "title",
-                  "titleAttributes": Object {},
-                }
-            `)
         })
     })
 })

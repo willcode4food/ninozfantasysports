@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import { COLORS, SPACERS, FONT_FAMILY, FONT_SIZES } from 'utils/styleHelpers.js'
 
 export const primaryButtonStyles = ({
@@ -19,7 +19,7 @@ export const primaryButtonStyles = ({
     padding-left: ${SPACERS.L};
     width: 100%;
     &:hover {
-        ${color};
+        background: ${color};
     }
     .dark & {
         color: ${textColorDark || textColor};

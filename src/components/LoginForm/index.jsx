@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { InputField, EmailSubmitButton } from 'components/Forms/FormFields'
-import * as Rug from 'random-username-generator'
-import {
-    ButtonLabelWrapper,
-    ButtonLabelIconBox,
-    ButtonLabelBox,
-    GoogleLoginIcon,
-    ErrorMessage,
-    FormHeader,
-    FormButton,
-    StyledLink,
-    ErrorIcon,
-} from 'components/Forms/FormStyles'
+import { EmailSubmitButton, InputField } from 'components/Forms/FormFields'
 import {
     FormBox,
     FormFlex,
     FormFlexInner,
+    FormFlexInnerBox,
     FormWrapper,
     FormWrapperBox,
-    FormFlexInnerBox,
 } from 'components/Forms/FormLayout'
-import { navigate } from 'gatsby'
+import {
+    ButtonLabelBox,
+    ButtonLabelIconBox,
+    ButtonLabelWrapper,
+    ErrorIcon,
+    ErrorMessage,
+    FormButton,
+    FormHeader,
+    GoogleLoginIcon,
+    StyledLink,
+} from 'components/Forms/FormStyles'
 import Loader from 'components/Loader'
+import { navigateToPathHistory } from 'components/PathHistory'
+import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
+import * as Rug from 'random-username-generator'
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { FIREBASE, LOGIN_PROVIDER } from 'utils/constants'
 import { defaultUserRegFields } from 'utils/userHelpers'
-import useFirebaseAuthentication from 'hooks/firebase/useFirebaseAuthentication'
 
 function LoginForm() {
     const { errors, register, handleSubmit } = useForm()
     const [authError, setAuthError] = useState(null)
 
     function onAuthenticationSuccess() {
-        navigate('/account')
+        navigateToPathHistory('/account')
     }
 
     const { onEmailLogin, onGoogleLogin, authenticationError, isAuthenticationLoading } = useFirebaseAuthentication({

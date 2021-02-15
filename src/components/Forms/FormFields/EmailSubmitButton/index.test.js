@@ -12,7 +12,7 @@ describe('EmailSubmitButton', () => {
                   display: none;
                 }
 
-                .emotion-10 {
+                .emotion-2 {
                   color: #1e2427;
                   background-color: #FFF;
                   border: 1px solid #495358;
@@ -26,13 +26,13 @@ describe('EmailSubmitButton', () => {
                   transition: background-color 0.5s,border 0.5s,color 0.5s;
                 }
 
-                .dark .emotion-10 {
+                .dark .emotion-2 {
                   background-color: #263238;
                   border: 1px solid #FFF;
                   color: #FFF;
                 }
 
-                .emotion-8 {
+                .emotion-4 {
                   display: -webkit-box;
                   display: -webkit-flex;
                   display: -ms-flexbox;
@@ -41,8 +41,8 @@ describe('EmailSubmitButton', () => {
                   -ms-flex-direction: row;
                   flex-direction: row;
                   -webkit-box-pack: center;
-                  -webkit-justify-content: center;
                   -ms-flex-pack: center;
+                  -webkit-justify-content: center;
                   justify-content: center;
                   -webkit-align-items: flex-start;
                   -webkit-box-align: flex-start;
@@ -50,7 +50,7 @@ describe('EmailSubmitButton', () => {
                   align-items: flex-start;
                 }
 
-                .emotion-4 {
+                .emotion-6 {
                   line-height: 1px;
                   font-size: 1.68179rem;
                   padding-left: 20px;
@@ -59,7 +59,7 @@ describe('EmailSubmitButton', () => {
                   padding-bottom: 5px;
                 }
 
-                .emotion-6 {
+                .emotion-10 {
                   -webkit-align-self: center;
                   -ms-flex-item-align: center;
                   align-self: center;
@@ -74,16 +74,16 @@ describe('EmailSubmitButton', () => {
                     type="submit"
                   />
                   <button
-                    className="emotion-10 emotion-11"
+                    className="emotion-2 emotion-3"
                   >
                     <div
-                      className="emotion-8 emotion-9"
+                      className="emotion-4 emotion-5"
                     >
                       <div
-                        className="emotion-4 emotion-5"
+                        className="emotion-6 emotion-7"
                       >
                         <svg
-                          className="emotion-2 emotion-3"
+                          className="emotion-8 emotion-9"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
@@ -106,7 +106,7 @@ describe('EmailSubmitButton', () => {
                         </svg>
                       </div>
                       <div
-                        className="emotion-6 emotion-7"
+                        className="emotion-10 emotion-11"
                       />
                     </div>
                   </button>

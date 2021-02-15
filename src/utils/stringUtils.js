@@ -1,7 +1,8 @@
 function normalize(phoneNumber) {
     // eslint-disable-next-line no-useless-escape
     return phoneNumber
-        ? phoneNumber.replace(/^[\+\d{1,3}\-\s]*\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/, '$1$2$3')
+        ? // eslint-disable-next-line no-useless-escape
+          phoneNumber.replace(/^[\+\d{1,3}\-\s]*\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/, '$1$2$3')
         : ''
 }
 

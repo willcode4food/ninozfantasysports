@@ -28,14 +28,13 @@ function LeagueCardList() {
                 }
             `}
             render={(data) => {
-                const [sortedLeagues, setSortedLeagues] = useState([])
+                const [sortedLeagues, setSortedLeagues] = useState(data.ninozFantasySports.returnAllLeagues)
                 useEffect(() => {
                     const leaguesSortedBySeason = data.ninozFantasySports.returnAllLeagues.sort(
                         leagueSeasonSorter('seasons', 'startDate')
                     )
                     setSortedLeagues(leaguesSortedBySeason)
                 }, [data])
-
                 return (
                     <LeagueListWrapper>
                         {sortedLeagues.map((league) => (

@@ -3,7 +3,7 @@ import { navigate } from 'gatsby'
 
 function UnauthorizedPage() {
     useEffect(() => {
-        navigate('/')
+        navigate('/login')
     }, [])
     return <div />
 }

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import { BREAKPOINTS_VALUES, COLORS, MQ, SPACERS } from 'utils/styleHelpers'
 
 const mainColumn = css`
