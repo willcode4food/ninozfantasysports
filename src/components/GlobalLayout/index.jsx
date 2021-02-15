@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { css, Global } from '@emotion/react'
-import { COLORS } from 'utils/styleHelpers'
+import Breadcrumbs from 'components/Breadcrumbs'
+import Footer from 'components/Footer'
 import Header from 'components/Header'
 import NavDrawer from 'components/NavDrawer'
-import Footer from 'components/Footer'
 import SEO from 'components/SEO'
 import VerifyAgeModal from 'components/VerifyAgeModal'
+import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet'
+import { COLORS } from 'utils/styleHelpers'
 import { Body, BreadcrumbsWrapper } from './styles'
-import Breadcrumbs from 'components/Breadcrumbs'
-
+import { resetPathHistory, getPathHistory } from 'components/PathHistory'
 function GlobalLayout({
     backgroundColor,
     children,
@@ -44,6 +44,13 @@ function GlobalLayout({
         setIsNavOpen(false)
         setIsSearchOpen(!isSearchOpen)
     }
+
+    useEffect(() => {
+        if (location.pathname === getPathHistory()) {
+            resetPathHistory()
+        }
+    }, [])
+
     return (
         <>
             <Global
