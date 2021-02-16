@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-function Payment({ setIsNextStepReady }) {
+function Payment({ setIsPaymentReady }) {
     const [isPaymentAccepted] = useState(false)
 
     useEffect(() => {
-        setIsNextStepReady(isPaymentAccepted)
+        setIsPaymentReady(isPaymentAccepted)
     }, [isPaymentAccepted])
     return <div>Payment</div>
 }
 
 Payment.propTypes = {
-    setIsNextStepReady: PropTypes.func,
+    setIsPaymentReady: PropTypes.func,
 }
 
 export default Payment

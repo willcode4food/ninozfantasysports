@@ -7,8 +7,8 @@ import { NavigationContainer, NavigationBox } from './styles'
 
 const Navigation = ({ isNextStepReady }) => {
     return (
-        <WithWizard
-            render={({ next, previous, step, steps }) => {
+        <WithWizard>
+            {({ next, previous, step, steps }) => {
                 return (
                     <NavigationContainer>
                         {steps.indexOf(step) > 0 && (
@@ -28,7 +28,7 @@ const Navigation = ({ isNextStepReady }) => {
                     </NavigationContainer>
                 )
             }}
-        />
+        </WithWizard>
     )
 }
 

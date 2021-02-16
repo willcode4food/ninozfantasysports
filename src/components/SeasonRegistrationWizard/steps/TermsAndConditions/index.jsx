@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
-function TermsAndConditions({ setIsNextStepReady }) {
+function TermsAndConditions({ setIsTermsAndConditionsReady }) {
     const [isAccepted, setIsAccepted] = useState(false)
     const chxIsAccepted = useRef()
     useEffect(() => {
-        setIsNextStepReady(isAccepted)
+        setIsTermsAndConditionsReady(isAccepted)
     }, [isAccepted])
 
     return (
@@ -23,7 +23,7 @@ function TermsAndConditions({ setIsNextStepReady }) {
 }
 
 TermsAndConditions.propTypes = {
-    setIsNextStepReady: PropTypes.func,
+    setIsTermsAndConditionsReady: PropTypes.func,
 }
 
 export default TermsAndConditions
