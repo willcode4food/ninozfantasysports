@@ -128,6 +128,12 @@ describe('VerifyAgeModal', () => {
                   width: 100%;
                 }
 
+                .emotion-24:disabled {
+                  background: #495358;
+                  border-color: #495358;
+                  color: #C4C8D8;
+                }
+
                 .emotion-24:hover {
                   background: #FF1647;
                 }
@@ -136,6 +142,12 @@ describe('VerifyAgeModal', () => {
                   color: #FFF;
                   background: #FF1647;
                   border: 1px solid #FF1647;
+                }
+
+                .dark .emotion-24:disabled {
+                  background: #495358;
+                  color: #1e2427;
+                  border-color: #495358;
                 }
 
                 <div
