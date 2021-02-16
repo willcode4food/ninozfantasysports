@@ -3,29 +3,29 @@ import PropTypes from 'prop-types'
 import { WithWizard } from 'react-albus'
 import { PrimaryButton } from 'components/Buttons'
 import { COLORS } from 'utils/styleHelpers'
-import { WizardNavContainer, WizardNavBox } from './styles'
+import { NavigationContainer, NavigationBox } from './styles'
 
 const Navigation = ({ isNextStepReady }) => {
     return (
         <WithWizard
             render={({ next, previous, step, steps }) => {
                 return (
-                    <WizardNavContainer>
+                    <NavigationContainer>
                         {steps.indexOf(step) > 0 && (
-                            <WizardNavBox>
+                            <NavigationBox>
                                 <PrimaryButton color={COLORS.PRIMARY_DARK} onClick={previous}>
                                     Back
                                 </PrimaryButton>
-                            </WizardNavBox>
+                            </NavigationBox>
                         )}
                         {steps.indexOf(step) < steps.length - 1 && (
-                            <WizardNavBox>
+                            <NavigationBox>
                                 <PrimaryButton disabled={!isNextStepReady} onClick={next}>
                                     Next
                                 </PrimaryButton>
-                            </WizardNavBox>
+                            </NavigationBox>
                         )}
-                    </WizardNavContainer>
+                    </NavigationContainer>
                 )
             }}
         />
