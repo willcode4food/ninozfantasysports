@@ -5,8 +5,7 @@ import { PrimaryButton } from 'components/Buttons'
 import { COLORS } from 'utils/styleHelpers'
 import { WizardNavContainer, WizardNavBox } from './styles'
 
-const WizardNavigation = ({ isNextStepReady }) => {
-    console.log('🚀 ~ file: index.jsx ~ line 8 ~ WizardNavigation ~ isNextStepReady', isNextStepReady)
+const Navigation = ({ isNextStepReady }) => {
     return (
         <WithWizard
             render={({ next, previous, step, steps }) => {
@@ -33,8 +32,8 @@ const WizardNavigation = ({ isNextStepReady }) => {
     )
 }
 
-WizardNavigation.propTypes = {
-    isNextStepReady: PropTypes.func,
+Navigation.propTypes = {
+    isNextStepReady: PropTypes.bool,
 }
 
-export default WizardNavigation
+export default Navigation

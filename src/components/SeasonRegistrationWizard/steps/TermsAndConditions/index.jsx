@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
-function SeasonRegisterTermsConditionsStep({ setIsNextStepReady }) {
+function TermsAndConditions({ setIsNextStepReady }) {
     const [isAccepted, setIsAccepted] = useState(false)
     const chxIsAccepted = useRef()
     useEffect(() => {
         setIsNextStepReady(isAccepted)
     }, [isAccepted])
+
     return (
         <div>
             <div>Terms and Conditions</div>
@@ -21,8 +22,8 @@ function SeasonRegisterTermsConditionsStep({ setIsNextStepReady }) {
     )
 }
 
-SeasonRegisterTermsConditionsStep.propTypes = {
+TermsAndConditions.propTypes = {
     setIsNextStepReady: PropTypes.func,
 }
 
-export default SeasonRegisterTermsConditionsStep
+export default TermsAndConditions

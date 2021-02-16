@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-function SeasonRegisterPaymentStep({ setIsNextStepReady }) {
+function Payment({ setIsNextStepReady }) {
     const [isPaymentAccepted] = useState(false)
 
     useEffect(() => {
@@ -10,8 +10,8 @@ function SeasonRegisterPaymentStep({ setIsNextStepReady }) {
     return <div>Payment</div>
 }
 
-SeasonRegisterPaymentStep.propTypes = {
+Payment.propTypes = {
     setIsNextStepReady: PropTypes.func,
 }
 
-export default SeasonRegisterPaymentStep
+export default Payment
