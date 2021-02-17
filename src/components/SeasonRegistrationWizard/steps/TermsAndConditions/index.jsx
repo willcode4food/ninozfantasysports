@@ -1,21 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
+import { SEASON_REGISTER_STEPS } from 'utils/constants'
 
-function TermsAndConditions({ setIsTermsAndConditionsReady }) {
-    const [isAccepted, setIsAccepted] = useState(false)
-    const chxIsAccepted = useRef()
-    useEffect(() => {
-        setIsTermsAndConditionsReady(isAccepted)
-    }, [isAccepted])
+function TermsAndConditions({ setFieldValidation, fieldValidation }) {
+    const chxTermsAndConditions = useRef()
 
     return (
         <div>
             <div>Terms and Conditions</div>
             <input
-                ref={chxIsAccepted}
+                ref={chxTermsAndConditions}
                 type="checkbox"
+                checked={fieldValidation[SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]}
                 onChange={() => {
-                    setIsAccepted(!isAccepted)
+                    setFieldValidation({
+                        ...fieldValidation,
+                        [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: !fieldValidation[
+                            SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS
+                        ],
+                    })
                 }}
             />
         </div>
@@ -23,7 +26,11 @@ function TermsAndConditions({ setIsTermsAndConditionsReady }) {
 }
 
 TermsAndConditions.propTypes = {
-    setIsTermsAndConditionsReady: PropTypes.func,
+    setFieldValidation: PropTypes.func,
+    fieldValidation: PropTypes.shape({
+        [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: PropTypes.bool,
+        [SEASON_REGISTER_STEPS.PAYMENT]: PropTypes.bool,
+    }),
 }
 
 export default TermsAndConditions

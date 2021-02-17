@@ -4,8 +4,9 @@ import { WithWizard } from 'react-albus'
 import { PrimaryButton } from 'components/Buttons'
 import { COLORS } from 'utils/styleHelpers'
 import { NavigationContainer, NavigationBox } from './styles'
+import { SEASON_REGISTER_STEPS } from 'utils/constants'
 
-const Navigation = ({ isNextStepReady }) => {
+const Navigation = ({ fieldValidation }) => {
     return (
         <WithWizard>
             {({ next, previous, step, steps }) => {
@@ -20,7 +21,7 @@ const Navigation = ({ isNextStepReady }) => {
                         )}
                         {steps.indexOf(step) < steps.length - 1 && (
                             <NavigationBox>
-                                <PrimaryButton disabled={!isNextStepReady} onClick={next}>
+                                <PrimaryButton disabled={!fieldValidation[step.id]} onClick={next}>
                                     Next
                                 </PrimaryButton>
                             </NavigationBox>
@@ -33,7 +34,10 @@ const Navigation = ({ isNextStepReady }) => {
 }
 
 Navigation.propTypes = {
-    isNextStepReady: PropTypes.bool,
+    fieldValidation: PropTypes.shape({
+        [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: PropTypes.bool,
+        [SEASON_REGISTER_STEPS.PAYMENT]: PropTypes.bool,
+    }),
 }
 
 export default Navigation

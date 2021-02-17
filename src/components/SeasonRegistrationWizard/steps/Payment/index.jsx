@@ -1,17 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
+import { SEASON_REGISTER_STEPS } from 'utils/constants'
+function Payment({ setFieldValidation, fieldValidation }) {
+    const chxPayment = useRef()
 
-function Payment({ setIsPaymentReady }) {
-    const [isPaymentAccepted] = useState(false)
-
-    useEffect(() => {
-        setIsPaymentReady(isPaymentAccepted)
-    }, [isPaymentAccepted])
-    return <div>Payment</div>
+    return (
+        <input
+            ref={chxPayment}
+            type="checkbox"
+            checked={fieldValidation[SEASON_REGISTER_STEPS.PAYMENT]}
+            onChange={() => {
+                setFieldValidation({
+                    ...fieldValidation,
+                    [SEASON_REGISTER_STEPS.PAYMENT]: !fieldValidation[SEASON_REGISTER_STEPS.PAYMENT],
+                })
+            }}
+        />
+    )
 }
 
 Payment.propTypes = {
-    setIsPaymentReady: PropTypes.func,
+    setFieldValidation: PropTypes.func,
+    fieldValidation: PropTypes.shape({
+        [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: PropTypes.bool,
+        [SEASON_REGISTER_STEPS.PAYMENT]: PropTypes.bool,
+    }),
 }
 
 export default Payment
