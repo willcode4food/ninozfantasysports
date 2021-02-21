@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Wizard, Steps, Step } from 'react-albus'
 import Navigation from 'components/SeasonRegistrationWizard/Navigation'
 import Confirmation from 'components/SeasonRegistrationWizard/steps/Confirmation'
@@ -7,10 +7,17 @@ import TermsAndConditions from 'components/SeasonRegistrationWizard/steps/TermsA
 import { SEASON_REGISTER_STEPS } from 'utils/constants'
 
 function SeasonRegistrationWizard() {
-    const [fieldValidation, setFieldValidation] = useState({
-        [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: false,
-        [SEASON_REGISTER_STEPS.PAYMENT]: false,
-    })
+    const [fieldValidation, setFieldValidation] = useState(null)
+    useEffect(() => {
+        setFieldValidation({
+            [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: false,
+            [SEASON_REGISTER_STEPS.PAYMENT]: false,
+        })
+        return () => {
+            console.log('hi')
+            setFieldValidation(null)
+        }
+    }, [])
     return (
         <Wizard>
             <Steps>

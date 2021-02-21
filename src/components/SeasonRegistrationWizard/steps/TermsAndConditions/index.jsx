@@ -1,27 +1,52 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { SEASON_REGISTER_STEPS } from 'utils/constants'
-
+import { SPACERS } from 'utils/styleHelpers'
+import { TermsWrapper, TermsBox, TermsScollBox, TermsScollStyles } from './styles'
+import { useStaticQuery, graphql } from 'gatsby'
 function TermsAndConditions({ setFieldValidation, fieldValidation }) {
-    const chxTermsAndConditions = useRef()
+    const data = useStaticQuery(graphql`
+        query tosQuery {
+            allMarkdownRemark(filter: { frontmatter: { title: { eq: "Terms of Use" } } }) {
+                edges {
+                    node {
+                        html
+                    }
+                }
+            }
+        }
+    `)
 
+    const {
+        allMarkdownRemark: { edges },
+    } = data
+    const {
+        node: { html },
+    } = edges[0]
     return (
-        <div>
-            <div>Terms and Conditions</div>
-            <input
-                ref={chxTermsAndConditions}
-                type="checkbox"
-                checked={fieldValidation[SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]}
-                onChange={() => {
-                    setFieldValidation({
-                        ...fieldValidation,
-                        [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: !fieldValidation[
-                            SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS
-                        ],
-                    })
-                }}
-            />
-        </div>
+        <TermsWrapper>
+            <TermsBox>Read through Terms and Conditions</TermsBox>
+            <TermsBox>
+                <TermsScollBox>
+                    <TermsScollStyles dangerouslySetInnerHTML={{ __html: html }}></TermsScollStyles>
+                </TermsScollBox>
+            </TermsBox>
+            <TermsBox paddingTop={SPACERS.M}>
+                I Agree to the Terms of Service
+                <input
+                    type="checkbox"
+                    checked={fieldValidation[SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]}
+                    onChange={() => {
+                        setFieldValidation({
+                            ...fieldValidation,
+                            [SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]: !fieldValidation[
+                                SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS
+                            ],
+                        })
+                    }}
+                />
+            </TermsBox>
+        </TermsWrapper>
     )
 }
 
