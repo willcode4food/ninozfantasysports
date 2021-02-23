@@ -23,5 +23,9 @@ export const TermsScollBox = styled.div`
     }
 `
 export const TermsScollStyles = styled.span`
-    color: ${COLORS.PRIMARY};
+    color: ${COLORS.PRIMARY_DARK};
+    transition: color 0.5s;
+    .dark & {
+        color: ${COLORS.PRIMARY};
+    }
 `
