@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useMutation, useQuery } from '@apollo/client'
 import { FileField, InputField, SliderField, StandardSubmitButton, StateSelectField } from 'components/Forms/FormFields'
 import {
@@ -17,13 +16,13 @@ import RotateLeftIcon from 'components/RotateLeftIcon'
 import RotateRightIcon from 'components/RotateRightIcon'
 import SessionContext from 'context/SessionContext'
 import useFirebaseApp from 'hooks/firebase/useFirebaseApp'
+import PropTypes from 'prop-types'
+import { GET_USER, UPDATE_USER } from 'queries'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import AvatarEditor from 'react-avatar-editor'
 import { useForm } from 'react-hook-form'
 import { ACCEPTED_IMAGE_FORMATS, FIREBASE, LOGIN_PROVIDER, PROFILE_IMAGE_SIZE } from 'utils/constants'
 import { getInitials } from 'utils/userHelpers'
-import { GET_USER, UPDATE_USER } from 'queries'
-
 import {
     AuthIdentifierLabel,
     AvatarEditorBox,
