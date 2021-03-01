@@ -34,6 +34,7 @@ function TermsAndConditions({ setFieldValidation, fieldValidation }) {
             <TermsBox paddingTop={SPACERS.M}>
                 I Agree to the Terms of Service
                 <input
+                    role="checkbox"
                     type="checkbox"
                     checked={fieldValidation[SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]}
                     onChange={() => {

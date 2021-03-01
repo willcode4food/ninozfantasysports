@@ -14,14 +14,14 @@ const Navigation = ({ fieldValidation }) => {
                     <NavigationContainer>
                         {steps.indexOf(step) > 0 && (
                             <NavigationBox>
-                                <PrimaryButton color={COLORS.PRIMARY_DARK} onClick={previous}>
+                                <PrimaryButton role="button" color={COLORS.PRIMARY_DARK} onClick={previous}>
                                     Back
                                 </PrimaryButton>
                             </NavigationBox>
                         )}
                         {steps.indexOf(step) < steps.length - 1 && (
                             <NavigationBox>
-                                <PrimaryButton disabled={!fieldValidation[step.id]} onClick={next}>
+                                <PrimaryButton role="button" disabled={!fieldValidation[step.id]} onClick={next}>
                                     Next
                                 </PrimaryButton>
                             </NavigationBox>
