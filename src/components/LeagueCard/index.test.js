@@ -138,6 +138,12 @@ describe('LeagueCard', () => {
               margin-right: 10px;
             }
 
+            .emotion-32:disabled {
+              background: #495358;
+              border-color: #495358;
+              color: #C4C8D8;
+            }
+
             .emotion-32:hover {
               background: #FF1647;
             }
@@ -146,6 +152,12 @@ describe('LeagueCard', () => {
               color: #FFF;
               background: #FF1647;
               border: 1px solid #FF1647;
+            }
+
+            .dark .emotion-32:disabled {
+              background: #495358;
+              color: #1e2427;
+              border-color: #495358;
             }
 
             <div

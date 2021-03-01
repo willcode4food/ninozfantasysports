@@ -21,6 +21,12 @@ describe('PrimaryButton', () => {
               width: 100%;
             }
 
+            .emotion-0:disabled {
+              background: #495358;
+              border-color: #495358;
+              color: #C4C8D8;
+            }
+
             .emotion-0:hover {
               background: #FF1647;
             }
@@ -29,6 +35,12 @@ describe('PrimaryButton', () => {
               color: #FFF;
               background: #FF1647;
               border: 1px solid #FF1647;
+            }
+
+            .dark .emotion-0:disabled {
+              background: #495358;
+              color: #1e2427;
+              border-color: #495358;
             }
 
             <button

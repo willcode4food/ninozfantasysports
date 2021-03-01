@@ -56,6 +56,14 @@ module.exports = {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `markdown-content`,
+                path: `src/markdown-content`,
+            },
+        },
+        `gatsby-transformer-remark`,
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: `ninozfantasysports`,

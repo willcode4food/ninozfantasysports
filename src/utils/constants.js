@@ -65,8 +65,15 @@ const LOGIN_PROVIDER = {
     GOOGLE: 'google',
 }
 
+const SEASON_REGISTER_STEPS = {
+    TERMS_AND_CONDITIONS: 'terms-and-conditions',
+    PAYMENT: 'payment',
+    CONFIRMATION: 'confirmation',
+}
+
 // eslint-disable-next-line no-undef
 module.exports = {
+    ACCEPTED_IMAGE_FORMATS,
     AVATAR_IMAGE_SIZE,
     AVATAR_IMAGE_SIZE_MEDIUM,
     AVATAR_IMAGE_SIZE_LARGE,
@@ -78,7 +85,7 @@ module.exports = {
     PATH_HISTORY_STORAGE,
     PROFILE_IMAGE_SIZE,
     PROFILE_IMAGE_THUMB_SIZE,
-    ACCEPTED_IMAGE_FORMATS,
+    SEASON_REGISTER_STEPS,
     TRACKING_ACTIONS,
     USER_ROLES,
 }
