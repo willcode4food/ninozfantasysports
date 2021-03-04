@@ -14,7 +14,6 @@ function SeasonRegistrationWizard() {
             [SEASON_REGISTER_STEPS.PAYMENT]: false,
         })
         return () => {
-            console.log('hi')
             setFieldValidation(null)
         }
     }, [])
