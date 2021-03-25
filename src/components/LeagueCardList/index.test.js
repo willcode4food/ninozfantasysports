@@ -3,7 +3,6 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 
 import * as Gatsby from 'gatsby'
-// import { leagueSeasonSorter } from 'utils/arrayHelpers'
 
 import LeagueCardList from './'
 
