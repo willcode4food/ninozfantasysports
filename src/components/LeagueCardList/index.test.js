@@ -2,12 +2,14 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { StaticQuery } from 'gatsby'
+import * as Gatsby from 'gatsby'
 // import { leagueSeasonSorter } from 'utils/arrayHelpers'
 
 import LeagueCardList from './'
 
-const leagues = {
+const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery')
+
+useStaticQuery.mockImplementation(() => ({
     ninozFantasySports: {
         returnAllLeagues: [
             {
@@ -87,13 +89,17 @@ const leagues = {
             },
         ],
     },
-}
+}))
+
 describe('PrimaryButton', () => {
+    // beforeEach(() => {
+    //     StaticQuery.mockImplementationOnce(({ render }) => render(leagues))
+    // })
     beforeEach(() => {
-        StaticQuery.mockImplementationOnce(({ render }) => render(leagues))
+        jest.clearAllMocks()
     })
     it('renders', () => {
-        const tree = renderer.create(<LeagueCardList leagues={leagues} />).toJSON()
+        const tree = renderer.create(<LeagueCardList />).toJSON()
         expect(tree).toMatchInlineSnapshot(`
             .emotion-2 {
               display: -webkit-box;
