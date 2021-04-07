@@ -16,7 +16,7 @@ export const FormWrapperBox = styled.div`
 
 export const FormFlex = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: ${({ flexDirection = 'column' }) => flexDirection};
     justify-content: center;
     width: 100%;
 `
@@ -42,7 +42,10 @@ export const FormFlexInnerColumn = styled.div`
 export const FormBox = styled.div`
     box-sizing: border-box;
     width: 100%;
-    margin: ${SPACERS.S};
+    margin-left: ${({ marginLeft = SPACERS.S }) => marginLeft};
+    margin-right: ${({ marginRight = SPACERS.S }) => marginRight};
+    margin-top: ${({ marginTop = SPACERS.S }) => marginTop};
+    margin-bottom: ${({ marginBottom = SPACERS.S }) => marginBottom};
 `
 export const FormBoxCenter = styled.div`
     width: 100%;
