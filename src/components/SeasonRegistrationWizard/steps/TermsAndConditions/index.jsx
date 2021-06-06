@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { CheckBoxField } from 'components/Forms/FormFields'
 import { SEASON_REGISTER_STEPS } from 'utils/constants'
 import { SPACERS } from 'utils/styleHelpers'
 import { TermsWrapper, TermsBox, TermsScollBox, TermsScollStyles } from './styles'
@@ -33,10 +34,11 @@ function TermsAndConditions({ setFieldValidation, fieldValidation }) {
             </TermsBox>
             <TermsBox paddingTop={SPACERS.M}>
                 I Agree to the Terms of Service
-                <input
+                <CheckBoxField
+                    label="bob"
                     role="checkbox"
-                    type="checkbox"
-                    checked={fieldValidation[SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]}
+                    // type="checkbox"
+                    // checked={fieldValidation[SEASON_REGISTER_STEPS.TERMS_AND_CONDITIONS]}
                     onChange={() => {
                         setFieldValidation({
                             ...fieldValidation,

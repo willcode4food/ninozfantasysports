@@ -9,18 +9,22 @@ export const CheckBoxContainer = styled.label`
     border: 1px solid ${(props = { backgroundColor: COLORS.PRIMARY }) => props.backgroundColor};
     border-radius: 1px;
     cursor: pointer;
-    display: block;
-    margin: 5px 10px;
-    padding: 5px 10px;
-    width: 25px;
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 9px;
+    margin-right: 9px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    width: 2px;
     height: 25px;
+
     &:after {
-        content: '✓';
-        font-size: 25px;
+        content: ${({ isChecked }) => (isChecked ? "'✓'" : '&nbsp;')};
+        font-size: 20px;
         color: ${COLORS.SECONDARY};
-    }
-    &:before {
-        content: '';
     }
 `
 

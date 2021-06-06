@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { SEASON_REGISTER_STEPS } from 'utils/constants'
@@ -74,6 +75,42 @@ describe('TermsAndConditions', () => {
               padding-top: 10px;
             }
 
+            .emotion-12 {
+              -webkit-appearence: button;
+              -moz-appearence: button;
+              -ms-appearence: button;
+              appearence: button;
+              border: 1px solid;
+              border-radius: 1px;
+              cursor: pointer;
+              display: inline;
+              margin-top: 5px;
+              margin-bottom: 5px;
+              margin-left: 9px;
+              margin-right: 9px;
+              padding-top: 3px;
+              padding-bottom: 3px;
+              padding-right: 3px;
+              padding-left: 3px;
+              width: 2px;
+              height: 25px;
+            }
+
+            .emotion-12:after {
+              content: &nbsp;
+              font-size: 20px;
+              color: #c60028;
+            }
+
+            .emotion-14 {
+              position: absolute;
+              left: -9999px;
+            }
+
+            .emotion-14:checked+label {
+              color: red;
+            }
+
             <div
               className="emotion-0 emotion-1"
             >
@@ -104,12 +141,16 @@ describe('TermsAndConditions', () => {
                 className="emotion-10 emotion-3"
               >
                 I Agree to the Terms of Service
-                <input
-                  checked={false}
-                  onChange={[Function]}
-                  role="checkbox"
-                  type="checkbox"
-                />
+                <label
+                  className="emotion-12 emotion-13"
+                >
+                  <input
+                    className="emotion-14 emotion-15"
+                    onClick={[Function]}
+                    role="checkbox"
+                    type="checkbox"
+                  />
+                </label>
               </div>
             </div>
         `)

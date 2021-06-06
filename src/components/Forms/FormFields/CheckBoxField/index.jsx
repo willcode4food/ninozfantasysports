@@ -14,6 +14,7 @@ function CheckBoxField({ label, backgroundColor, backgroundColorOff }) {
                 backgroundColor={backgroundColor}
                 backgroundColorOff={backgroundColorOff}
                 controlName={`chkbx___${label}`}
+                isChecked={isChecked}
                 onClick={handleChange}
                 role="checkbox"
                 type="checkbox"

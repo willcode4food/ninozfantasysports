@@ -20,7 +20,8 @@
     "plugins": ["react", "@emotion"],
     "rules": {
         "@emotion/pkg-renaming": "error",
-        "@emotion/jsx-import": "error"
+        "@emotion/jsx-import": "error",
+        "no-unused-vars": 0
     },
     "settings": {
         "react": {

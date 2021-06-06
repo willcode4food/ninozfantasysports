@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 /* eslint-disable jest/no-commented-out-tests */
 import React from 'react'
 import renderer from 'react-test-renderer'
@@ -25,21 +26,23 @@ describe('CheckBoxField', () => {
                   border: 1px solid;
                   border-radius: 1px;
                   cursor: pointer;
-                  display: block;
-                  margin: 5px 10px;
-                  padding: 5px 10px;
-                  width: 25px;
+                  display: inline;
+                  margin-top: 5px;
+                  margin-bottom: 5px;
+                  margin-left: 9px;
+                  margin-right: 9px;
+                  padding-top: 3px;
+                  padding-bottom: 3px;
+                  padding-right: 3px;
+                  padding-left: 3px;
+                  width: 2px;
                   height: 25px;
                 }
 
                 .emotion-0:after {
-                  content: '✓';
-                  font-size: 25px;
+                  content: &nbsp;
+                  font-size: 20px;
                   color: #c60028;
-                }
-
-                .emotion-0:before {
-                  content: '';
                 }
 
                 .emotion-2 {

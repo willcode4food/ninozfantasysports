@@ -4,7 +4,6 @@ import { SEASON_REGISTER_STEPS } from 'utils/constants'
 import { useForm } from 'react-hook-form'
 import {
     FormBox,
-    FormBoxCenter,
     FormFlex,
     FormFlexInner,
     FormFlexInnerBox,
@@ -16,6 +15,7 @@ import { InputField, StandardSubmitButton, StateSelectField } from 'components/F
 function Payment({ setFieldValidation, fieldValidation }) {
     const chxPayment = useRef()
     const [error, setError] = useState(null)
+    const { register, handleSubmit, watch, errors } = useForm()
 
     return (
         <FormWrapper>
